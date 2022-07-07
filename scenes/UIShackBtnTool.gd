@@ -2,6 +2,7 @@ extends VBoxContainer
 
 export(Texture) var btn_texture
 export(String) var btn_label
+export(String, 'tool', 'seed') var type
 
 onready var GameWorld = get_node("/root/GameWorld")
 
@@ -11,4 +12,7 @@ func setup_btn():
 
 
 func _on_TextureButton_pressed():
-	GameWorld.equip_tool(btn_label)
+	if(type == 'tool'):
+		GameWorld.equip_tool(btn_label)
+	elif(type == 'seed'):
+		GameWorld.equip_plant(btn_label)

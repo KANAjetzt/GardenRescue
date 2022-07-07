@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/UiShack.gd" type="Script" id=1]
+[ext_resource path="res://scenes/UIShackBtnTool.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Shack.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 47.5, 62.5 )
+
+[node name="Building" type="Area2D"]
+position = Vector2( 158, 159 )
+scale = Vector2( 2, 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -8.5, 2.5 )
+shape = SubResource( 2 )
+
+[node name="UiShack" type="WindowDialog" parent="."]
+margin_left = 98.5
+margin_top = -11.5
+margin_right = 627.5
+margin_bottom = 314.5
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+tool_grid_item = ExtResource( 3 )
+tool_grid_path = NodePath("GridContainer")
+
+[node name="GridContainer" type="GridContainer" parent="UiShack"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="input_event" from="." to="." method="_on_Building_input_event"]
