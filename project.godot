@@ -24,6 +24,11 @@ config/name="Garden Rescue"
 run/main_scene="res://scenes/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameWorld="*res://scenes/GameWorld.gd"
+Level="*res://scenes/Level.gd"
+
 [display]
 
 window/size/width=1920
