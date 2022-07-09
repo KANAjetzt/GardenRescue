@@ -6,19 +6,23 @@ export(PackedScene) var tool_grid_item
 export (NodePath) var tool_grid_path
 onready var tool_grid = get_node(tool_grid_path)
 
+var clicked_item = null
+
+signal btn_pressed(btn_label)
 
 func _ready():
 	hide()
 
-func populate_grid(items, texture_property):
+func populate_grid(items):
 	for i in items:
 		var new_grid_item = tool_grid_item.instance()
-		new_grid_item.btn_texture = i[texture_property]
-		new_grid_item.btn_label = i.name
-		if("stage" in i):
-			new_grid_item.type = i.stage
-			print("populate grid: ", i)
-		else:
-			new_grid_item.type = 'tool'
+		new_grid_item.connect("btn_pressed", self, "_on_btn_pressed")
+		new_grid_item.btn_texture = i.icon
+		new_grid_item.btn_label = i.item_name
+		new_grid_item.price = i.price
+		new_grid_item.amount = i.amount
 		new_grid_item.setup_btn()
 		tool_grid.add_child(new_grid_item)
+		
+func _on_btn_pressed(label):
+	emit_signal("btn_pressed", label)

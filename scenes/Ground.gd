@@ -12,7 +12,11 @@ func _unhandled_input(event):
 			print(global_mouse_position, clicked_cell_position, clicked_cell_id)
 			
 			match clicked_cell_id:
-				0: print("grassDead")
+				0: 
+					print("grassDead")
+					if(GameWorld.current_tool == 'hand'):
+						pass
+						
 				1: print("grassLight")
 				2: 
 					print("grassLightHeigh")

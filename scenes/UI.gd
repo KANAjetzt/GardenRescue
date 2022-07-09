@@ -4,11 +4,25 @@ onready var GameWorld = get_node("/root/GameWorld")
 
 export (NodePath) var ui_current_tool_path
 onready var ui_current_tool = get_node(ui_current_tool_path)
-
+export (NodePath) var ui_current_seed_path
+onready var ui_current_seed = get_node(ui_current_seed_path)
+export (NodePath) var ui_current_day_path
+onready var ui_current_day = get_node(ui_current_day_path)
+export (NodePath) var ui_money_path
+onready var ui_money = get_node(ui_money_path)
+export (NodePath) var ui_message_popup_path
+onready var ui_message_popup = get_node(ui_message_popup_path)
 
 func _ready():
 	GameWorld.connect("tool_equiped", self, "_on_tool_equiped")
 	GameWorld.connect("plant_equiped", self, "_on_plant_equiped")
+	GameWorld.connect("new_day", self, "_on_new_day")
+	ui_money.text = str("Money: ", GameWorld.money)
+	
+	GameWorld.UI = self
+
+func _on_new_day(day):
+	ui_current_day.text = str("Its day: ", day)
 
 func _on_tool_equiped():
 	# show current tool in UI

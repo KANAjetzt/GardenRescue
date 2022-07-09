@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/Plant.gd" type="Script" id=1]
+[ext_resource path="res://assets/seed.png" type="Texture" id=2]
 
 [node name="Plant" type="Node2D"]
 script = ExtResource( 1 )
+seed_texture = ExtResource( 2 )
 
 [node name="ShopIcon" type="Sprite" parent="."]
+visible = false
+
+[node name="CurrentStageTexture" type="Sprite" parent="."]
+offset = Vector2( 16, 16 )

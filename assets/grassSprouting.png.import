@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/grassLight.png-369ae49f5020c38838598783bee5043a.stex"
+path="res://.import/grassSprouting.png-18676506c41288a51dbb8316d9387e17.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/grassLight.png"
-dest_files=[ "res://.import/grassLight.png-369ae49f5020c38838598783bee5043a.stex" ]
+source_file="res://assets/grassSprouting.png"
+dest_files=[ "res://.import/grassSprouting.png-18676506c41288a51dbb8316d9387e17.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

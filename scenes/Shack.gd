@@ -1,15 +1,9 @@
-extends Area2D
+extends "res://scenes/Building.gd"
 
-export(Texture) var texture
-
-export(NodePath) var items_path
-onready var items = get_node(items_path)
-export(String) var texture_property
+onready var GameWorld = get_node("/root/GameWorld")
 
 func _ready():
-	$Sprite.texture = texture
-	$UiShack.populate_grid(items.get_children(), texture_property)
+	GameWorld.Shack = self
 
-func _on_Building_input_event(viewport, event, shape_idx):
-	if Input.is_action_pressed("ui_select"):
-		$UiShack.popup()
+func generate_UI():
+	.generate_UI()
