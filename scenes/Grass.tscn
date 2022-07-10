@@ -12,8 +12,8 @@ sprouting_texture = ExtResource( 5 )
 fruit_texture = ExtResource( 3 )
 dead_texture = ExtResource( 1 )
 stages = {
-"fruit": 5,
-"seed": 2,
-"seedling": 3,
-"sprouting": 4
+"fruit": 4,
+"seed": 1,
+"seedling": 2,
+"sprouting": 3
 }
