@@ -19,7 +19,7 @@ func _unhandled_input(event):
 				0: 
 					print("grassDead")
 					if(GameWorld.current_tool.item_name.to_lower() == 'grass'):
-						GameWorld.change_plant_layer(clicked_cell_position, Grass)
+						GameWorld.change_plant_layer(clicked_cell_position, 'grass')
 						
 				1: print("grassLight")
 				2: 
