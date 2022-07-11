@@ -45,7 +45,6 @@ func _ready():
 func _on_new_day(day):
 	# Plant gets older
 	age += 1
-	print(age)
 	
 	# Check if max stage
 	if(age > stages.fruit):
@@ -55,7 +54,6 @@ func _on_new_day(day):
 	for stage_key in stages.keys():
 		var stage = stages[stage_key]
 		if(stage == age):
-			print(stage_key)
 			# update stage
 			current_stage = stage
 			# update texture

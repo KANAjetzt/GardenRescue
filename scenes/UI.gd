@@ -26,15 +26,9 @@ func _on_new_day(day):
 
 func _on_tool_equiped():
 	# show current tool in UI
-	var current_tool_texture
 	
-	for i in GameWorld.tools_shack:
-		if(i.name.to_lower() == GameWorld.current_tool.to_lower()):
-			current_tool_texture = i.texture
-	
-	if(current_tool_texture):
-		ui_current_tool.texture = current_tool_texture
-		Input.set_custom_mouse_cursor(current_tool_texture)
+	ui_current_tool.texture = GameWorld.current_tool.icon
+	Input.set_custom_mouse_cursor(GameWorld.current_tool.icon)
 		
 func _on_plant_equiped():
 	# show current tool in UI

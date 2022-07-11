@@ -23,6 +23,7 @@ var current_plant = null
 var tiles_ground = null
 var tiles_ground_ids = ["grassDead", "grassLight", "grassLightHeigh", "plantDead"]
 
+var PlantLayer = null
 var UI = null
 var Shack = null
 var Item = preload("res://scenes/Item.tscn")
@@ -64,7 +65,7 @@ func sell_item(item):
 	Shack.generate_UI()
 	
 func equip_tool(tool_to_equip):
-	current_tool = tool_to_equip.to_lower()
+	current_tool = tool_to_equip
 	emit_signal("tool_equiped")
 	print('eqiped new tool: ', current_tool)
 	
@@ -74,4 +75,7 @@ func equip_plant(plant_to_equip):
 	print('eqiped new plant: ', current_plant)
 
 func change_ground(cell_position, new_type):
-	tiles_ground.set_cellv(cell_position, tiles_ground_ids.find(new_type))
+	tiles_ground.set_cellv(cell_position, tiles_ground_ids.find(new_type))		
+
+func change_plant_layer(cell_position, plant_scene):
+	PlantLayer.instsance_plant(cell_position, plant_scene)

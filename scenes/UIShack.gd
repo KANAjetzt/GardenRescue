@@ -13,6 +13,11 @@ signal btn_pressed(btn_label)
 func _ready():
 	hide()
 
+func clear_grid():
+	for child in tool_grid.get_children():
+		tool_grid.remove_child(child)
+		child.queue_free()
+
 func populate_grid(items):
 	for i in items:
 		var new_grid_item = tool_grid_item.instance()

@@ -13,6 +13,8 @@ func _ready():
 	$UiShack.connect("btn_pressed", self, "_on_btn_pressed")
 
 func generate_UI():
+	# clear UI
+	$UiShack.clear_grid()
 	$UiShack.populate_grid(items.get_children())
 
 func _on_Building_input_event(viewport, event, shape_idx):
