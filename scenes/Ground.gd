@@ -1,6 +1,5 @@
 extends TileMap
 
-const Grass = preload("res://scenes/Grass.tscn")
 onready var GameWorld = get_node("/root/GameWorld")
 
 func _unhandled_input(event):

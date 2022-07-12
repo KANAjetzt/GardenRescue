@@ -136,9 +136,11 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( 327696, 1, 0, 393232, 1, 0, 458767, 0, 0, 458768, 0, 0, 524304, 0, 0 )
 script = ExtResource( 25 )
+Item = ExtResource( 27 )
 plant_names = [ "", "grass" ]
 plants = [ null, ExtResource( 23 ) ]
 plant_store_path = NodePath("../Plants")
+shack_items_path = NodePath("../Shack/Items")
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource( 9 )

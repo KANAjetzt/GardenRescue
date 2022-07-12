@@ -1,8 +1,11 @@
 extends Node2D
 
+export(Texture) var icon_fruit_texture
 export(Texture) var dead_texture
 export(Array, int) var stages_day = []
 export(Array, Texture) var stages_texture = []
+export(int) var harvest_count = 1
+export(int) var base_sell_price = 1
 
 var age = 0
 var stage_index = 0
@@ -15,12 +18,18 @@ func _ready():
 	
 	$CurrentStageTexture.texture =  stages_texture[stage_index]
 
+func is_max_stage():
+	if(stage_index + 1 == stages_day.size()):
+		return true
+	else:
+		return false
+
 func _on_new_day(day):
 	# Plant gets older
 	age += 1
 	
 	# Check if max stage
-	if(stage_index + 1 == stages_day.size()):
+	if(is_max_stage()):
 		return
 	
 	# Check if there is a new stage reached
