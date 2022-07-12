@@ -39,6 +39,7 @@ margin_right = 500.0
 margin_bottom = 500.0
 
 [node name="GridContainer" type="GridContainer" parent="UiShack/ScrollContainer"]
+custom_constants/vseparation = 50
 custom_constants/hseparation = 50
 columns = 3
 __meta__ = {
