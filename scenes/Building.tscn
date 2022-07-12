@@ -24,18 +24,23 @@ shape = SubResource( 2 )
 [node name="UiShack" type="WindowDialog" parent="."]
 margin_left = 98.5
 margin_top = -11.5
-margin_right = 627.5
-margin_bottom = 314.5
+margin_right = 598.5
+margin_bottom = 488.5
+resizable = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 tool_grid_item = ExtResource( 3 )
-tool_grid_path = NodePath("GridContainer")
+tool_grid_path = NodePath("ScrollContainer/GridContainer")
 
-[node name="GridContainer" type="GridContainer" parent="UiShack"]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="ScrollContainer" type="ScrollContainer" parent="UiShack"]
+margin_right = 500.0
+margin_bottom = 500.0
+
+[node name="GridContainer" type="GridContainer" parent="UiShack/ScrollContainer"]
+custom_constants/hseparation = 50
+columns = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }

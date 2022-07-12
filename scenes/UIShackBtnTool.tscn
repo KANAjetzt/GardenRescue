@@ -6,9 +6,6 @@
 margin_right = 214.0
 margin_bottom = 208.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureButton" type="TextureButton" parent="."]
 margin_right = 214.0

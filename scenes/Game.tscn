@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/grassDead.png" type="Texture" id=1]
 [ext_resource path="res://assets/plantDead.png" type="Texture" id=2]
@@ -12,9 +12,9 @@
 [ext_resource path="res://scenes/Shack.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/hand400.png" type="Texture" id=11]
 [ext_resource path="res://scenes/UI.gd" type="Script" id=12]
-[ext_resource path="res://assets/plantShopIconGrass.png" type="Texture" id=13]
+[ext_resource path="res://assets/plantShopIconGrass300.png" type="Texture" id=13]
 [ext_resource path="res://scenes/Tools.gd" type="Script" id=14]
-[ext_resource path="res://assets/scissors.png" type="Texture" id=15]
+[ext_resource path="res://assets/scissors300.png" type="Texture" id=15]
 [ext_resource path="res://scenes/Ground.gd" type="Script" id=16]
 [ext_resource path="res://assets/lawnMower.png" type="Texture" id=17]
 [ext_resource path="res://scenes/Store.tscn" type="PackedScene" id=18]
@@ -27,6 +27,7 @@
 [ext_resource path="res://scenes/PlantLayer.gd" type="Script" id=25]
 [ext_resource path="res://scenes/StoreItem.gd" type="Script" id=26]
 [ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=27]
+[ext_resource path="res://assets/lawnMower300.png" type="Texture" id=28]
 
 [sub_resource type="TileSet" id=1]
 0/name = "grassDead.png 0"
@@ -197,7 +198,7 @@ price = 5
 [node name="LawnMower" type="Node" parent="Store/Items"]
 script = ExtResource( 26 )
 item_name = "Lawn Mower"
-icon = ExtResource( 17 )
+icon = ExtResource( 28 )
 type = "tool"
 item_reference = NodePath("../../../Tools/LawnMower")
 price = 124
@@ -210,6 +211,18 @@ type = "tool"
 item_reference = NodePath("../../../Tools/Shovel")
 amount = 1
 price = 30
+
+[node name="Scissors" type="Node" parent="Store/Items"]
+script = ExtResource( 26 )
+__meta__ = {
+"_editor_description_": "Used to harvest grown plants"
+}
+item_name = "Scissors"
+icon = ExtResource( 15 )
+type = "tool"
+item_reference = NodePath("../../../Tools/Scissors")
+amount = 1
+price = 15
 
 [node name="UI" type="Control" parent="."]
 margin_right = 40.0
