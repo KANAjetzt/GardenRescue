@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/grassDead.png" type="Texture" id=1]
 [ext_resource path="res://assets/plantDead.png" type="Texture" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://scenes/DayNightCycle.gd" type="Script" id=21]
 [ext_resource path="res://assets/placeHolderPlant.png" type="Texture" id=22]
 [ext_resource path="res://scenes/Grass.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/shovel.png" type="Texture" id=24]
 [ext_resource path="res://scenes/PlantLayer.gd" type="Script" id=25]
 [ext_resource path="res://scenes/StoreItem.gd" type="Script" id=26]
 [ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=27]
@@ -157,6 +158,10 @@ location = "Shack"
 texture = ExtResource( 19 )
 location = "Shack"
 
+[node name="Shovel" parent="Tools" instance=ExtResource( 6 )]
+texture = ExtResource( 24 )
+location = "Store"
+
 [node name="Gloves" parent="Tools" instance=ExtResource( 6 )]
 texture = ExtResource( 8 )
 location = "Shack"
@@ -196,6 +201,15 @@ icon = ExtResource( 17 )
 type = "tool"
 item_reference = NodePath("../../../Tools/LawnMower")
 price = 124
+
+[node name="Shovel" type="Node" parent="Store/Items"]
+script = ExtResource( 26 )
+item_name = "Shovel"
+icon = ExtResource( 24 )
+type = "tool"
+item_reference = NodePath("../../../Tools/Shovel")
+amount = 1
+price = 30
 
 [node name="UI" type="Control" parent="."]
 margin_right = 40.0

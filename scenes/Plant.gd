@@ -16,6 +16,7 @@ export(String, "seed", "seedling", "sprouting", "fruit") var current_stage = "se
 
 var stages_with_texture = null
 var age = 0
+var grid_position = Vector2(0, 0)
 
 
 onready var GameWorld = get_node("/root/GameWorld")

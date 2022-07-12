@@ -14,6 +14,10 @@ func _unhandled_input(event):
 
 			if(!GameWorld.current_tool):
 				return
+				
+			if(GameWorld.current_tool.item_name.to_lower() == 'shovel'):
+				GameWorld.change_ground(clicked_cell_position, 'grassDead')
+				GameWorld.change_plant_layer(clicked_cell_position, '')
 			
 			match clicked_cell_id:
 				0: 

@@ -4,7 +4,7 @@ signal tool_equiped
 signal plant_equiped
 signal new_day(day)
 
-const TIME_SCALE = 1.05
+const TIME_SCALE = 0.55
 var time = 0
 var current_time = 0
 var day_count = 0
@@ -78,6 +78,10 @@ func change_ground(cell_position, new_type):
 	tiles_ground.set_cellv(cell_position, tiles_ground_ids.find(new_type))		
 
 func change_plant_layer(cell_position, plant_name):
+	if(plant_name == ''):
+		PlantLayer.remove_plant(cell_position)
+		return
+	
 	# check if there is a plant allready
 	if(!PlantLayer.is_plant_on_position(cell_position)):
 		PlantLayer.instsance_plant(cell_position, plant_name)
