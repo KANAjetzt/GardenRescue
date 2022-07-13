@@ -24,7 +24,7 @@
 [ext_resource path="res://scenes/Grass.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/shovel.png" type="Texture" id=24]
 [ext_resource path="res://scenes/PlantLayer.gd" type="Script" id=25]
-[ext_resource path="res://scenes/StoreItem.gd" type="Script" id=26]
+[ext_resource path="res://scenes/Item.gd" type="Script" id=26]
 [ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=27]
 [ext_resource path="res://assets/lawnMower300.png" type="Texture" id=28]
 
@@ -134,7 +134,7 @@ tile_set = SubResource( 2 )
 cell_size = Vector2( 32, 32 )
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( 327696, 1, 0, 393232, 1, 0, 458767, 0, 0, 458768, 0, 0, 524304, 0, 0 )
+tile_data = PoolIntArray( 327696, 1, 0, 393232, 1, 0 )
 script = ExtResource( 25 )
 Item = ExtResource( 27 )
 plant_names = [ "", "grass" ]

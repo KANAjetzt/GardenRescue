@@ -42,3 +42,6 @@ func _on_plant_equiped():
 	
 	if(current_plant_texture):
 		Input.set_custom_mouse_cursor(current_plant_texture)
+
+func update_money():
+	ui_money.text = str(GameWorld.money)

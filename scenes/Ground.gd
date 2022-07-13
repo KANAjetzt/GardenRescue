@@ -15,7 +15,7 @@ func _unhandled_input(event):
 				return
 				
 			if(GameWorld.current_tool.item_name.to_lower() == 'shovel'):
-				GameWorld.change_ground(clicked_cell_position, 'grassDead')
+				GameWorld.change_ground(clicked_cell_position, 'soil')
 				GameWorld.change_plant_layer(clicked_cell_position, '')
 			
 			match clicked_cell_id:
@@ -32,7 +32,13 @@ func _unhandled_input(event):
 				3: 
 					print("plantDead")
 					if(GameWorld.current_tool.item_name.to_lower() == 'gloves'):
-						GameWorld.change_ground(clicked_cell_position, 'grassDead')
+						GameWorld.change_ground(clicked_cell_position, 'soil')
 
 func _ready():
-	GameWorld.tiles_ground = self
+	GameWorld.GroundLayer = self
+	
+func init_grass():
+	for cellpos in get_used_cells():
+		var cell = get_cellv(cellpos)
+		if (cell == GameWorld.tiles_ground_ids.find("grassLightHeigh")):
+			GameWorld.PlantLayer.instsance_plant(cellpos, "grass", 4)

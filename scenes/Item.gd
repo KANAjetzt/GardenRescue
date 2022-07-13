@@ -15,9 +15,9 @@ func copy_item(item):
 	amount = item.amount
 	price = item.price
 
-func create_fruid_item(name, icon, amount, price):
-	item_name = name
-	icon = icon
+func create_fruid_item(new_item_name, new_icon, new_amount, new_price):
+	item_name = new_item_name
+	icon = new_icon
 	type = 'fruit'
-	amount = amount
-	price = price
+	amount = new_amount
+	price = new_price

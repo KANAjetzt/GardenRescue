@@ -16,4 +16,17 @@ func _on_Shack_ui_btn_pressed(label):
 		if(i.item_name == label):
 			clicked_item = i
 	
+	# Check if itam has price
+	if(clicked_item.price > 0):
+		# Add money
+		GameWorld.money = GameWorld.money + clicked_item.price
+		# Remove item from shack
+		clicked_item.free()
+		# Update shack UI
+		generate_UI()
+		# Update money UI
+		GameWorld.UI.update_money()
+		return
+		
+	
 	GameWorld.equip_tool(clicked_item)

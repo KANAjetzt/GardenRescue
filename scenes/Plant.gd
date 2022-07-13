@@ -16,6 +16,9 @@ onready var GameWorld = get_node("/root/GameWorld")
 func _ready():
 	GameWorld.connect("new_day", self, "_on_new_day")
 	
+	# Make sure that age = stage
+	age = stages_day[stage_index]
+	
 	$CurrentStageTexture.texture =  stages_texture[stage_index]
 
 func is_max_stage():

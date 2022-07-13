@@ -33,14 +33,21 @@ func _ready():
 		var cell = get_cellv(cellpos)
 		if (plants[cell]):
 			instsance_plant(cellpos, plant_names[cell])
+	
+	# Instance grass from the ground layer
+	GameWorld.GroundLayer.init_grass()
 			
-func instsance_plant(cellpos, plant_name):
+func instsance_plant(cellpos, plant_name, plant_stage = 0):
+	# Add scene instance to plant store node
 	var plant_scene = plants[plant_names.find(plant_name)] 
 	var object = plant_scene.instance()
 	object.position = map_to_world(cellpos)
 	object.grid_position = cellpos
+	object.stage_index = plant_stage
 	plant_store.add_child(object)
-	set_cellv(cellpos, plant_names.find(plant_name))
+	
+	# Add tile to tile map
+	set_cell(cellpos.x, cellpos.y, plant_names.find(plant_name))
 
 func get_plant(cellpos):
 	for plant in plant_store.get_children():
@@ -61,18 +68,32 @@ func remove_plant(cellpos):
 	set_cellv(cellpos, -1)
 
 func handleHarvest(cellpos):
-	# check if plant is fully grown
+	print("HARVESTING!")
+	
+	# check if there is a plant
+	if(!is_plant_on_position(cellpos)):
+		return
+	
 	var plant = get_plant(cellpos)
 	
-	if(plant.is_max_stage()):
-		# Create new Item
-		var new_item = Item.instance()
-		new_item.create_fruid_item(plant.name, plant.icon_fruit_texture, plant.harvest_count, plant.base_sell_price)
-		# Add fruit to shack
-		shack_items.add_child(new_item)
+	# check if plant is fully grown
+	if(!plant.is_max_stage()):
+		print("not max stage!")
+		return
 		
-		# Remove plant
-		remove_plant(cellpos)
+	# Create new Item
+	var new_item = Item.instance()
+	new_item.create_fruid_item(plant.name, plant.icon_fruit_texture, plant.harvest_count, plant.base_sell_price)
+	# Add fruit to shack
+	shack_items.add_child(new_item)
+	# Update shack UI
+	GameWorld.Shack.generate_UI()
+	
+	# Remove plant
+	remove_plant(cellpos)
+	
+	# Change ground to dirt
+	GameWorld.change_ground(cellpos, "soil")
 	
 	
 	

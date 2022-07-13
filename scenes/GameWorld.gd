@@ -21,8 +21,9 @@ var current_tool = null
 var current_seed = null
 var current_plant = null
 var tiles_ground = null
-var tiles_ground_ids = ["grassDead", "grassLight", "grassLightHeigh", "plantDead"]
+var tiles_ground_ids = ["soil", "grassLight", "grassLightHeigh", "plantDead"]
 
+var GroundLayer = null
 var PlantLayer = null
 var UI = null
 var Shack = null
@@ -42,28 +43,6 @@ func _process(delta):
 	else:
 		is_day_counted = false
 
-func sell_item(item):
-	# Check if enough money
-	if(money - item.price < 0):
-		UI.ui_message_popup.window_title = "Uff not enough money sorry :("
-		var label = Label.new()
-		label.text = "ahh there is some money missing sorry I can't sell you that :("
-		UI.ui_message_popup.add_child(label)
-		# Shop pop up if not enough
-		UI.ui_message_popup.popup()
-		return	
-	# If enough subtract money
-	money = money - item.price
-	# Update money UI
-	UI.ui_money.text = str(money)
-	# And add item to shack
-	var new_item = Item.instance()
-	new_item.copy_item(item)
-	new_item.price = 0
-	Shack.items.add_child(new_item)
-	# Update shack UI
-	Shack.generate_UI()
-	
 func equip_tool(tool_to_equip):
 	current_tool = tool_to_equip
 	emit_signal("tool_equiped")
@@ -75,7 +54,7 @@ func equip_plant(plant_to_equip):
 	print('eqiped new plant: ', current_plant)
 
 func change_ground(cell_position, new_type):
-	tiles_ground.set_cellv(cell_position, tiles_ground_ids.find(new_type))		
+	GroundLayer.set_cellv(cell_position, tiles_ground_ids.find(new_type))		
 
 func change_plant_layer(cell_position, plant_name):
 	if(plant_name == ''):
