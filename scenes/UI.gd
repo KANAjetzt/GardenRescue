@@ -28,7 +28,7 @@ func _on_tool_equiped():
 	# show current tool in UI
 	
 	ui_current_tool.texture = GameWorld.current_tool.icon
-	Input.set_custom_mouse_cursor(GameWorld.current_tool.icon)
+#	Input.set_custom_mouse_cursor(GameWorld.current_tool.icon)
 		
 func _on_plant_equiped():
 	# show current tool in UI

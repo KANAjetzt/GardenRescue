@@ -1,5 +1,6 @@
 extends Node2D
 
+export(String) var plant_name
 export(Texture) var icon_fruit_texture
 export(Texture) var dead_texture
 export(Array, int) var stages_day = []

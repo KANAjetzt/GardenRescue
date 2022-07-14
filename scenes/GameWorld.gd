@@ -57,10 +57,14 @@ func change_ground(cell_position, new_type):
 	GroundLayer.set_cellv(cell_position, tiles_ground_ids.find(new_type))		
 
 func change_plant_layer(cell_position, plant_name):
+	var is_plant_on_position = PlantLayer.is_plant_on_position(cell_position)
+	
 	if(plant_name == ''):
-		PlantLayer.remove_plant(cell_position)
+		if(is_plant_on_position):
+			PlantLayer.remove_plant(cell_position)
+		
 		return
 	
 	# check if there is a plant allready
-	if(!PlantLayer.is_plant_on_position(cell_position)):
+	if(!is_plant_on_position):
 		PlantLayer.instsance_plant(cell_position, plant_name)

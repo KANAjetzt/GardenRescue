@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/grassIconFruit.png" type="Texture" id=8]
 
 [node name="Grass" instance=ExtResource( 2 )]
+plant_name = "grass"
 icon_fruit_texture = ExtResource( 8 )
 dead_texture = ExtResource( 1 )
 stages_day = [ 0, 1, 2, 3, 6 ]

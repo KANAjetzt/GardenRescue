@@ -68,8 +68,6 @@ func remove_plant(cellpos):
 	set_cellv(cellpos, -1)
 
 func handleHarvest(cellpos):
-	print("HARVESTING!")
-	
 	# check if there is a plant
 	if(!is_plant_on_position(cellpos)):
 		return
@@ -78,16 +76,13 @@ func handleHarvest(cellpos):
 	
 	# check if plant is fully grown
 	if(!plant.is_max_stage()):
-		print("not max stage!")
 		return
-		
+	
 	# Create new Item
 	var new_item = Item.instance()
-	new_item.create_fruid_item(plant.name, plant.icon_fruit_texture, plant.harvest_count, plant.base_sell_price)
+	new_item.create_fruid_item(plant.plant_name, plant.icon_fruit_texture, plant.harvest_count, plant.base_sell_price)
 	# Add fruit to shack
-	shack_items.add_child(new_item)
-	# Update shack UI
-	GameWorld.Shack.generate_UI()
+	GameWorld.Shack.add_item(new_item)
 	
 	# Remove plant
 	remove_plant(cellpos)
