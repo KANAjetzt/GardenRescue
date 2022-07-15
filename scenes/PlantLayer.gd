@@ -38,8 +38,9 @@ func _ready():
 	GameWorld.GroundLayer.init_grass()
 			
 func instsance_plant(cellpos, plant_name, plant_stage = 0):
+	var plant_name_lower = plant_name.to_lower()
 	# Add scene instance to plant store node
-	var plant_scene = plants[plant_names.find(plant_name)] 
+	var plant_scene = plants[plant_names.find(plant_name_lower)]
 	var object = plant_scene.instance()
 	object.position = map_to_world(cellpos)
 	object.grid_position = cellpos
@@ -47,7 +48,7 @@ func instsance_plant(cellpos, plant_name, plant_stage = 0):
 	plant_store.add_child(object)
 	
 	# Add tile to tile map
-	set_cell(cellpos.x, cellpos.y, plant_names.find(plant_name))
+	set_cell(cellpos.x, cellpos.y, plant_names.find(plant_name_lower))
 
 func get_plant(cellpos):
 	for plant in plant_store.get_children():

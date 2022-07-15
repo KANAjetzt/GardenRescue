@@ -13,7 +13,8 @@ func _unhandled_input(event):
 
 			if(!GameWorld.current_tool):
 				return
-				
+			
+			print("current_tool type: ", GameWorld.current_tool.type)
 			if(GameWorld.current_tool.item_name.to_lower() == 'shovel'):
 				GameWorld.change_ground(clicked_cell_position, 'soil')
 				GameWorld.change_plant_layer(clicked_cell_position, '')
@@ -21,8 +22,8 @@ func _unhandled_input(event):
 			match clicked_cell_id:
 				0: 
 					print("grassDead")
-					if(GameWorld.current_tool.item_name.to_lower() == 'grass'):
-						GameWorld.change_plant_layer(clicked_cell_position, 'grass')
+					if(GameWorld.current_tool.type.to_lower() == 'seed'):
+						GameWorld.change_plant_layer(clicked_cell_position, GameWorld.current_tool.item_name)
 						
 				1: print("grassLight")
 				2: 
