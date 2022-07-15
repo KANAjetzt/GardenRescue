@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shovel.png-36a84a629eb7384cbc468a0b1b992bdc.stex"
+path="res://.import/uiCurrentTool.png-475503be6084ebe36c94beb05e89d2d1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/shovel.png"
-dest_files=[ "res://.import/shovel.png-36a84a629eb7384cbc468a0b1b992bdc.stex" ]
+source_file="res://assets/uiCurrentTool.png"
+dest_files=[ "res://.import/uiCurrentTool.png-475503be6084ebe36c94beb05e89d2d1.stex" ]
 
 [params]
 
