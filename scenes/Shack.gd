@@ -8,20 +8,22 @@ func _ready():
 func generate_UI():
 	.generate_UI()
 
+func sell_item(item):
+	# Add money
+	GameWorld.money = GameWorld.money + item.price * item.amount
+	# Remove item from shack
+	item.free()
+	# Update shack UI
+	generate_UI()
+	# Update money UI
+	GameWorld.UI.update_money()
+
 func _on_Shack_ui_btn_pressed(label):
 	var clicked_item = .get_item(label)
 	
 	# Check if itam has price
 	if(clicked_item.price > 0):
-		# Add money
-		GameWorld.money = GameWorld.money + clicked_item.price
-		# Remove item from shack
-		clicked_item.free()
-		# Update shack UI
-		generate_UI()
-		# Update money UI
-		GameWorld.UI.update_money()
+		sell_item(clicked_item)
 		return
-		
 	
 	GameWorld.equip_tool(clicked_item)
