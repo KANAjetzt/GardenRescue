@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/grassDead.png" type="Texture" id=1]
 [ext_resource path="res://assets/plantDead.png" type="Texture" id=2]
@@ -22,12 +22,14 @@
 [ext_resource path="res://scenes/Plants.gd" type="Script" id=20]
 [ext_resource path="res://scenes/DayNightCycle.gd" type="Script" id=21]
 [ext_resource path="res://assets/placeHolderPlant.png" type="Texture" id=22]
-[ext_resource path="res://scenes/Grass.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/Plants/Grass.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/shovel.png" type="Texture" id=24]
 [ext_resource path="res://scenes/PlantLayer.gd" type="Script" id=25]
 [ext_resource path="res://scenes/Item.gd" type="Script" id=26]
 [ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=27]
 [ext_resource path="res://assets/lawnMower300.png" type="Texture" id=28]
+[ext_resource path="res://assets/Salad_Fruit.png" type="Texture" id=29]
+[ext_resource path="res://assets/Tomate_Fruit.png" type="Texture" id=30]
 
 [sub_resource type="TileSet" id=1]
 0/name = "grassDead.png 0"
@@ -197,6 +199,22 @@ type = "seed"
 amount = 100
 price = 5
 
+[node name="SaladSeeds" type="Node" parent="Store/Items"]
+script = ExtResource( 26 )
+item_name = "Salad"
+icon = ExtResource( 29 )
+type = "seed"
+amount = 5
+price = 5
+
+[node name="TomatoSeeds" type="Node" parent="Store/Items"]
+script = ExtResource( 26 )
+item_name = "Tomato"
+icon = ExtResource( 30 )
+type = "seed"
+amount = 5
+price = 5
+
 [node name="LawnMower" type="Node" parent="Store/Items"]
 script = ExtResource( 26 )
 item_name = "Lawn Mower"
@@ -285,6 +303,7 @@ __meta__ = {
 [node name="Message" type="AcceptDialog" parent="UI/CanvasLayer"]
 margin_right = 83.0
 margin_bottom = 58.0
+window_title = "Warnung!"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
