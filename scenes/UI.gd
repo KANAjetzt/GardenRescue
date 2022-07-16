@@ -4,8 +4,6 @@ onready var GameWorld = get_node("/root/GameWorld")
 
 export (NodePath) var ui_current_tool_path
 onready var ui_current_tool = get_node(ui_current_tool_path)
-export (NodePath) var ui_current_seed_path
-onready var ui_current_seed = get_node(ui_current_seed_path)
 export (NodePath) var ui_current_day_path
 onready var ui_current_day = get_node(ui_current_day_path)
 export (NodePath) var ui_money_path

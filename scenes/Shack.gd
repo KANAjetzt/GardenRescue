@@ -4,22 +4,22 @@ onready var GameWorld = get_node("/root/GameWorld")
 
 func _ready():
 	GameWorld.Shack = self
+	print("ready shack: ", items)
+	.init_ui()
 
-func generate_UI():
-	.generate_UI()
 
 func sell_item(item):
 	# Add money
 	GameWorld.money = GameWorld.money + item.price * item.amount
-	# Remove item from shack
-	item.free()
-	# Update shack UI
-	generate_UI()
 	# Update money UI
 	GameWorld.UI.update_money()
+	.remove_item(item)
 
-func _on_Shack_ui_btn_pressed(label):
-	var clicked_item = .get_item(label)
+func _on_Shack_clicked_on_building():
+	inventory.show()
+
+func _on_Inventory_pressed_slot(item_name):
+	var clicked_item = .get_item(item_name)
 	
 	# Check if itam has price
 	if(clicked_item.price > 0):

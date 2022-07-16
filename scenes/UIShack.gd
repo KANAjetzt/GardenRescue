@@ -14,20 +14,23 @@ func _ready():
 	hide()
 
 func clear_grid():
-	for child in tool_grid.get_children():
-		tool_grid.remove_child(child)
-		child.queue_free()
+	pass
 
 func populate_grid(items):
+	print("populating inventory: ", items)
+	
 	for i in items:
-		var new_grid_item = tool_grid_item.instance()
-		new_grid_item.connect("btn_pressed", self, "_on_btn_pressed")
-		new_grid_item.btn_texture = i.icon
-		new_grid_item.btn_label = i.item_name
-		new_grid_item.price = i.price
-		new_grid_item.amount = i.amount
-		new_grid_item.setup_btn()
-		tool_grid.add_child(new_grid_item)
+		tool_grid.add_item(i.item_name, i.icon)
+		
+		
+#		var new_grid_item = tool_grid_item.instance()
+#		new_grid_item.connect("btn_pressed", self, "_on_btn_pressed")
+#		new_grid_item.btn_texture = i.icon
+#		new_grid_item.btn_label = i.item_name
+#		new_grid_item.price = i.price
+#		new_grid_item.amount = i.amount
+#		new_grid_item.setup_btn()
+#		tool_grid.add_child(new_grid_item)
 		
 func _on_btn_pressed(label):
 	emit_signal("btn_pressed", label)

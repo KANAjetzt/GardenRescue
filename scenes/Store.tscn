@@ -1,11 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Building.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Store.gd" type="Script" id=2]
 [ext_resource path="res://assets/shopSeeds.png" type="Texture" id=3]
+[ext_resource path="res://scenes/UI/Inventory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/UI/Templates/InventorySlotShop.tscn" type="PackedScene" id=5]
 
 [node name="Store" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 texture = ExtResource( 3 )
+inventory_path = NodePath("Inventory")
 
+[node name="Inventory" parent="." index="2" instance=ExtResource( 4 )]
+margin_left = 28.5
+margin_top = -32.0
+margin_right = 28.5
+margin_bottom = -32.0
+rect_scale = Vector2( 0.5, 0.5 )
+Slot = ExtResource( 5 )
+
+[connection signal="clicked_on_building" from="." to="." method="_on_Store_clicked_on_building"]
 [connection signal="ui_btn_pressed" from="." to="." method="_on_Store_ui_btn_pressed"]
+[connection signal="pressed_slot" from="Inventory" to="." method="_on_Inventory_pressed_slot"]

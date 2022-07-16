@@ -238,6 +238,7 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 20 )
 
 [node name="Shack" parent="." instance=ExtResource( 10 )]
+position = Vector2( 158, 159 )
 texture = ExtResource( 5 )
 items_path = NodePath("Items")
 
@@ -313,7 +314,7 @@ script = ExtResource( 26 )
 item_name = "Lawn Mower"
 icon = ExtResource( 28 )
 type = "tool"
-amount = 1
+is_one_time_purchase = true
 price = 124
 
 [node name="Shovel" type="Node" parent="Store/Items"]
@@ -321,7 +322,7 @@ script = ExtResource( 26 )
 item_name = "Shovel"
 icon = ExtResource( 24 )
 type = "tool"
-amount = 1
+is_one_time_purchase = true
 price = 30
 
 [node name="Scissors" type="Node" parent="Store/Items"]
@@ -332,7 +333,7 @@ __meta__ = {
 item_name = "Scissors"
 icon = ExtResource( 15 )
 type = "tool"
-amount = 1
+is_one_time_purchase = true
 price = 15
 
 [node name="UI" type="Control" parent="."]

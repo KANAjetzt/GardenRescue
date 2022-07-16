@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/UICoin.png" type="Texture" id=2]
+[ext_resource path="res://scenes/UI/Templates/InventorySlot.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/UI/Templates/InventorySlotShop.gd" type="Script" id=4]
+
+[sub_resource type="GradientTexture" id=1]
+
+[node name="InventorySlotShop" instance=ExtResource( 3 )]
+script = ExtResource( 4 )
+
+[node name="Amount" parent="." index="1"]
+texture = SubResource( 1 )
+
+[node name="TextureRect" parent="Amount" index="1"]
+texture = ExtResource( 2 )

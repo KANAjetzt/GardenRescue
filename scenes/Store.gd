@@ -4,12 +4,8 @@ var clicked_item
 
 onready var GameWorld = get_node("/root/GameWorld")
 
-func _on_Store_ui_btn_pressed(label):
-	# get clicked item
-	for item in items.get_children():
-		if(item.item_name == label):
-			clicked_item = item
-			sell_item(clicked_item)
+func _ready():
+	.init_ui()
 
 func sell_item(item):
 		# Check if enough money
@@ -25,33 +21,21 @@ func sell_item(item):
 	GameWorld.money = GameWorld.money - item.price
 	# Update money UI
 	GameWorld.UI.ui_money.text = str(GameWorld.money)
-	# And add item to shack
+	# Add item to shack
 	var new_item = GameWorld.Item.instance()
 	new_item.copy_item(item)
 	new_item.price = 0
-	GameWorld.Shack.items.add_child(new_item)
-	# Update shack UI
-	GameWorld.Shack.generate_UI()
+	GameWorld.Shack.add_item(new_item)
+	# Remove item from shop if one time purchase
+	if(item.is_one_time_purchase):
+		.remove_item(item)
 
+func _on_Store_clicked_on_building():
+	inventory.show()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+func _on_Inventory_pressed_slot(item_name):
+	# get clicked item
+	for item in items.get_children():
+		if(item.item_name == item_name):
+			clicked_item = item
+			sell_item(clicked_item)

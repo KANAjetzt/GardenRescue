@@ -1,9 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Building.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Shack.gd" type="Script" id=2]
+[ext_resource path="res://scenes/UI/Inventory.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/UI/Templates/InventorySlot.tscn" type="PackedScene" id=4]
 
 [node name="Shack" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+inventory_path = NodePath("Inventory")
 
+[node name="Inventory" parent="." index="2" instance=ExtResource( 3 )]
+margin_left = -50.5
+margin_top = 68.0
+margin_right = 529.5
+margin_bottom = 758.0
+rect_scale = Vector2( 0.5, 0.5 )
+Slot = ExtResource( 4 )
+
+[connection signal="clicked_on_building" from="." to="." method="_on_Shack_clicked_on_building"]
 [connection signal="ui_btn_pressed" from="." to="." method="_on_Shack_ui_btn_pressed"]
+[connection signal="pressed_slot" from="Inventory" to="." method="_on_Inventory_pressed_slot"]
