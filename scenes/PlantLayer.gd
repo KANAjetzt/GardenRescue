@@ -21,9 +21,13 @@ func _unhandled_input(event):
 
 			if(!GameWorld.current_tool):
 				return
+			
+			match GameWorld.current_tool.item_name.to_lower():
+				'scissors':
+					handleHarvest(clicked_cell_position)
+				'hand':
+					handleHarvest(clicked_cell_position)
 				
-			if(GameWorld.current_tool.item_name.to_lower() == 'scissors'):
-				handleHarvest(clicked_cell_position)
 
 func _ready():
 	hide()
@@ -78,6 +82,11 @@ func handleHarvest(cellpos):
 	
 	# check if plant is fully grown
 	if(!plant.is_max_stage()):
+		return
+
+	# check plants harvest count
+	if(plant.harvest_count <= 0):
+		remove_plant(cellpos)
 		return
 	
 	# Create new Item

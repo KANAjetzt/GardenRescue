@@ -15,7 +15,7 @@
 [ext_resource path="res://assets/Tools/Schere.png" type="Texture" id=13]
 [ext_resource path="res://scenes/Plants/Pepper.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/Plants/Tomato/Seeds_Tomato.png" type="Texture" id=15]
-[ext_resource path="res://scenes/Ground.gd" type="Script" id=16]
+[ext_resource path="res://scenes/GroundLayer.gd" type="Script" id=16]
 [ext_resource path="res://assets/Plants/Zucchini/Zucchini_Fruit.png" type="Texture" id=17]
 [ext_resource path="res://scenes/Store.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/Tools/hand300.png" type="Texture" id=19]
@@ -45,7 +45,6 @@
 [ext_resource path="res://scenes/Plants/Moss.tscn" type="PackedScene" id=44]
 
 [sub_resource type="StreamTexture" id=3]
-load_path = "res://.import/placeHolderPlant.png-5fa3c4a3ab8e08e41c0060c420325d9b.stex"
 
 [sub_resource type="TileSet" id=2]
 0/name = "placeHolderPlant.png 0"
