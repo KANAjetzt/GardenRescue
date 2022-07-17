@@ -6,6 +6,7 @@ export(Texture) var dead_texture
 export(Array, int) var stages_day = []
 export(Array, Texture) var stages_texture = []
 export(int) var harvest_count = 1
+export(int) var harvest_stage_index = -1
 export(int) var base_sell_price = 1
 
 var age = 0
@@ -27,6 +28,14 @@ func is_max_stage():
 		return true
 	else:
 		return false
+	
+func set_stage(index):
+	# update stage
+	stage_index = index
+	# set age
+	age = stages_day[stage_index]
+	# update texture
+	$CurrentStageTexture.texture = stages_texture[stage_index]
 
 func _on_new_day(day):
 	# Plant gets older

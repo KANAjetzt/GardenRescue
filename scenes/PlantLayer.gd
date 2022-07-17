@@ -86,8 +86,13 @@ func handleHarvest(cellpos):
 	# Add fruit to shack
 	GameWorld.Shack.add_item(new_item)
 	
-	# Remove plant
-	remove_plant(cellpos)
+	# Check plant harvest stage
+	if(plant.harvest_stage_index < 0):
+		# Remove plant
+		remove_plant(cellpos)
+	else:
+		# Reset plant to harvest stage
+		plant.set_stage(plant.harvest_stage_index)
 	
 	# Change ground to dirt
 	GameWorld.change_ground(cellpos, "soil")

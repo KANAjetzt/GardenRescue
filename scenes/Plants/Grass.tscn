@@ -11,5 +11,6 @@
 [node name="Grass" instance=ExtResource( 2 )]
 plant_name = "grass"
 icon_fruit_texture = ExtResource( 1 )
-stages_day = [ 0, 1, 2, 3, 6 ]
+stages_day = [ 0, 1, 2, 3, 10 ]
 stages_texture = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ]
+harvest_stage_index = 3
