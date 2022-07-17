@@ -245,7 +245,7 @@ item_name = "Grass"
 icon = ExtResource( 28 )
 type = "seed"
 amount = 100
-price = 5
+price = 20
 
 [node name="SaladSeeds" type="Node" parent="Store/Items"]
 script = ExtResource( 26 )
@@ -253,7 +253,7 @@ item_name = "Salad"
 icon = ExtResource( 38 )
 type = "seed"
 amount = 5
-price = 5
+price = 50
 
 [node name="CucumberSeeds" type="Node" parent="Store/Items"]
 script = ExtResource( 26 )
@@ -261,7 +261,7 @@ item_name = "Cucumber"
 icon = ExtResource( 39 )
 type = "seed"
 amount = 5
-price = 5
+price = 75
 
 [node name="ZucchiniSeeds" type="Node" parent="Store/Items"]
 script = ExtResource( 26 )
@@ -269,7 +269,7 @@ item_name = "Zucchini"
 icon = ExtResource( 40 )
 type = "seed"
 amount = 5
-price = 5
+price = 100
 
 [node name="FlowerSeeds" type="Node" parent="Store/Items"]
 script = ExtResource( 26 )
@@ -277,7 +277,7 @@ item_name = "Flower"
 icon = ExtResource( 4 )
 type = "seed"
 amount = 5
-price = 5
+price = 250
 
 [node name="TomatoSeeds" type="Node" parent="Store/Items"]
 script = ExtResource( 26 )
@@ -285,7 +285,7 @@ item_name = "Tomato"
 icon = ExtResource( 15 )
 type = "seed"
 amount = 5
-price = 5
+price = 400
 
 [node name="PepperSeeds" type="Node" parent="Store/Items"]
 script = ExtResource( 26 )
@@ -293,7 +293,7 @@ item_name = "Pepper"
 icon = ExtResource( 5 )
 type = "seed"
 amount = 5
-price = 5
+price = 1000
 
 [node name="LawnMower" type="Node" parent="Store/Items"]
 script = ExtResource( 26 )
@@ -301,7 +301,7 @@ item_name = "Lawn Mower"
 icon = ExtResource( 3 )
 type = "tool"
 is_one_time_purchase = true
-price = 124
+price = 100000
 
 [node name="Shovel" type="Node" parent="Store/Items"]
 script = ExtResource( 26 )
@@ -433,6 +433,5 @@ margin_bottom = 58.0
 window_title = "Warnung!"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0.203922, 0.305882, 0.321569, 1 )
 script = ExtResource( 21 )

@@ -17,7 +17,7 @@ func get_iventory_slot(new_items):
 	var slots = []
 
 	for item in new_items:
-		var new_slot = $Inventory.Slot.instance()
+		var new_slot = inventory.Slot.instance()
 		new_slot.item_name = item.item_name
 		new_slot.icon = item.icon
 		new_slot.amount = item.amount
@@ -28,7 +28,7 @@ func get_iventory_slot(new_items):
 
 func init_ui():
 	var slots = get_iventory_slot(items.get_children())
-	$Inventory.populate(slots)
+	inventory.populate(slots)
 
 func is_item_existing(item_name):
 	var is_item = false

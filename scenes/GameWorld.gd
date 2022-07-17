@@ -4,13 +4,14 @@ signal tool_equiped
 signal plant_equiped
 signal new_day(day)
 
-const TIME_SCALE = 0.55
+const TIME_SCALE = 0.05
 var time = 0
 var current_time = 0
+var time_multiplier = 3
 var day_count = 0
 var is_day_counted = false
 
-var money = 1000
+var money = 15
 
 
 var tools_shack = []
@@ -30,9 +31,12 @@ var Shack = null
 var Item = preload("res://scenes/Item.tscn")
 
 func _process(delta):
-	time += delta * TIME_SCALE
+	time += delta * (TIME_SCALE * time_multiplier)
 	
+	# Calculate time
 	current_time = pow( abs(sin(time) * 1), 0.5 )
+
+	# Check if its a new day
 	if(current_time < 0.1):
 		if(is_day_counted):
 			return

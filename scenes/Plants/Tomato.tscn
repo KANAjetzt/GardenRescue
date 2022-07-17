@@ -6,9 +6,9 @@
 [ext_resource path="res://assets/Plants/Tomato/Tomate_Sprouting.png" type="Texture" id=4]
 [ext_resource path="res://assets/Plants/Tomato/Tomate_Seedling.png" type="Texture" id=5]
 
-
 [node name="Tomato" instance=ExtResource( 1 )]
 plant_name = "tomato"
 icon_fruit_texture = ExtResource( 3 )
-stages_day = [ 0, 1, 2, 3 ]
+stages_day = [ 0, 5, 13, 18 ]
 stages_texture = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ]
+base_sell_price = 25

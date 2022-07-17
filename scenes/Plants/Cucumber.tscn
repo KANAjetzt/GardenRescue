@@ -9,5 +9,6 @@
 [node name="Cucumber" instance=ExtResource( 5 )]
 plant_name = "cucumber"
 icon_fruit_texture = ExtResource( 3 )
-stages_day = [ 0, 1, 2, 3 ]
+stages_day = [ 0, 3, 10, 12 ]
 stages_texture = [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ]
+base_sell_price = 8

@@ -5,7 +5,24 @@ var clicked_item
 onready var GameWorld = get_node("/root/GameWorld")
 
 func _ready():
-	.init_ui()
+	init_ui()
+
+func get_iventory_slot(new_items):
+	var slots = []
+
+	for item in new_items:
+		var new_slot = inventory.Slot.instance()
+		new_slot.item_name = item.item_name
+		new_slot.icon = item.icon
+		new_slot.amount = item.price
+		new_slot.connect("pressed_slot", self, "_on_Inventory_pressed_slot")
+		slots.append(new_slot)
+	
+	return slots
+
+func init_ui():
+	var slots = get_iventory_slot(items.get_children())
+	inventory.populate(slots)
 
 func sell_item(item):
 		# Check if enough money
@@ -26,6 +43,8 @@ func sell_item(item):
 	new_item.copy_item(item)
 	new_item.price = 0
 	GameWorld.Shack.add_item(new_item)
+	# Equip item
+	GameWorld.equip_tool(new_item)
 	# Remove item from shop if one time purchase
 	if(item.is_one_time_purchase):
 		.remove_item(item)
