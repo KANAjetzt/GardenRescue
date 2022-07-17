@@ -15,7 +15,7 @@ func _ready():
 	GameWorld.connect("tool_equiped", self, "_on_tool_equiped")
 	GameWorld.connect("plant_equiped", self, "_on_plant_equiped")
 	GameWorld.connect("new_day", self, "_on_new_day")
-	ui_money.text = str("Money: ", GameWorld.money)
+	ui_money.text = str(GameWorld.money)
 	
 	GameWorld.UI = self
 

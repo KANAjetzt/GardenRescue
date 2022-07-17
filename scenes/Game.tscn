@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://assets/Buildings/Schopf.png" type="Texture" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://assets/Tools/hand300.png" type="Texture" id=19]
 [ext_resource path="res://scenes/Plants.gd" type="Script" id=20]
 [ext_resource path="res://scenes/DayNightCycle.gd" type="Script" id=21]
+[ext_resource path="res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_16_bold.tres" type="DynamicFont" id=22]
 [ext_resource path="res://scenes/Plants/Grass.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/Tools/shovel.png" type="Texture" id=24]
 [ext_resource path="res://scenes/PlantLayer.gd" type="Script" id=25]
@@ -43,6 +44,7 @@
 [ext_resource path="res://scenes/Plants/Dandelion.tscn" type="PackedScene" id=42]
 [ext_resource path="res://assets/Plants/Moos.png" type="Texture" id=43]
 [ext_resource path="res://scenes/Plants/Moss.tscn" type="PackedScene" id=44]
+[ext_resource path="res://assets/UI/UICoin.png" type="Texture" id=45]
 
 [sub_resource type="StreamTexture" id=3]
 
@@ -327,8 +329,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 ui_current_tool_path = NodePath("CanvasLayer/CurrentToolBG/CurrentTool")
-ui_current_day_path = NodePath("CanvasLayer/CurrentDay")
-ui_money_path = NodePath("CanvasLayer/Money")
+ui_current_day_path = NodePath("CanvasLayer/TopLeft/MarginContainer/VBC/CurrentDay")
+ui_money_path = NodePath("CanvasLayer/TopLeft/MarginContainer/VBC/Money/Label")
 ui_message_popup_path = NodePath("CanvasLayer/Message")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="UI"]
@@ -355,17 +357,71 @@ margin_bottom = 34.0
 expand = true
 stretch_mode = 1
 
-[node name="CurrentDay" type="Label" parent="UI/CanvasLayer"]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="TopLeft" type="Control" parent="UI/CanvasLayer"]
+self_modulate = Color( 1, 1, 1, 0.784314 )
+margin_right = 180.0
+margin_bottom = 70.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Money" type="Label" parent="UI/CanvasLayer"]
-margin_top = 27.0
-margin_right = 40.0
-margin_bottom = 41.0
+[node name="BG" type="NinePatchRect" parent="UI/CanvasLayer/TopLeft"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 11 )
+patch_margin_left = 1
+patch_margin_right = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/CanvasLayer/TopLeft"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 11.0
+margin_top = 5.0
+margin_right = -11.0
+margin_bottom = -7.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBC" type="VBoxContainer" parent="UI/CanvasLayer/TopLeft/MarginContainer"]
+margin_right = 158.0
+margin_bottom = 58.0
+custom_constants/separation = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentDay" type="Label" parent="UI/CanvasLayer/TopLeft/MarginContainer/VBC"]
+margin_right = 158.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 22 )
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Money" type="HBoxContainer" parent="UI/CanvasLayer/TopLeft/MarginContainer/VBC"]
+margin_top = 33.0
+margin_right = 158.0
+margin_bottom = 54.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/CanvasLayer/TopLeft/MarginContainer/VBC/Money"]
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="UI/CanvasLayer/TopLeft/MarginContainer/VBC/Money"]
+margin_left = 4.0
+margin_right = 24.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 20, 20 )
+texture = ExtResource( 45 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
