@@ -15,14 +15,17 @@ func _unhandled_input(event):
 
 			if(!GameWorld.current_tool):
 				return
-				
+			
+			if(GameWorld.current_tool.item_name.to_lower() == 'shovel'):
+				GameWorld.change_plant_layer(clicked_cell_position, '')
+				return
+
 			match tile_names[clicked_cell_id]:
 				"soil":
 					if(GameWorld.current_tool.type.to_lower() == 'seed'):
 						GameWorld.change_plant_layer(clicked_cell_position, GameWorld.current_tool.item_name)
 			
-			if(GameWorld.current_tool.item_name.to_lower() == 'shovel'):
-				GameWorld.change_plant_layer(clicked_cell_position, '')
+			
 
 func _ready():
 	GameWorld.GroundLayer = self
