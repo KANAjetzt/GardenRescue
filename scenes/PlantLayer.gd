@@ -18,15 +18,21 @@ func _unhandled_input(event):
 			var clicked_cell_id = get_cellv(clicked_cell_position)
 			
 			print(global_mouse_position, clicked_cell_position, clicked_cell_id)
-
+			
+			# if there is no tool selected
 			if(!GameWorld.current_tool):
+				return
+			
+			# if there is no plant on this position
+			if(!is_plant_on_position(clicked_cell_position)):
 				return
 			
 			match GameWorld.current_tool.item_name.to_lower():
 				'scissors':
 					handleHarvest(clicked_cell_position)
 				'hand':
-					handleHarvest(clicked_cell_position)
+					if(get_plant(clicked_cell_position).harvest_count <= 0):
+						handleHarvest(clicked_cell_position)
 				
 
 func _ready():

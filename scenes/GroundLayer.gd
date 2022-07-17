@@ -1,5 +1,7 @@
 extends TileMap
 
+export(Array, String) var tile_names
+
 onready var GameWorld = get_node("/root/GameWorld")
 
 func _unhandled_input(event):
@@ -13,6 +15,11 @@ func _unhandled_input(event):
 
 			if(!GameWorld.current_tool):
 				return
+				
+			match tile_names[clicked_cell_id]:
+				"soil":
+					if(GameWorld.current_tool.type.to_lower() == 'seed'):
+						GameWorld.change_plant_layer(clicked_cell_position, GameWorld.current_tool.item_name)
 			
 			if(GameWorld.current_tool.item_name.to_lower() == 'shovel'):
 				GameWorld.change_plant_layer(clicked_cell_position, '')
