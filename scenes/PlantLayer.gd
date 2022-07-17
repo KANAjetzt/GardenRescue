@@ -32,10 +32,11 @@ func _ready():
 	for cellpos in get_used_cells():
 		var cell = get_cellv(cellpos)
 		if (plants[cell]):
-			instsance_plant(cellpos, plant_names[cell])
-	
-	# Instance grass from the ground layer
-	GameWorld.GroundLayer.init_grass()
+			# Instance plant at max stage if grass
+			if(plant_names[cell].to_lower() == "grass"):
+				instsance_plant(cellpos, plant_names[cell], 4)
+			else:
+				instsance_plant(cellpos, plant_names[cell])
 			
 func instsance_plant(cellpos, plant_name, plant_stage = 0):
 	var plant_name_lower = plant_name.to_lower()

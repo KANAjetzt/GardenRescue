@@ -10,11 +10,12 @@ script = ExtResource( 2 )
 inventory_path = NodePath("Inventory")
 
 [node name="Inventory" parent="." index="2" instance=ExtResource( 3 )]
+visible = false
 margin_left = -50.5
 margin_top = 68.0
 margin_right = 529.5
 margin_bottom = 758.0
-rect_scale = Vector2( 0.5, 0.5 )
+rect_scale = Vector2( 0.6, 0.6 )
 Slot = ExtResource( 4 )
 
 [connection signal="clicked_on_building" from="." to="." method="_on_Shack_clicked_on_building"]
