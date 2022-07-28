@@ -477,6 +477,7 @@ __meta__ = {
 }
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0.203922, 0.305882, 0.321569, 1 )
 script = ExtResource( 21 )
 

@@ -11,7 +11,7 @@ var time_multiplier = 3
 var day_count = 0
 var is_day_counted = false
 
-var money = 15
+var money = 1500
 
 
 var tools_shack = []

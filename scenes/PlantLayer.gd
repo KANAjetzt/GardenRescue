@@ -89,28 +89,14 @@ func handleHarvest(cellpos):
 	# check if plant is fully grown
 	if(!plant.is_max_stage()):
 		return
-
-	# check plants harvest count
-	if(plant.harvest_count <= 0):
-		remove_plant(cellpos)
-		return
 	
-	# Create new Item
-	var new_item = Item.instance()
-	new_item.create_fruid_item(plant.plant_name, plant.icon_fruit_texture, plant.harvest_count, plant.base_sell_price)
-	# Add fruit to shack
-	GameWorld.Shack.add_item(new_item)
-	
-	# Check plant harvest stage
-	if(plant.harvest_stage_index < 0):
-		# Remove plant
-		remove_plant(cellpos)
-	else:
-		# Reset plant to harvest stage
-		plant.set_stage(plant.harvest_stage_index)
+	# Harvest plant
+	plant.harvest()
 	
 	# Change ground to dirt
 	GameWorld.change_ground(cellpos, "soil")
+	
+	
 	
 	
 	
