@@ -10,6 +10,8 @@ onready var plant_store = get_node(plant_store_path)
 export(NodePath) var shack_items_path
 onready var shack_items = get_node(shack_items_path)
 
+onready var harvest_particles = GameWorld.paticles.get_particle("Harvest")
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
@@ -90,8 +92,26 @@ func handleHarvest(cellpos):
 	if(!plant.is_max_stage()):
 		return
 	
+	# check if plant is a weed
+	if(plant.harvest_count <= 0):
+		# Unset current particle texture
+		harvest_particles.texture = null
+		# Emit particles
+		GameWorld.paticles.emit_particle_on_mouse(harvest_particles)
+		
+		remove_plant(cellpos)
+		return
+	
 	# Harvest plant
 	plant.harvest()
+	
+	# Check plant harvest stage
+	if(plant.harvest_stage_index < 0):
+		# Remove plant
+		remove_plant(cellpos)
+	else:
+		# Reset plant to harvest stage
+		plant.set_stage(plant.harvest_stage_index)
 	
 	# Change ground to dirt
 	GameWorld.change_ground(cellpos, "soil")

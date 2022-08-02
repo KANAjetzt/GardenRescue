@@ -16,9 +16,8 @@ var grid_position = Vector2(0, 0)
 
 var Item = preload("res://scenes/Item.tscn")
 
-onready var harvest_particles = get_node("HarvestParticles")
 onready var GameWorld = get_node("/root/GameWorld")
-
+onready var harvest_particles = GameWorld.paticles.get_particle("Harvest")
 
 func _ready():
 	GameWorld.connect("new_day", self, "_on_new_day")
@@ -27,9 +26,6 @@ func _ready():
 	age = stages_day[stage_index]
 	
 	$CurrentStageTexture.texture =  stages_texture[stage_index]
-	
-	# Set Harvest Particle Texture
-	harvest_particles.texture = harvest_particle_texture
 
 func is_max_stage():
 	if(stage_index + 1 == stages_day.size()):
@@ -48,30 +44,18 @@ func set_stage(index):
 func remove():
 	queue_free()
 
-func harvest():
-	# Emmit harvest particles
-	harvest_particles.restart()
-
-	# check plants harvest count
-	if(harvest_count <= 0):
-		remove()
-		return
+func harvest():	
+	# Set harvest particle texture
+	harvest_particles.texture = harvest_particle_texture
+	
+	# Emit particles
+	GameWorld.paticles.emit_particle_on_mouse(harvest_particles)
 	
 	# Create new Item
 	var new_item = Item.instance()
 	new_item.create_fruid_item(plant_name, icon_fruit_texture, harvest_count, base_sell_price)
 	# Add fruit to shack
-	GameWorld.Shack.add_item(new_item)
-	
-	# Check plant harvest stage
-	if(harvest_stage_index < 0):
-		# Remove plant
-		remove()
-	else:
-		# Reset plant to harvest stage
-		set_stage(harvest_stage_index)
-	
-	
+	GameWorld.Shack.add_item(new_item)	
 
 func _on_new_day(day):
 	# Plant gets older

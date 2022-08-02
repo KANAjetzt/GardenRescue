@@ -23,6 +23,7 @@ var current_seed = null
 var current_plant = null
 var tiles_ground = null
 var tiles_ground_ids = ["soil", "grassLight", "grassLightHeigh", "plantDead"]
+var paticles = null
 
 var GroundLayer = null
 var PlantLayer = null

@@ -9,6 +9,7 @@
 [node name="Zucchini" instance=ExtResource( 5 )]
 plant_name = "zucchini"
 icon_fruit_texture = ExtResource( 2 )
+harvest_particle_texture = ExtResource( 2 )
 stages_day = [ 0, 3, 12, 15 ]
 stages_texture = [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ]
 base_sell_price = 10

@@ -1,19 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/Plant.gd" type="Script" id=1]
 [ext_resource path="res://assets/Plants/seed.png" type="Texture" id=2]
-
-[sub_resource type="ParticlesMaterial" id=1]
-flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-spread = 76.77
-gravity = Vector3( 0, 98, 0 )
-initial_velocity = 78.42
-angular_velocity = 141.17
-angular_velocity_random = 0.39
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-scale = 2.0
 
 [node name="Plant" type="Node2D"]
 script = ExtResource( 1 )
@@ -25,11 +13,3 @@ visible = false
 
 [node name="CurrentStageTexture" type="Sprite" parent="."]
 offset = Vector2( 16, 16 )
-
-[node name="HarvestParticles" type="Particles2D" parent="."]
-position = Vector2( 492, 1157 )
-emitting = false
-amount = 4
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource( 1 )
