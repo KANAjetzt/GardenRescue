@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/night-sounds-loop.mp3-c31655a48a5ec6e3cc30df7bed077b83.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/ambient/night-sounds-loop.mp3"
+dest_files=[ "res://.import/night-sounds-loop.mp3-c31655a48a5ec6e3cc30df7bed077b83.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

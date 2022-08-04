@@ -17,7 +17,6 @@ var grid_position = Vector2(0, 0)
 var Item = preload("res://scenes/Item.tscn")
 
 onready var GameWorld = get_node("/root/GameWorld")
-onready var harvest_particles = GameWorld.paticles.get_particle("Harvest")
 
 func _ready():
 	GameWorld.connect("new_day", self, "_on_new_day")
@@ -45,6 +44,8 @@ func remove():
 	queue_free()
 
 func harvest():	
+	var harvest_particles = GameWorld.paticles.get_particle("Harvest")
+
 	# Set harvest particle texture
 	harvest_particles.texture = harvest_particle_texture
 	

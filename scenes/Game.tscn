@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://assets/Buildings/Schopf.png" type="Texture" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -48,6 +48,9 @@
 [ext_resource path="res://assets/UI/uiTimeControulBtn.png" type="Texture" id=46]
 [ext_resource path="res://assets/sound/music/uff2.ogg" type="AudioStream" id=47]
 [ext_resource path="res://scenes/Particles.gd" type="Script" id=48]
+[ext_resource path="res://assets/sound/ambient/forest-sounds-free.mp3" type="AudioStream" id=49]
+[ext_resource path="res://assets/sound/ambient/night-sounds-loop.mp3" type="AudioStream" id=50]
+[ext_resource path="res://scenes/Audio.gd" type="Script" id=51]
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.614907, 1 )
@@ -212,6 +215,62 @@ color_ramp = SubResource( 6 )
 10/shape_one_way_margin = 0.0
 10/shapes = [  ]
 10/z_index = 0
+
+[sub_resource type="Animation" id=8]
+resource_name = "FadeToDay"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioAmbientDay:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 5.46416 ),
+"update": 0,
+"values": [ -80.0, -20.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioAmbientNight:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.1, 5 ),
+"transitions": PoolRealArray( 1, 5.85634, 5.09824 ),
+"update": 0,
+"values": [ -20.0, -20.0, -80.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "FadeToNight"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioAmbientDay:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3.5, 5 ),
+"transitions": PoolRealArray( 5.65685, 5.85634, 5.46416 ),
+"update": 0,
+"values": [ -20.0, -20.0, -80.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioAmbientNight:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 5.09824, 5.46416 ),
+"update": 0,
+"values": [ -80.0, -20.0 ]
+}
 
 [node name="Game" type="Node"]
 script = ExtResource( 7 )
@@ -511,12 +570,26 @@ __meta__ = {
 }
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0.203922, 0.305882, 0.321569, 1 )
 script = ExtResource( 21 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Audio" type="Node" parent="."]
+script = ExtResource( 51 )
+
+[node name="AudioSoundTrack" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 47 )
+
+[node name="AudioAmbientDay" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 49 )
+volume_db = -20.0
+
+[node name="AudioAmbientNight" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 50 )
+volume_db = -80.0
+
+[node name="CrossFade" type="AnimationPlayer" parent="Audio"]
+anims/FadeToDay = SubResource( 8 )
+anims/FadeToNight = SubResource( 7 )
 
 [connection signal="pressed" from="UI/CanvasLayer/TopLeft/MarginContainer/VBC/HBoxContainer/TimeSetting" to="UI" method="_on_TimeSetting_pressed"]
 [connection signal="value_changed" from="UI/CanvasLayer/TimeSettings/HSlider" to="UI" method="_on_Time_Settings_HSlider_value_changed"]

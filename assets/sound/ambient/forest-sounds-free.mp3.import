@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/forest-sounds-free.mp3-e084da58f90316dd02e217a6fc8740d8.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/ambient/forest-sounds-free.mp3"
+dest_files=[ "res://.import/forest-sounds-free.mp3-e084da58f90316dd02e217a6fc8740d8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -3,13 +3,18 @@ extends Node
 signal tool_equiped
 signal plant_equiped
 signal new_day(day)
+signal sunset
+signal sunrise
 
-const TIME_SCALE = 0.05
+const TIME_SCALE = 0.01
 var time = 0
 var current_time = 0
 var time_multiplier = 3
 var day_count = 0
 var is_day_counted = false
+var is_day = true
+var is_day_signaled = false
+var is_night_signaled = false
 
 var money = 1500
 
@@ -47,6 +52,23 @@ func _process(delta):
 		print("its day: ", day_count)
 	else:
 		is_day_counted = false
+		
+	# Check if its night or day
+	is_day = true if current_time > 0.5 else false
+	
+	if(is_day):
+		if(!is_day_signaled):
+			print("sunrise")
+			emit_signal("sunrise")
+			is_day_signaled = true
+			is_night_signaled = false
+	else:
+		if(!is_night_signaled):
+			print("sunset")
+			emit_signal("sunset")
+			is_night_signaled = true
+			is_day_signaled = false
+	
 
 func equip_tool(tool_to_equip):
 	current_tool = tool_to_equip
