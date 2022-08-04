@@ -7,7 +7,6 @@ func _ready():
 
 func get_particle(name):
 	for particle in get_children():
-		print(particle.name)
 		if(particle.name == name):
 			return particle
 			
