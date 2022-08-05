@@ -578,6 +578,7 @@ script = ExtResource( 51 )
 
 [node name="AudioSoundTrack" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 47 )
+volume_db = -80.0
 
 [node name="AudioAmbientDay" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 49 )

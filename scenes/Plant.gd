@@ -6,7 +6,8 @@ export(Texture) var dead_texture
 export(Texture) var harvest_particle_texture
 export(Array, int) var stages_day = []
 export(Array, Texture) var stages_texture = []
-export(int) var harvest_count = 1
+export(int) var harvest_count_min = 1
+export(int) var harvest_count_max = 1
 export(int) var harvest_stage_index = -1
 export(int) var base_sell_price = 1
 
@@ -15,6 +16,7 @@ var stage_index = 0
 var grid_position = Vector2(0, 0)
 
 var Item = preload("res://scenes/Item.tscn")
+var font_label = preload("res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_16_bold.tres")
 
 onready var GameWorld = get_node("/root/GameWorld")
 
@@ -42,9 +44,14 @@ func set_stage(index):
 
 func remove():
 	queue_free()
+	
+func get_harvest_count():
+	return floor(rand_range(harvest_count_min, harvest_count_max))
 
-func harvest():	
+func harvest():
 	var harvest_particles = GameWorld.paticles.get_particle("Harvest")
+	var label_harvest_count = Label.new()
+	var harvest_count = get_harvest_count()
 
 	# Set harvest particle texture
 	harvest_particles.texture = harvest_particle_texture
@@ -52,11 +59,22 @@ func harvest():
 	# Emit particles
 	GameWorld.paticles.emit_particle_on_mouse(harvest_particles)
 	
+	# Show label with harvest count
+	label_harvest_count.text = str("+", harvest_count)
+	label_harvest_count.rect_position = Vector2(10, 0)
+	label_harvest_count.add_font_override('font', font_label)
+	add_child(label_harvest_count)
+	var tween = create_tween()
+	tween.tween_property(label_harvest_count, "rect_position", Vector2(10, -20), 0.2)
+	tween.tween_property(label_harvest_count, "self_modulate", Color(1,1,1,1), 0.2)
+	tween.tween_property(label_harvest_count, "self_modulate", Color(1,1,1,0), 0.2)
+	tween.tween_callback(label_harvest_count, "queue_free")
+	
 	# Create new Item
 	var new_item = Item.instance()
 	new_item.create_fruid_item(plant_name, icon_fruit_texture, harvest_count, base_sell_price)
 	# Add fruit to shack
-	GameWorld.Shack.add_item(new_item)	
+	GameWorld.Shack.add_item(new_item)
 
 func _on_new_day(day):
 	# Plant gets older

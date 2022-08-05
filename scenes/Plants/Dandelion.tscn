@@ -7,5 +7,6 @@
 plant_name = "dandelion"
 icon_fruit_texture = ExtResource( 1 )
 stages_texture = [ ExtResource( 1 ) ]
-harvest_count = 0
+harvest_count_min = 0
+harvest_count_max = 0
 base_sell_price = 0

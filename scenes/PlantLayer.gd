@@ -93,7 +93,7 @@ func handleHarvest(cellpos):
 		return
 	
 	# check if plant is a weed
-	if(plant.harvest_count <= 0):
+	if(plant.harvest_count_min <= 0):
 		# Unset current particle texture
 		harvest_particles.texture = null
 		# Emit particles

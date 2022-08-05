@@ -12,4 +12,6 @@ icon_fruit_texture = ExtResource( 3 )
 harvest_particle_texture = ExtResource( 3 )
 stages_day = [ 0, 5, 13, 18 ]
 stages_texture = [ ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ) ]
+harvest_count_min = 20
+harvest_count_max = 90
 base_sell_price = 25
