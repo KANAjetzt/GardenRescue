@@ -16,3 +16,6 @@ func emit_particle_on_mouse(particle):
 	
 	# Start emmitting
 	particle.restart()
+
+func emit_particle(particle, start, end, count):
+	pass

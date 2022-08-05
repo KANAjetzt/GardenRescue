@@ -61,10 +61,10 @@ gradient = SubResource( 5 )
 
 [sub_resource type="ParticlesMaterial" id=4]
 flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-spread = 76.77
-gravity = Vector3( 0, 98, 0 )
-initial_velocity = 78.42
+direction = Vector3( 0, 0, 0 )
+spread = 10.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 500.0
 angular_velocity = 141.17
 angular_velocity_random = 0.39
 orbit_velocity = 0.0

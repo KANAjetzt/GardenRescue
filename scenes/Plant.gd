@@ -49,15 +49,23 @@ func get_harvest_count():
 	return floor(rand_range(harvest_count_min, harvest_count_max))
 
 func harvest():
-	var harvest_particles = GameWorld.paticles.get_particle("Harvest")
-	var label_harvest_count = Label.new()
 	var harvest_count = get_harvest_count()
+	var label_harvest_count = Label.new()
+	var harvest_particles = GameWorld.paticles.get_particle("Harvest")
+	harvest_particles.amount = harvest_count
+	var direction = global_position.direction_to(GameWorld.Shack.global_position)
+	var distance = global_position.distance_to(GameWorld.Shack.global_position)
+	harvest_particles.process_material.direction = Vector3(direction.x, direction.y, 0)
+	# I guess there is a nice way to calculate the travel time of the particles
+	# But this is working for now '^^
+	harvest_particles.lifetime = distance * 0.002
 
 	# Set harvest particle texture
 	harvest_particles.texture = harvest_particle_texture
 	
 	# Emit particles
 	GameWorld.paticles.emit_particle_on_mouse(harvest_particles)
+#	GameWorld.paticles.emit_particle(harvest_particles, start, end, count)
 	
 	# Show label with harvest count
 	label_harvest_count.text = str("+", harvest_count)
