@@ -104,6 +104,7 @@ func handleHarvest(cellpos):
 	
 	# Harvest plant
 	plant.harvest()
+	GameWorld.Audio.play_sfx_random_pitch('ScissorsOpenClose')
 	
 	# Check plant harvest stage
 	if(plant.harvest_stage_index < 0):
@@ -115,19 +116,3 @@ func handleHarvest(cellpos):
 	
 	# Change ground to dirt
 	GameWorld.change_ground(cellpos, "soil")
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	

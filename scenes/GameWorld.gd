@@ -34,6 +34,7 @@ var GroundLayer = null
 var PlantLayer = null
 var UI = null
 var Shack = null
+var Audio = null
 var Item = preload("res://scenes/Item.tscn")
 
 func _process(delta):

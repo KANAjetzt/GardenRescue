@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/GardenScissorsOpenClose4.ogg-1249e30852724a6a146b28007de51dbe.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/effects/GardenScissorsOpenClose4.ogg"
+dest_files=[ "res://.import/GardenScissorsOpenClose4.ogg-1249e30852724a6a146b28007de51dbe.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
