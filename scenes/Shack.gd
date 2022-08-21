@@ -9,6 +9,8 @@ func _ready():
 
 
 func sell_item(item):
+	# Play sell sound
+	GameWorld.Audio.play_sfx_random_pitch("Sell")
 	# Add money
 	GameWorld.money = GameWorld.money + item.price * item.amount
 	# Update money UI
@@ -16,6 +18,7 @@ func sell_item(item):
 	.remove_item(item)
 
 func _on_Shack_clicked_on_building():
+	GameWorld.Audio.play_sfx("DoorOpen")
 	inventory.show()
 
 func _on_Inventory_pressed_slot(item_name):

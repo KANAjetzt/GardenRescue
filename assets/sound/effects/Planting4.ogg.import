@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Planting4.ogg-eb10844a12c9e2d685749d344a74f2c0.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/effects/Planting4.ogg"
+dest_files=[ "res://.import/Planting4.ogg-eb10844a12c9e2d685749d344a74f2c0.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/UI/Templates/InventorySlotShop.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StreamTexture" id=1]
-load_path = "res://.import/shopSeeds.png-8f2a9525688cf9a74d7a898bd9da6d27.stex"
 
 [node name="Store" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

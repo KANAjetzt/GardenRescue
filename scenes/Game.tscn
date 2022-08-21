@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://assets/Buildings/Schopf.png" type="Texture" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -55,6 +55,14 @@
 [ext_resource path="res://assets/sound/effects/GardenScissorsOpenClose2.ogg" type="AudioStream" id=53]
 [ext_resource path="res://assets/sound/effects/GardenScissorsOpenClose3.ogg" type="AudioStream" id=54]
 [ext_resource path="res://assets/sound/effects/GardenScissorsOpenClose4.ogg" type="AudioStream" id=55]
+[ext_resource path="res://assets/sound/effects/ShovelDig4.ogg" type="AudioStream" id=56]
+[ext_resource path="res://assets/sound/effects/CoinDrop2.ogg" type="AudioStream" id=57]
+[ext_resource path="res://assets/sound/effects/DoorOpen.ogg" type="AudioStream" id=58]
+[ext_resource path="res://assets/sound/effects/CoinDrop3.ogg" type="AudioStream" id=59]
+[ext_resource path="res://assets/sound/effects/Sell1.ogg" type="AudioStream" id=60]
+[ext_resource path="res://assets/sound/effects/Planting2.ogg" type="AudioStream" id=61]
+[ext_resource path="res://assets/sound/effects/Planting3.ogg" type="AudioStream" id=62]
+[ext_resource path="res://assets/sound/effects/Planting4.ogg" type="AudioStream" id=63]
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.614907, 1 )
@@ -424,9 +432,6 @@ price = 15
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 ui_current_tool_path = NodePath("CanvasLayer/CurrentToolBG/CurrentTool")
 ui_current_day_path = NodePath("CanvasLayer/TopLeft/MarginContainer/VBC/HBoxContainer/CurrentDay")
 ui_money_path = NodePath("CanvasLayer/TopLeft/MarginContainer/VBC/Money/Label")
@@ -586,11 +591,11 @@ volume_db = -80.0
 
 [node name="AudioAmbientDay" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 49 )
-volume_db = -20.0
+volume_db = -80.0
 
 [node name="AudioAmbientNight" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 50 )
-volume_db = -80.0
+volume_db = -20.0
 
 [node name="CrossFade" type="AnimationPlayer" parent="Audio"]
 anims/FadeToDay = SubResource( 8 )
@@ -615,6 +620,43 @@ volume_db = -3.092
 [node name="ScissorsOpenClose4" type="AudioStreamPlayer" parent="Audio/SFX/ScissorsOpenClose"]
 stream = ExtResource( 55 )
 volume_db = -3.092
+
+[node name="ShovelDig" type="Node" parent="Audio/SFX"]
+
+[node name="ShovelDig" type="AudioStreamPlayer" parent="Audio/SFX/ShovelDig"]
+stream = ExtResource( 56 )
+volume_db = 3.019
+
+[node name="CoinDrop" type="Node" parent="Audio/SFX"]
+
+[node name="CoinDrop2" type="AudioStreamPlayer" parent="Audio/SFX/CoinDrop"]
+stream = ExtResource( 57 )
+volume_db = 3.135
+
+[node name="CoinDrop3" type="AudioStreamPlayer" parent="Audio/SFX/CoinDrop"]
+stream = ExtResource( 59 )
+volume_db = 3.135
+
+[node name="DoorOpen" type="Node" parent="Audio/SFX"]
+
+[node name="DoorOpen" type="AudioStreamPlayer" parent="Audio/SFX/DoorOpen"]
+stream = ExtResource( 58 )
+
+[node name="Planting" type="Node" parent="Audio/SFX"]
+
+[node name="Planting2" type="AudioStreamPlayer" parent="Audio/SFX/Planting"]
+stream = ExtResource( 61 )
+
+[node name="Planting3" type="AudioStreamPlayer" parent="Audio/SFX/Planting"]
+stream = ExtResource( 62 )
+
+[node name="Planting4" type="AudioStreamPlayer" parent="Audio/SFX/Planting"]
+stream = ExtResource( 63 )
+
+[node name="Sell" type="Node" parent="Audio/SFX"]
+
+[node name="Sell" type="AudioStreamPlayer" parent="Audio/SFX/Sell"]
+stream = ExtResource( 60 )
 
 [connection signal="pressed" from="UI/CanvasLayer/TopLeft/MarginContainer/VBC/HBoxContainer/TimeSetting" to="UI" method="_on_TimeSetting_pressed"]
 [connection signal="value_changed" from="UI/CanvasLayer/TimeSettings/HSlider" to="UI" method="_on_Time_Settings_HSlider_value_changed"]

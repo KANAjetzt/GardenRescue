@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/CoinDrop.ogg-1c30c6471ffb6ac4d1444e7a7a7bc9bf.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/effects/CoinDrop.ogg"
+dest_files=[ "res://.import/CoinDrop.ogg-1c30c6471ffb6ac4d1444e7a7a7bc9bf.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ShovelDig.ogg-de6b127c2c64abc7208dacb20f08d25c.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/effects/ShovelDig.ogg"
+dest_files=[ "res://.import/ShovelDig.ogg-de6b127c2c64abc7208dacb20f08d25c.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

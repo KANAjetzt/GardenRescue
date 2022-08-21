@@ -51,6 +51,7 @@ func sell_item(item):
 
 func _on_Store_clicked_on_building():
 	inventory.show()
+	GameWorld.Audio.play_sfx("CoinDrop")
 
 func _on_Inventory_pressed_slot(item_name):
 	# get clicked item
