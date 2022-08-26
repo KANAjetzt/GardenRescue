@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WoodKnock1.ogg-8d5b77372e6f8b8c476d470fce924639.oggstr"
+
+[deps]
+
+source_file="res://assets/sound/effects/WoodKnock1.ogg"
+dest_files=[ "res://.import/WoodKnock1.ogg-8d5b77372e6f8b8c476d470fce924639.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -34,7 +34,12 @@ func sell_item(item):
 		# Shop pop up if not enough
 		GameWorld.UI.ui_message_popup.popup()
 		return	
-	# If enough subtract money
+	# If enough 
+	
+	# Play SFX
+	GameWorld.Audio.play_sfx("Buy")
+	
+	# Subtract money
 	GameWorld.money = GameWorld.money - item.price
 	# Update money UI
 	GameWorld.UI.ui_money.text = str(GameWorld.money)
@@ -51,7 +56,7 @@ func sell_item(item):
 
 func _on_Store_clicked_on_building():
 	inventory.show()
-	GameWorld.Audio.play_sfx("CoinDrop")
+	GameWorld.Audio.play_sfx("WoodKnock")
 
 func _on_Inventory_pressed_slot(item_name):
 	# get clicked item

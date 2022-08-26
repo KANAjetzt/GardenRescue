@@ -29,4 +29,5 @@ func _on_Inventory_pressed_slot(item_name):
 		sell_item(clicked_item)
 		return
 	
+	GameWorld.Audio.play_sfx("Equip")
 	GameWorld.equip_tool(clicked_item)

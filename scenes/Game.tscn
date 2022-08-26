@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://assets/Buildings/Schopf.png" type="Texture" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -63,6 +63,9 @@
 [ext_resource path="res://assets/sound/effects/Planting2.ogg" type="AudioStream" id=61]
 [ext_resource path="res://assets/sound/effects/Planting3.ogg" type="AudioStream" id=62]
 [ext_resource path="res://assets/sound/effects/Planting4.ogg" type="AudioStream" id=63]
+[ext_resource path="res://assets/sound/effects/Buy1.ogg" type="AudioStream" id=64]
+[ext_resource path="res://assets/sound/effects/WoodKnock1.ogg" type="AudioStream" id=65]
+[ext_resource path="res://assets/sound/effects/Equip1.ogg" type="AudioStream" id=66]
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.614907, 1 )
@@ -657,6 +660,21 @@ stream = ExtResource( 63 )
 
 [node name="Sell" type="AudioStreamPlayer" parent="Audio/SFX/Sell"]
 stream = ExtResource( 60 )
+
+[node name="Buy" type="Node" parent="Audio/SFX"]
+
+[node name="Buy" type="AudioStreamPlayer" parent="Audio/SFX/Buy"]
+stream = ExtResource( 64 )
+
+[node name="WoodKnock" type="Node" parent="Audio/SFX"]
+
+[node name="WoodKnock" type="AudioStreamPlayer" parent="Audio/SFX/WoodKnock"]
+stream = ExtResource( 65 )
+
+[node name="Equip" type="Node" parent="Audio/SFX"]
+
+[node name="Equip" type="AudioStreamPlayer" parent="Audio/SFX/Equip"]
+stream = ExtResource( 66 )
 
 [connection signal="pressed" from="UI/CanvasLayer/TopLeft/MarginContainer/VBC/HBoxContainer/TimeSetting" to="UI" method="_on_TimeSetting_pressed"]
 [connection signal="value_changed" from="UI/CanvasLayer/TimeSettings/HSlider" to="UI" method="_on_Time_Settings_HSlider_value_changed"]
