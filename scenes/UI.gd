@@ -12,6 +12,8 @@ export (NodePath) var ui_message_popup_path
 onready var ui_message_popup = get_node(ui_message_popup_path)
 export (NodePath) var ui_time_settings_popup_path
 onready var ui_time_settings_popup = get_node(ui_time_settings_popup_path)
+onready var animation_money_added = $CanvasLayer/TopLeft/MarginContainer/VBC/Money/AnimationMoneyAdded
+
 
 func _ready():
 	GameWorld.connect("tool_equiped", self, "_on_tool_equiped")
@@ -46,6 +48,7 @@ func _on_plant_equiped():
 
 func update_money():
 	ui_money.text = str(GameWorld.money)
+	animation_money_added.play("Wave")
 
 
 func _on_TimeSetting_pressed():

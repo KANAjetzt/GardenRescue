@@ -11,6 +11,13 @@ func _ready():
 func sell_item(item):
 	# Play sell sound
 	GameWorld.Audio.play_sfx_random_pitch("Sell")
+	# Emit particles 
+	var particles_coin = GameWorld.paticles.get_particle("Coins")
+	particles_coin.amount = item.price * item.amount
+	GameWorld.paticles.emit_particle_on_mouse(particles_coin)
+	# Play money add animation
+	
+	
 	# Add money
 	GameWorld.money = GameWorld.money + item.price * item.amount
 	# Update money UI

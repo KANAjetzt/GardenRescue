@@ -54,6 +54,7 @@ func harvest():
 	var harvest_particles = GameWorld.paticles.get_particle("Harvest")
 	harvest_particles.amount = harvest_count
 	var direction = global_position.direction_to(GameWorld.Shack.global_position)
+	print("direction: ", direction)
 	var distance = global_position.distance_to(GameWorld.Shack.global_position)
 	harvest_particles.process_material.direction = Vector3(direction.x, direction.y, 0)
 	# I guess there is a nice way to calculate the travel time of the particles
