@@ -17,6 +17,7 @@ onready var animation_money_added = $CanvasLayer/TopLeft/MarginContainer/VBC/Mon
 
 func _ready():
 	GameWorld.connect("tool_equiped", self, "_on_tool_equiped")
+	GameWorld.connect("tool_unequiped", self, "_on_tool_unequiped")
 	GameWorld.connect("plant_equiped", self, "_on_plant_equiped")
 	GameWorld.connect("new_day", self, "_on_new_day")
 	ui_money.text = str(GameWorld.money)
@@ -28,11 +29,22 @@ func _on_new_day(day):
 	ui_current_day.text = str("It's day: ", day)
 
 func _on_tool_equiped():
-	# show current tool in UI
+	# Show current tool in UI
+	ui_current_tool.update_icon(GameWorld.current_tool.icon)
 	
-	ui_current_tool.texture = GameWorld.current_tool.icon
+	# Check if tool has an amount
+	if(GameWorld.current_tool.amount <= 0):
+		ui_current_tool.update_amount(0)
+		return
+	
+	ui_current_tool.update_amount(GameWorld.current_tool.amount)
+	
 #	Input.set_custom_mouse_cursor(GameWorld.current_tool.icon)
-		
+
+func _on_tool_unequiped():
+	ui_current_tool.update_amount(0)
+	ui_current_tool.update_icon(null)
+
 func _on_plant_equiped():
 	# show current tool in UI
 	var current_plant_texture
@@ -58,3 +70,10 @@ func _on_TimeSetting_pressed():
 func _on_Time_Settings_HSlider_value_changed(value):
 	$CanvasLayer/TimeSettings/Value.text = str(value)
 	GameWorld.time_multiplier = value
+
+
+func _on_GroundLayer_seed_used(seed_item):
+	if(!seed_item):
+		return
+	
+	ui_current_tool.update_amount(seed_item.amount)

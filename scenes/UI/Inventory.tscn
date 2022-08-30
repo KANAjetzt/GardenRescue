@@ -21,9 +21,6 @@ margin_right = -658.0
 margin_bottom = -224.0
 rect_min_size = Vector2( 580, 690 )
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 grid_path = NodePath("Background/M/VBC/ScrollContainer/GridContainer")
 
 [node name="Background" type="NinePatchRect" parent="."]

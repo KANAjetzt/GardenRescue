@@ -60,8 +60,12 @@ func instsance_plant(cellpos, plant_name, plant_stage = 0):
 	object.stage_index = plant_stage
 	plant_store.add_child(object)
 	
+#	object.plant(GameWorld.current_tool, 2)
+	
 	# Add tile to tile map
 	set_cell(cellpos.x, cellpos.y, plant_names.find(plant_name_lower))
+	
+	return object
 
 func get_plant(cellpos):
 	for plant in plant_store.get_children():

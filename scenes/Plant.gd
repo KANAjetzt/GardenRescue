@@ -48,6 +48,24 @@ func remove():
 func get_harvest_count():
 	return floor(rand_range(harvest_count_min, harvest_count_max))
 
+func plant(seed_item):
+	var seed_count = seed_item.amount - seed_item.amount_needed
+	
+	# Check if enough seeds left
+	if(seed_count <= 0):
+		# Remove current_tool
+		GameWorld.unequip_toll()
+		# Remove seed item from shack
+		GameWorld.Shack.remove_item(seed_item)
+		return
+	
+	# Update seed count
+	seed_item.amount = seed_count
+	
+	# Update UI
+	var inventory_slot = GameWorld.Shack.inventory.get_slot_by_item_name(seed_item.item_name)
+	inventory_slot.update_amount(seed_item.amount)
+
 func harvest():
 	var harvest_count = get_harvest_count()
 	var label_harvest_count = Label.new()

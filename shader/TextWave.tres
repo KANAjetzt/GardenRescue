@@ -4,6 +4,6 @@
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/height = 3.0
-shader_param/frequency = 15.0
-shader_param/speed = 7.0
+shader_param/height = 0.0
+shader_param/frequency = 0.0
+shader_param/speed = 0.0

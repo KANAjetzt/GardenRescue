@@ -1,6 +1,7 @@
 extends Node
 
 signal tool_equiped
+signal tool_unequiped
 signal plant_equiped
 signal new_day(day)
 signal sunset
@@ -76,6 +77,10 @@ func equip_tool(tool_to_equip):
 	emit_signal("tool_equiped")
 	print('eqiped new tool: ', current_tool)
 	
+func unequip_toll():
+	current_tool = null
+	emit_signal("tool_unequiped")
+	
 func equip_plant(plant_to_equip):
 	current_plant = plant_to_equip.to_lower()
 	emit_signal("plant_equiped")
@@ -97,4 +102,5 @@ func change_plant_layer(cell_position, plant_name):
 	if(!is_plant_on_position):
 		# if not add plant
 		GameWorld.Audio.play_sfx_random_pitch('Planting')
-		PlantLayer.instsance_plant(cell_position, plant_name)
+		var new_plant = PlantLayer.instsance_plant(cell_position, plant_name)
+		return new_plant

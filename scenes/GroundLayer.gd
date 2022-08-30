@@ -1,5 +1,7 @@
 extends TileMap
 
+signal seed_used(seed_item)
+
 export(Array, String) var tile_names
 
 onready var GameWorld = get_node("/root/GameWorld")
@@ -24,9 +26,15 @@ func _unhandled_input(event):
 			match tile_names[clicked_cell_id]:
 				"soil":
 					if(GameWorld.current_tool.type.to_lower() == 'seed'):
-						GameWorld.change_plant_layer(clicked_cell_position, GameWorld.current_tool.item_name)
+						handle_planting(clicked_cell_position)
 			
 			
 
 func _ready():
 	GameWorld.GroundLayer = self
+
+func handle_planting(clicked_cell_position):
+	var new_plant = GameWorld.change_plant_layer(clicked_cell_position, GameWorld.current_tool.item_name)
+	if(new_plant):
+		new_plant.plant(GameWorld.current_tool)
+		emit_signal("seed_used", GameWorld.current_tool)
