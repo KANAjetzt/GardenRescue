@@ -1,7 +1,5 @@
 extends "res://scenes/Building.gd"
 
-onready var GameWorld = get_node("/root/GameWorld")
-
 func _ready():
 	GameWorld.Shack = self
 	print("ready shack: ", items)

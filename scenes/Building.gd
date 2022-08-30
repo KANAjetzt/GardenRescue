@@ -1,16 +1,21 @@
 extends Area2D
 
 export(Texture) var texture
+export(Texture) var texture_night
 export(NodePath) var items_path
 onready var items = get_node(items_path)
 export(NodePath) var inventory_path
 onready var inventory = get_node(inventory_path)
 
+onready var GameWorld = get_node("/root/GameWorld")
 
 signal clicked_on_building
 signal ui_btn_pressed(label)
 
 func _ready():
+	GameWorld.connect("sunrise", self, "_on_sunrise")
+	GameWorld.connect("sunset", self, "_on_sunset")
+	
 	$Sprite.texture = texture
 
 func get_iventory_slot(new_items):
@@ -75,3 +80,11 @@ func _on_Building_input_event(viewport, event, shape_idx):
 		
 func _on_btn_pressed(label):
 	emit_signal("ui_btn_pressed", label)
+	
+func _on_sunrise():
+	$Sprite.texture = texture
+
+func _on_sunset():
+	if(!texture_night):
+		return
+	$Sprite.texture = texture_night

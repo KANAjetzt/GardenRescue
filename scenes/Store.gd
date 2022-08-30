@@ -2,8 +2,6 @@ extends "res://scenes/Building.gd"
 
 var clicked_item
 
-onready var GameWorld = get_node("/root/GameWorld")
-
 func _ready():
 	init_ui()
 
