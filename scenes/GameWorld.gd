@@ -16,6 +16,7 @@ var is_day_counted = false
 var is_day = true
 var is_day_signaled = false
 var is_night_signaled = false
+var is_time_paused = false
 
 var money = 1500
 
@@ -38,7 +39,7 @@ var Shack = null
 var Audio = null
 var Item = preload("res://scenes/Item.tscn")
 
-func _process(delta):
+func calc_time(delta):
 	time += delta * (TIME_SCALE * time_multiplier)
 	
 	# Calculate time
@@ -70,6 +71,10 @@ func _process(delta):
 			emit_signal("sunset")
 			is_night_signaled = true
 			is_day_signaled = false
+
+func _process(delta):
+	if(!is_time_paused):
+		calc_time(delta)
 	
 
 func equip_tool(tool_to_equip):

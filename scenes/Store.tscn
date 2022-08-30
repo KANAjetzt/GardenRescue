@@ -16,8 +16,8 @@ inventory_path = NodePath("Inventory")
 visible = false
 margin_left = 28.5
 margin_top = -32.0
-margin_right = 28.5
-margin_bottom = -32.0
+margin_right = 608.5
+margin_bottom = 658.0
 rect_scale = Vector2( 0.6, 0.6 )
 Slot = ExtResource( 5 )
 
