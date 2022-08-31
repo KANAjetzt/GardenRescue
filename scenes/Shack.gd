@@ -1,5 +1,8 @@
 extends "res://scenes/Building.gd"
 
+onready var animated_sprite = $AnimatedSprite
+
+
 func _ready():
 	GameWorld.Shack = self
 	print("ready shack: ", items)
@@ -24,6 +27,7 @@ func sell_item(item):
 
 func _on_Shack_clicked_on_building():
 	GameWorld.Audio.play_sfx("DoorOpen")
+	animated_sprite.play("default")
 	inventory.show()
 
 func _on_Inventory_pressed_slot(item_name):
@@ -36,3 +40,7 @@ func _on_Inventory_pressed_slot(item_name):
 	
 	GameWorld.Audio.play_sfx("Equip")
 	GameWorld.equip_tool(clicked_item)
+
+
+func _on_Inventory_closed():
+	animated_sprite.play("default", true)

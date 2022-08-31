@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Schopf_LightOn.png-d297d2a1934ff89a72a3caeef57cb799.stex"
+path="res://.import/Schopf1.png-efc0a49fff17a86f7ec615e4a39c2c19.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Buildings/Schopf_LightOn.png"
-dest_files=[ "res://.import/Schopf_LightOn.png-d297d2a1934ff89a72a3caeef57cb799.stex" ]
+source_file="res://assets/Buildings/Schopf1.png"
+dest_files=[ "res://.import/Schopf1.png-efc0a49fff17a86f7ec615e4a39c2c19.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

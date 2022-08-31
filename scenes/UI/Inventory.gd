@@ -1,6 +1,7 @@
 extends Control
 
 signal pressed_slot(item_name)
+signal closed
 
 export(PackedScene) var Slot
 export(NodePath) var grid_path
@@ -23,6 +24,7 @@ func remove_slot_by_item_name(item_name):
 	grid.remove_child(slot)
 
 func _on_Button_pressed():
+	emit_signal("closed")
 	hide()
 	
 func _on_pressed_slot(item_name):
