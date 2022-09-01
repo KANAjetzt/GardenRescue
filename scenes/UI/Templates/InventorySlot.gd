@@ -1,10 +1,11 @@
 extends TextureButton
 
-signal pressed_slot(item_name)
+signal pressed_slot(unique_id)
 
 export var clickable = true
 
-var item_name
+var unique_id
+var display_name
 var icon
 var amount = 0
 
@@ -49,4 +50,5 @@ func update_icon(new_icon):
 	$Icon.texture = icon
 
 func _on_InventorySlot_pressed():
-	emit_signal("pressed_slot", item_name)
+	print(unique_id)
+	emit_signal("pressed_slot", unique_id)

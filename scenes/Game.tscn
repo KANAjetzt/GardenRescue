@@ -1,10 +1,10 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=75 format=2]
 
-[ext_resource path="res://assets/Buildings/Schopf.png" type="Texture" id=1]
+[ext_resource path="res://resources/items/SeedCucumber.tres" type="Resource" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
-[ext_resource path="res://assets/Tools/lawnMower.png" type="Texture" id=3]
-[ext_resource path="res://assets/Plants/Flower/Seeds_Flower.png" type="Texture" id=4]
-[ext_resource path="res://assets/Plants/Paprika/Seeds_Paprika.png" type="Texture" id=5]
+[ext_resource path="res://resources/items/ToolScissor.tres" type="Resource" id=3]
+[ext_resource path="res://resources/items/ToolShovel.tres" type="Resource" id=4]
+[ext_resource path="res://resources/items/SeedGrass.tres" type="Resource" id=5]
 [ext_resource path="res://scenes/Plants/Salad.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Game.gd" type="Script" id=7]
 [ext_resource path="res://scenes/Plants/Tomato.tscn" type="PackedScene" id=8]
@@ -12,22 +12,22 @@
 [ext_resource path="res://scenes/Shack.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/UI/uiCurrentTool.png" type="Texture" id=11]
 [ext_resource path="res://scenes/UI.gd" type="Script" id=12]
-[ext_resource path="res://assets/Tools/Schere.png" type="Texture" id=13]
+[ext_resource path="res://resources/items/SeedFlower.tres" type="Resource" id=13]
 [ext_resource path="res://scenes/Plants/Pepper.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/Plants/Tomato/Seeds_Tomato.png" type="Texture" id=15]
+[ext_resource path="res://resources/items/SeedPepper.tres" type="Resource" id=15]
 [ext_resource path="res://scenes/GroundLayer.gd" type="Script" id=16]
 [ext_resource path="res://assets/Plants/Zucchini/Zucchini_Fruit.png" type="Texture" id=17]
 [ext_resource path="res://scenes/Store.tscn" type="PackedScene" id=18]
-[ext_resource path="res://assets/Tools/hand300.png" type="Texture" id=19]
+[ext_resource path="res://resources/items/SeedSalad.tres" type="Resource" id=19]
 [ext_resource path="res://scenes/Plants.gd" type="Script" id=20]
 [ext_resource path="res://scenes/DayNightCycle.gd" type="Script" id=21]
 [ext_resource path="res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_16_bold.tres" type="DynamicFont" id=22]
 [ext_resource path="res://scenes/Plants/Grass.tscn" type="PackedScene" id=23]
-[ext_resource path="res://assets/Tools/shovel.png" type="Texture" id=24]
+[ext_resource path="res://resources/items/SeedTomato.tres" type="Resource" id=24]
 [ext_resource path="res://scenes/PlantLayer.gd" type="Script" id=25]
-[ext_resource path="res://scenes/Item.gd" type="Script" id=26]
+[ext_resource path="res://resources/items/SeedZucchini.tres" type="Resource" id=26]
 [ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=27]
-[ext_resource path="res://assets/Plants/Grass/Seeds_Grass.png" type="Texture" id=28]
+[ext_resource path="res://resources/items/ToolLawnMower.tres" type="Resource" id=28]
 [ext_resource path="res://assets/Plants/Salad/Salad_Fruit.png" type="Texture" id=29]
 [ext_resource path="res://assets/Plants/Tomato/Tomate_Fruit.png" type="Texture" id=30]
 [ext_resource path="res://scenes/Plants/Zucchini.tscn" type="PackedScene" id=31]
@@ -37,9 +37,6 @@
 [ext_resource path="res://scenes/Plants/Cucumber.tscn" type="PackedScene" id=35]
 [ext_resource path="res://scenes/TileMaps/TileSets/GroundLayer.tres" type="TileSet" id=36]
 [ext_resource path="res://assets/Plants/Grass/Grass_Inventory.png" type="Texture" id=37]
-[ext_resource path="res://assets/Plants/Salad/Seeds_Salad.png" type="Texture" id=38]
-[ext_resource path="res://assets/Plants/Cucumber/Seeds_Gurke.png" type="Texture" id=39]
-[ext_resource path="res://assets/Plants/Zucchini/Seeds_Zucchini.png" type="Texture" id=40]
 [ext_resource path="res://assets/Plants/Löwenzahn.png" type="Texture" id=41]
 [ext_resource path="res://scenes/Plants/Dandelion.tscn" type="PackedScene" id=42]
 [ext_resource path="res://assets/Plants/Moos.png" type="Texture" id=43]
@@ -68,7 +65,6 @@
 [ext_resource path="res://assets/sound/effects/Equip1.ogg" type="AudioStream" id=66]
 [ext_resource path="res://shader/TextWave.tres" type="Material" id=67]
 [ext_resource path="res://scenes/UI/Templates/InventorySlot.tscn" type="PackedScene" id=68]
-[ext_resource path="res://assets/Buildings/Schopf_LightOn.png" type="Texture" id=69]
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.614907, 1 )
@@ -415,7 +411,6 @@ Item = ExtResource( 27 )
 plant_names = [ "", "", "salad", "tomato", "pepper", "zucchini", "flower", "cucumber", "grass", "dandelion", "moss" ]
 plants = [ null, null, ExtResource( 6 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 35 ), ExtResource( 23 ), ExtResource( 42 ), ExtResource( 44 ) ]
 plant_store_path = NodePath("../Plants")
-shack_items_path = NodePath("../Shack/Items")
 
 [node name="Plants" type="Node2D" parent="."]
 scale = Vector2( 2, 2 )
@@ -424,133 +419,29 @@ script = ExtResource( 20 )
 [node name="Shack" parent="." instance=ExtResource( 10 )]
 position = Vector2( 133, 156 )
 scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 1 )
-texture_night = ExtResource( 69 )
-items_path = NodePath("Items")
-
-[node name="Items" type="Node" parent="Shack"]
-
-[node name="Hand" parent="Shack/Items" instance=ExtResource( 27 )]
-icon = ExtResource( 19 )
 
 [node name="Store" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1102, 125 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
-items_path = NodePath("Items")
+items = [ ExtResource( 1 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 15 ), ExtResource( 19 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 28 ), ExtResource( 3 ), ExtResource( 4 ) ]
 
-[node name="Items" type="Node" parent="Store"]
-
-[node name="GrassSeeds" type="Node" parent="Store/Items"]
-script = ExtResource( 26 )
-item_name = "Grass"
-icon = ExtResource( 28 )
-type = "seed"
-amount = 100
-amount_needed = 10
-price = 20
-
-[node name="SaladSeeds" type="Node" parent="Store/Items"]
-script = ExtResource( 26 )
-item_name = "Salad"
-icon = ExtResource( 38 )
-type = "seed"
-amount = 20
-amount_needed = 2
-price = 50
-
-[node name="CucumberSeeds" type="Node" parent="Store/Items"]
-script = ExtResource( 26 )
-item_name = "Cucumber"
-icon = ExtResource( 39 )
-type = "seed"
-amount = 20
-amount_needed = 2
-price = 75
-
-[node name="ZucchiniSeeds" type="Node" parent="Store/Items"]
-script = ExtResource( 26 )
-item_name = "Zucchini"
-icon = ExtResource( 40 )
-type = "seed"
-amount = 20
-amount_needed = 2
-price = 100
-
-[node name="FlowerSeeds" type="Node" parent="Store/Items"]
-script = ExtResource( 26 )
-item_name = "Flower"
-icon = ExtResource( 4 )
-type = "seed"
-amount = 20
-amount_needed = 2
-price = 250
-
-[node name="TomatoSeeds" type="Node" parent="Store/Items"]
-script = ExtResource( 26 )
-item_name = "Tomato"
-icon = ExtResource( 15 )
-type = "seed"
-amount = 20
-amount_needed = 2
-price = 400
-
-[node name="PepperSeeds" type="Node" parent="Store/Items"]
-script = ExtResource( 26 )
-item_name = "Pepper"
-icon = ExtResource( 5 )
-type = "seed"
-amount = 20
-amount_needed = 2
-price = 1000
-
-[node name="LawnMower" type="Node" parent="Store/Items"]
-script = ExtResource( 26 )
-item_name = "Lawn Mower"
-icon = ExtResource( 3 )
-type = "tool"
-is_one_time_purchase = true
-price = 100000
-
-[node name="Shovel" type="Node" parent="Store/Items"]
-script = ExtResource( 26 )
-item_name = "Shovel"
-icon = ExtResource( 24 )
-type = "tool"
-is_one_time_purchase = true
-price = 30
-
-[node name="Scissors" type="Node" parent="Store/Items"]
-script = ExtResource( 26 )
-__meta__ = {
-"_editor_description_": "Used to harvest grown plants"
-}
-item_name = "Scissors"
-icon = ExtResource( 13 )
-type = "tool"
-is_one_time_purchase = true
-price = 15
-
-[node name="UI" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 12 )
-ui_current_tool_path = NodePath("CanvasLayer/CurrentTool")
-ui_current_day_path = NodePath("CanvasLayer/TopLeft/MarginContainer/VBC/HBoxContainer/CurrentDay")
-ui_money_path = NodePath("CanvasLayer/TopLeft/MarginContainer/VBC/Money/Label")
-ui_message_popup_path = NodePath("CanvasLayer/Message")
-ui_time_settings_popup_path = NodePath("CanvasLayer/TimeSettings")
+ui_current_tool_path = NodePath("CurrentTool")
+ui_current_day_path = NodePath("TopLeft/MarginContainer/VBC/HBoxContainer/CurrentDay")
+ui_money_path = NodePath("TopLeft/MarginContainer/VBC/Money/Label")
+ui_message_popup_path = NodePath("Message")
+ui_time_settings_popup_path = NodePath("TimeSettings")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
-
-[node name="CurrentTool" parent="UI/CanvasLayer" instance=ExtResource( 68 )]
+[node name="CurrentTool" parent="UI" instance=ExtResource( 68 )]
 margin_left = 1742.0
 margin_top = 925.0
 margin_right = 1837.0
 margin_bottom = 1020.0
 clickable = false
 
-[node name="CurrentToolBG" type="TextureRect" parent="UI/CanvasLayer"]
+[node name="CurrentToolBG" type="TextureRect" parent="UI"]
 visible = false
 self_modulate = Color( 1, 1, 1, 0.784314 )
 margin_left = 1727.0
@@ -562,7 +453,7 @@ mouse_filter = 2
 texture = ExtResource( 11 )
 expand = true
 
-[node name="CurrentTool" type="TextureRect" parent="UI/CanvasLayer/CurrentToolBG"]
+[node name="CurrentTool" type="TextureRect" parent="UI/CurrentToolBG"]
 margin_left = 6.33331
 margin_top = 5.99997
 margin_right = 34.3333
@@ -570,14 +461,14 @@ margin_bottom = 34.0
 expand = true
 stretch_mode = 1
 
-[node name="TopLeft" type="Control" parent="UI/CanvasLayer"]
+[node name="TopLeft" type="Control" parent="UI"]
 margin_right = 150.0
 margin_bottom = 70.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BG" type="NinePatchRect" parent="UI/CanvasLayer/TopLeft"]
+[node name="BG" type="NinePatchRect" parent="UI/TopLeft"]
 self_modulate = Color( 1, 1, 1, 0.784314 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -585,7 +476,7 @@ texture = ExtResource( 11 )
 patch_margin_left = 1
 patch_margin_right = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/CanvasLayer/TopLeft"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/TopLeft"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 11.0
@@ -596,7 +487,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBC" type="VBoxContainer" parent="UI/CanvasLayer/TopLeft/MarginContainer"]
+[node name="VBC" type="VBoxContainer" parent="UI/TopLeft/MarginContainer"]
 margin_right = 128.0
 margin_bottom = 58.0
 custom_constants/separation = 12
@@ -604,11 +495,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/CanvasLayer/TopLeft/MarginContainer/VBC"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/TopLeft/MarginContainer/VBC"]
 margin_right = 128.0
 margin_bottom = 21.0
 
-[node name="CurrentDay" type="Label" parent="UI/CanvasLayer/TopLeft/MarginContainer/VBC/HBoxContainer"]
+[node name="CurrentDay" type="Label" parent="UI/TopLeft/MarginContainer/VBC/HBoxContainer"]
 margin_bottom = 21.0
 custom_fonts/font = ExtResource( 22 )
 valign = 1
@@ -616,7 +507,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimeSetting" type="TextureButton" parent="UI/CanvasLayer/TopLeft/MarginContainer/VBC/HBoxContainer"]
+[node name="TimeSetting" type="TextureButton" parent="UI/TopLeft/MarginContainer/VBC/HBoxContainer"]
 margin_left = 4.0
 margin_right = 24.0
 margin_bottom = 21.0
@@ -624,7 +515,7 @@ rect_min_size = Vector2( 20, 20 )
 texture_normal = ExtResource( 46 )
 expand = true
 
-[node name="Money" type="HBoxContainer" parent="UI/CanvasLayer/TopLeft/MarginContainer/VBC"]
+[node name="Money" type="HBoxContainer" parent="UI/TopLeft/MarginContainer/VBC"]
 margin_top = 33.0
 margin_right = 128.0
 margin_bottom = 54.0
@@ -632,7 +523,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="UI/CanvasLayer/TopLeft/MarginContainer/VBC/Money"]
+[node name="Label" type="Label" parent="UI/TopLeft/MarginContainer/VBC/Money"]
 material = ExtResource( 67 )
 margin_right = 28.0
 margin_bottom = 21.0
@@ -642,7 +533,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Icon" type="TextureRect" parent="UI/CanvasLayer/TopLeft/MarginContainer/VBC/Money"]
+[node name="Icon" type="TextureRect" parent="UI/TopLeft/MarginContainer/VBC/Money"]
 margin_left = 32.0
 margin_right = 52.0
 margin_bottom = 21.0
@@ -653,16 +544,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationMoneyAdded" type="AnimationPlayer" parent="UI/CanvasLayer/TopLeft/MarginContainer/VBC/Money"]
+[node name="AnimationMoneyAdded" type="AnimationPlayer" parent="UI/TopLeft/MarginContainer/VBC/Money"]
 anims/RESET = SubResource( 12 )
 anims/Wave = SubResource( 11 )
 
-[node name="Message" type="AcceptDialog" parent="UI/CanvasLayer"]
-margin_right = 83.0
+[node name="Message" type="AcceptDialog" parent="UI"]
+margin_right = 108.0
 margin_bottom = 58.0
 window_title = "Warnung!"
 
-[node name="TimeSettings" type="WindowDialog" parent="UI/CanvasLayer"]
+[node name="TimeSettings" type="WindowDialog" parent="UI"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -676,14 +567,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSlider" type="HSlider" parent="UI/CanvasLayer/TimeSettings"]
+[node name="HSlider" type="HSlider" parent="UI/TimeSettings"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 min_value = 1.0
 value = 1.0
 tick_count = 1
 
-[node name="Value" type="Label" parent="UI/CanvasLayer/TimeSettings"]
+[node name="Value" type="Label" parent="UI/TimeSettings"]
 anchor_right = 1.0
 margin_top = 107.0
 margin_bottom = 121.0
@@ -790,5 +681,5 @@ stream = ExtResource( 66 )
 volume_db = -10.487
 
 [connection signal="seed_used" from="GroundLayer" to="UI" method="_on_GroundLayer_seed_used"]
-[connection signal="pressed" from="UI/CanvasLayer/TopLeft/MarginContainer/VBC/HBoxContainer/TimeSetting" to="UI" method="_on_TimeSetting_pressed"]
-[connection signal="value_changed" from="UI/CanvasLayer/TimeSettings/HSlider" to="UI" method="_on_Time_Settings_HSlider_value_changed"]
+[connection signal="pressed" from="UI/TopLeft/MarginContainer/VBC/HBoxContainer/TimeSetting" to="UI" method="_on_TimeSetting_pressed"]
+[connection signal="value_changed" from="UI/TimeSettings/HSlider" to="UI" method="_on_Time_Settings_HSlider_value_changed"]

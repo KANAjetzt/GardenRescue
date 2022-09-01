@@ -6,7 +6,6 @@ onready var animated_sprite = $AnimatedSprite
 func _ready():
 	GameWorld.Shack = self
 	print("ready shack: ", items)
-	.init_ui()
 
 
 func sell_item(item):
@@ -28,7 +27,7 @@ func sell_item(item):
 func _on_Shack_clicked_on_building():
 	GameWorld.Audio.play_sfx("DoorOpen")
 	animated_sprite.play("default")
-	inventory.show()
+	ui_inventory.show()
 
 func _on_Inventory_pressed_slot(item_name):
 	var clicked_item = .get_item(item_name)

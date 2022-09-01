@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://assets/Tools/lawnMower.png" type="Texture" id=1]
+[ext_resource path="res://resources/ItemData.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+unique_id = "tool_lawnMower"
+display_name = "Lawn Mower"
+description = "Mow the lawn"
+icon = ExtResource( 1 )
+type = "tool"
+is_stackable = false
+is_one_time_purchase = true
+amount = 0
+amount_needed = 0
+price = 100000

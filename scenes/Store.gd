@@ -1,26 +1,23 @@
 extends "res://scenes/Building.gd"
-
 var clicked_item
 
+
 func _ready():
-	init_ui()
+	print("ready store: ", items)
+#	init_ui()
 
 func get_iventory_slot(new_items):
 	var slots = []
 
 	for item in new_items:
-		var new_slot = inventory.Slot.instance()
-		new_slot.item_name = item.item_name
+		var new_slot = ui_inventory.Slot.instance()
+		new_slot.display_name = item.display_name
 		new_slot.icon = item.icon
 		new_slot.amount = item.price
 		new_slot.connect("pressed_slot", self, "_on_Inventory_pressed_slot")
 		slots.append(new_slot)
 	
 	return slots
-
-func init_ui():
-	var slots = get_iventory_slot(items.get_children())
-	inventory.populate(slots)
 
 func sell_item(item):
 		# Check if enough money
@@ -53,12 +50,13 @@ func sell_item(item):
 		.remove_item(item)
 
 func _on_Store_clicked_on_building():
-	inventory.show()
+	ui_inventory.show()
 	GameWorld.Audio.play_sfx("WoodKnock")
 
-func _on_Inventory_pressed_slot(item_name):
+func _on_Inventory_pressed_slot(item_id):
+	print("item_id: ", item_id)
 	# get clicked item
-	for item in items.get_children():
-		if(item.item_name == item_name):
+	for item in items:
+		if(item.unique_id == item_id):
 			clicked_item = item
 			sell_item(clicked_item)

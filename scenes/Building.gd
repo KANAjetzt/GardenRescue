@@ -1,29 +1,40 @@
 extends Area2D
 
-export(Texture) var texture
-export(Texture) var texture_night
-export(NodePath) var items_path
-onready var items = get_node(items_path)
-export(NodePath) var inventory_path
-onready var inventory = get_node(inventory_path)
-
-onready var GameWorld = get_node("/root/GameWorld")
-
 signal clicked_on_building
 signal ui_btn_pressed(label)
+
+export(Texture) var texture
+export(Texture) var texture_night
+export(NodePath) var ui_inventory_path
+onready var ui_inventory = get_node(ui_inventory_path)
+
+export(Array, Resource) var items
+
+var inventory: Inventory = Inventory.new()
+
+onready var GameWorld = get_node("/root/GameWorld")
 
 func _ready():
 	GameWorld.connect("sunrise", self, "_on_sunrise")
 	GameWorld.connect("sunset", self, "_on_sunset")
 	
 	$Sprite.texture = texture
+	
+	for item in items:
+		inventory.add_item(item.unique_id, item.amount)
+	
+	print("items: ", items)
+	init_ui(items)
 
 func get_iventory_slot(new_items):
 	var slots = []
-
+	
+	print("new_items: ", new_items)
+	
 	for item in new_items:
-		var new_slot = inventory.Slot.instance()
-		new_slot.item_name = item.item_name
+		var new_slot = ui_inventory.Slot.instance()
+		new_slot.unique_id = item.unique_id
+		new_slot.display_name = item.display_name
 		new_slot.icon = item.icon
 		new_slot.amount = item.amount
 		new_slot.connect("pressed_slot", self, "_on_Inventory_pressed_slot")
@@ -31,9 +42,10 @@ func get_iventory_slot(new_items):
 	
 	return slots
 
-func init_ui():
-	var slots = get_iventory_slot(items.get_children())
-	inventory.populate(slots)
+func init_ui(items):
+	print("init_ui - items: ", items)
+	var slots = get_iventory_slot(items)
+	ui_inventory.populate(slots)
 
 func is_item_existing(item_name):
 	var is_item = false

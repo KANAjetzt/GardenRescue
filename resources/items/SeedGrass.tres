@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://assets/Plants/Grass/Seeds_Grass.png" type="Texture" id=1]
+[ext_resource path="res://resources/ItemData.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+unique_id = "seed_grass"
+display_name = "Grass Seeds"
+description = ""
+icon = ExtResource( 1 )
+type = "seed"
+is_stackable = false
+is_one_time_purchase = false
+amount = 100
+amount_needed = 10
+price = 100
