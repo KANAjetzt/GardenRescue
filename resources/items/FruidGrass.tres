@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://assets/Plants/Grass/Grass_Inventory.png" type="Texture" id=1]
+[ext_resource path="res://resources/ItemData.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+unique_id = "fruid_grass"
+display_name = "Grass Fruids"
+description = ""
+icon = ExtResource( 1 )
+type = "fruit"
+is_stackable = true
+is_one_time_purchase = false
+amount = 0
+amount_needed = 0
+price = 0

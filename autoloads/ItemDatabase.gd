@@ -18,7 +18,22 @@ func get_item_data(unique_id: String) -> ItemData:
 		return null
 	
 	return ITEMS[unique_id]
-
+	
+func find_by_name(item_name: String) -> ItemData:
+	var results = []
+	
+	for item_key in ITEMS:
+		var item = ITEMS[item_key]
+		
+		# Check if there is an item with that name
+		if(item.display_name == item_name):
+			results.push(item)
+	
+	if(results.size() == 0):
+		printerr("Sorry no item with this name was found." % item_name)
+		return null
+	else:
+		return results
 
 static func _load_items() -> Array:
 	var item_files := []

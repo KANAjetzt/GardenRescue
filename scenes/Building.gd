@@ -7,7 +7,6 @@ export(Texture) var texture
 export(Texture) var texture_night
 export(NodePath) var ui_inventory_path
 onready var ui_inventory = get_node(ui_inventory_path)
-
 export(Array, Resource) var items
 
 var inventory: Inventory = Inventory.new()
@@ -20,42 +19,31 @@ func _ready():
 	
 	$Sprite.texture = texture
 	
-	for item in items:
-		inventory.add_item(item.unique_id, item.amount)
+	inventory.connect("item_changed", self, "_on_item_changed")
 	
-	print("items: ", items)
-	init_ui(items)
+	# If the building has someting in inventory
+	if(items):
+		for item in items:
+			inventory.add_item(item.unique_id, item.amount)
 
 func get_iventory_slot(new_items):
 	var slots = []
 	
-	print("new_items: ", new_items)
-	
-	for item in new_items:
-		var new_slot = ui_inventory.Slot.instance()
-		new_slot.unique_id = item.unique_id
-		new_slot.display_name = item.display_name
-		new_slot.icon = item.icon
-		new_slot.amount = item.amount
+	for item_key in new_items.keys():
+		var item = ItemDatabase.get_item_data(item_key)
+		
+		var new_slot = ui_inventory.get_new_slot(item)
 		new_slot.connect("pressed_slot", self, "_on_Inventory_pressed_slot")
 		slots.append(new_slot)
 	
 	return slots
 
-func init_ui(items):
-	print("init_ui - items: ", items)
-	var slots = get_iventory_slot(items)
-	ui_inventory.populate(slots)
-
-func is_item_existing(item_name):
-	var is_item = false
-
-	for i in items.get_children():
-		if(i.item_name == item_name):
-			is_item = true
-			break
-	
-	return is_item
+func is_item_existing(item_id):
+	var item = ItemDatabase.get_item_data(item_id)
+	if(item):
+		return true
+	else:
+		return false
 
 func get_item(item_name):
 	for i in items.get_children():
@@ -63,22 +51,7 @@ func get_item(item_name):
 			return i
 
 func add_item(item):
-	# check if stackable and check if item exists already
-	print("add item to shack: ", is_item_existing(item.item_name))
-	if(item.is_stackable && is_item_existing(item.item_name)):
-		# if so find it
-		var old_item = get_item(item.item_name)
-		# and update the amount
-		old_item.amount += item.amount
-		# Update UI
-		var slot = inventory.get_slot_by_item_name(item.item_name)
-		slot.update_amount(old_item.amount)
-	else:
-		# if not add a new item
-		items.add_child(item)
-		# Update UI
-		var slots = get_iventory_slot([item])
-		inventory.populate(slots)
+	inventory
 
 func remove_item(item):
 	# Update Inventory UI
@@ -100,3 +73,25 @@ func _on_sunset():
 	if(!texture_night):
 		return
 	$Sprite.texture = texture_night
+
+func _on_item_changed(id, is_added):
+	if(is_added):
+		# add slot
+		var item = ItemDatabase.get_item_data(id)
+		var slot = ui_inventory.get_slot(id)
+		var amount = inventory.get_amount(id)
+		
+		# Lets add the inventory amount to te itemData
+		# Because I use the itemData to create a new inventory slot 
+		# But the actuall harvested amount is stored only in the inventory
+		item.amount = amount
+		
+		if(!item.is_stackable || !slot):
+			var new_slot = ui_inventory.get_new_slot(item)
+			ui_inventory.populate([new_slot])
+		else:
+			print("update_amount! - ", amount)
+			slot.update_amount(amount)
+	else:
+		# remove slot
+		ui_inventory.remove_slot(id)

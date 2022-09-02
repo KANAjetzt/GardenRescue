@@ -1,6 +1,8 @@
 class_name Inventory
 extends Resource
 
+signal item_changed(id, is_added)
+
 # Ideally, I would like to store an array of item resources here, but this is
 # not well-supported in Godot 3. Once loaded back, the item resources would lose
 # their type information. This is because GDScript does not support typed arrays in Godot 3.
@@ -18,7 +20,13 @@ func add_item(unique_id: String, amount := 1) -> void:
 	else:
 		items[unique_id] = amount
 	emit_changed()
-
+	emit_signal("item_changed", unique_id, true)
+	
+func has_item(unique_id: String) -> bool:
+	if unique_id in items:
+		return true
+	else:
+		return false
 
 func get_amount(item_unique_id: String) -> int:
 	if not item_unique_id in items:
@@ -37,3 +45,4 @@ func remove_item(item_unique_id: String, amount := 1) -> void:
 	if items[item_unique_id] <= 0:
 		items.erase(item_unique_id)
 	emit_changed()
+	emit_signal("item_changed", item_unique_id, false)

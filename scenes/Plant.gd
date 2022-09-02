@@ -97,11 +97,10 @@ func harvest():
 	tween.tween_property(label_harvest_count, "self_modulate", Color(1,1,1,0), 0.2)
 	tween.tween_callback(label_harvest_count, "queue_free")
 	
-	# Create new Item
-	var new_item = Item.instance()
-	new_item.create_fruid_item(plant_name, icon_fruit_texture, harvest_count, base_sell_price)
+	
 	# Add fruit to shack
-	GameWorld.Shack.add_item(new_item)
+	var item = ItemDatabase.get_item_data(str("fruid_", plant_name))
+	GameWorld.Shack.inventory.add_item(item.unique_id, harvest_count)
 
 func _on_new_day(day):
 	# Plant gets older

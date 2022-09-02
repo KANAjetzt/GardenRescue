@@ -50,5 +50,4 @@ func update_icon(new_icon):
 	$Icon.texture = icon
 
 func _on_InventorySlot_pressed():
-	print(unique_id)
 	emit_signal("pressed_slot", unique_id)

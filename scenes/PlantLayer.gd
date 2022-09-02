@@ -29,7 +29,7 @@ func _unhandled_input(event):
 			if(!is_plant_on_position(clicked_cell_position)):
 				return
 			
-			match GameWorld.current_tool.item_name.to_lower():
+			match GameWorld.current_tool.display_name.to_lower():
 				'scissors':
 					handleHarvest(clicked_cell_position)
 				'hand':
