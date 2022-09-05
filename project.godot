@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "GameStore",
+"language": "GDScript",
+"path": "res://resources/GameStore.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
@@ -23,11 +28,18 @@ _global_script_classes=[ {
 "class": "ItemData",
 "language": "GDScript",
 "path": "res://resources/ItemData.gd"
+}, {
+"base": "Reference",
+"class": "SaveGameAsJSON",
+"language": "GDScript",
+"path": "res://resources/SaveGameAsJSON.gd"
 } ]
 _global_script_class_icons={
+"GameStore": "",
 "GitAPI": "",
 "Inventory": "",
-"ItemData": ""
+"ItemData": "",
+"SaveGameAsJSON": ""
 }
 
 [application]

@@ -7,31 +7,17 @@ signal new_day(day)
 signal sunset
 signal sunrise
 
+var gameStore: Resource = GameStore.new()
+
 const TIME_SCALE = 0.01
-var time = 0
-var current_time = 0
-var time_multiplier = 3
-var day_count = 0
 var is_day_counted = false
 var is_day = true
 var is_day_signaled = false
 var is_night_signaled = false
 var is_time_paused = false
-
-var money = 1500
-
-
-var tools_shack = []
-var tools_store = []
-var plants_shack = []
-var plants_store = []
-var current_tool = null
-var current_seed = null
-var current_plant = null
-var tiles_ground = null
 var tiles_ground_ids = ["soil", "grassLight", "grassLightHeigh", "plantDead"]
-var paticles = null
 
+var Paticles = null
 var GroundLayer = null
 var PlantLayer = null
 var UI = null
@@ -40,24 +26,24 @@ var Audio = null
 var Item = preload("res://scenes/Item.tscn")
 
 func calc_time(delta):
-	time += delta * (TIME_SCALE * time_multiplier)
+	gameStore.time += delta * (TIME_SCALE * gameStore.time_multiplier)
 	
 	# Calculate time
-	current_time = pow( abs(sin(time) * 1), 0.5 )
+	gameStore.current_time = pow( abs(sin(gameStore.time) * 1), 0.5 )
 
 	# Check if its a new day
-	if(current_time < 0.1):
+	if(gameStore.current_time < 0.1):
 		if(is_day_counted):
 			return
-		day_count += 1
-		emit_signal("new_day", day_count)
+		gameStore.day_count += 1
+		emit_signal("new_day", gameStore.day_count)
 		is_day_counted = true
-		print("its day: ", day_count)
+		print("its day: ", gameStore.day_count)
 	else:
 		is_day_counted = false
 		
 	# Check if its night or day
-	is_day = true if current_time > 0.5 else false
+	is_day = true if gameStore.current_time > 0.5 else false
 	
 	if(is_day):
 		if(!is_day_signaled):
@@ -78,18 +64,13 @@ func _process(delta):
 	
 
 func equip_tool(tool_to_equip):
-	current_tool = tool_to_equip
+	gameStore.current_tool = tool_to_equip
 	emit_signal("tool_equiped")
-	print('eqiped new tool: ', current_tool)
+	print('eqiped new tool: ', gameStore.current_tool)
 	
 func unequip_toll():
-	current_tool = null
+	gameStore.current_tool = null
 	emit_signal("tool_unequiped")
-	
-func equip_plant(plant_to_equip):
-	current_plant = plant_to_equip.to_lower()
-	emit_signal("plant_equiped")
-	print('eqiped new plant: ', current_plant)
 
 func change_ground(cell_position, new_type):
 	GroundLayer.set_cellv(cell_position, tiles_ground_ids.find(new_type))		
@@ -109,3 +90,18 @@ func change_plant_layer(cell_position, plant_name):
 		GameWorld.Audio.play_sfx_random_pitch('Planting')
 		var new_plant = PlantLayer.instsance_plant(cell_position, plant_name)
 		return new_plant
+
+func add_money(money_to_add):
+	gameStore.money += money_to_add
+
+func remove_money(money_to_remove):
+	gameStore.money -= money_to_remove
+
+func get_money():
+	return gameStore.money
+
+func get_current_tool():
+	return gameStore.current_tool
+
+func update_time_multiplier(value):
+	gameStore.time_multiplier = value

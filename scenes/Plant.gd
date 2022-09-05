@@ -66,7 +66,7 @@ func plant(seed_item):
 func harvest():
 	var harvest_count = get_harvest_count()
 	var label_harvest_count = Label.new()
-	var harvest_particles = GameWorld.paticles.get_particle("Harvest")
+	var harvest_particles = GameWorld.Paticles.get_particle("Harvest")
 	harvest_particles.amount = harvest_count
 	var direction = global_position.direction_to(GameWorld.Shack.global_position)
 	print("direction: ", direction)
@@ -80,7 +80,7 @@ func harvest():
 	harvest_particles.texture = harvest_particle_texture
 	
 	# Emit particles
-	GameWorld.paticles.emit_particle_on_mouse(harvest_particles)
+	GameWorld.Paticles.emit_particle_on_mouse(harvest_particles)
 #	GameWorld.paticles.emit_particle(harvest_particles, start, end, count)
 	
 	# Show label with harvest count

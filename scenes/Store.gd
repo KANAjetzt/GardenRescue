@@ -7,7 +7,7 @@ func _ready():
 
 func sell_item(item):
 	# Check if enough money
-	if(GameWorld.money - item.price < 0):
+	if(GameWorld.get_money() - item.price < 0):
 		GameWorld.UI.ui_message_popup.window_title = "Uff not enough money sorry :("
 		var label = Label.new()
 		label.text = "ahh there is some money missing sorry I can't sell you that :("
@@ -21,9 +21,9 @@ func sell_item(item):
 	GameWorld.Audio.play_sfx("Buy")
 	
 	# Subtract money
-	GameWorld.money = GameWorld.money - item.price
+	GameWorld.remove_money(item.price)
 	# Update money UI
-	GameWorld.UI.ui_money.text = str(GameWorld.money)
+	GameWorld.UI.ui_money.text = str(GameWorld.get_money())
 	# Add item to shack
 	GameWorld.Shack.inventory.add_item(item.unique_id, item.amount)
 	# Equip item

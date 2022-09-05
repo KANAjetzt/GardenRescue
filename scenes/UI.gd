@@ -20,8 +20,8 @@ func _ready():
 	GameWorld.connect("tool_unequiped", self, "_on_tool_unequiped")
 	GameWorld.connect("plant_equiped", self, "_on_plant_equiped")
 	GameWorld.connect("new_day", self, "_on_new_day")
-	ui_money.text = str(GameWorld.money)
-	ui_current_day.text = str("It's day: ", GameWorld.day_count)
+	ui_money.text = str(GameWorld.get_money())
+	ui_current_day.text = str("It's day: ", GameWorld.gameStore.day_count)
 	
 	GameWorld.UI = self
 
@@ -30,7 +30,7 @@ func _on_new_day(day):
 
 func _on_tool_equiped():
 	# Get current tool amount from shack iventory
-	var current_tool_data = GameWorld.current_tool
+	var current_tool_data = GameWorld.get_current_tool()
 	var amount = GameWorld.Shack.inventory.get_amount(current_tool_data.unique_id)
 	
 	# Show current tool in UI
@@ -43,7 +43,7 @@ func _on_tool_equiped():
 	
 	ui_current_tool.update_amount(amount)
 	
-#	Input.set_custom_mouse_cursor(GameWorld.current_tool.icon)
+#	Input.set_custom_mouse_cursor(GameWorld.get_current_tool().icon)
 
 func _on_tool_unequiped():
 	ui_current_tool.update_amount(0)
@@ -63,7 +63,7 @@ func _on_plant_equiped():
 		Input.set_custom_mouse_cursor(current_plant_texture)
 
 func update_money():
-	ui_money.text = str(GameWorld.money)
+	ui_money.text = str(GameWorld.get_money())
 	animation_money_added.play("Wave")
 
 
@@ -72,8 +72,8 @@ func _on_TimeSetting_pressed():
 
 
 func _on_Time_Settings_HSlider_value_changed(value):
-	$CanvasLayer/TimeSettings/Value.text = str(value)
-	GameWorld.time_multiplier = value
+	$TimeSettings/Value.text = str(value)
+	GameWorld.update_time_multiplier(value)
 
 
 func _on_GroundLayer_seed_used(seed_item):

@@ -9,4 +9,4 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	color = NIGHT_COLOR.linear_interpolate(DAY_COLOR, GameWorld.current_time)
+	color = NIGHT_COLOR.linear_interpolate(DAY_COLOR, GameWorld.gameStore.current_time)

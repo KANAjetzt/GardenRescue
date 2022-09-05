@@ -3,7 +3,7 @@ extends Node2D
 onready var GameWorld = get_node("/root/GameWorld")
 
 func _ready():
-	GameWorld.paticles = self
+	GameWorld.Paticles = self
 
 func get_particle(name):
 	for particle in get_children():

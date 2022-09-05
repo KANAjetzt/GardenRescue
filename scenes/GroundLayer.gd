@@ -15,17 +15,17 @@ func _unhandled_input(event):
 			
 			print(global_mouse_position, clicked_cell_position, clicked_cell_id)
 
-			if(!GameWorld.current_tool):
+			if(!GameWorld.get_current_tool()):
 				return
 			
-			if(GameWorld.current_tool.display_name.to_lower() == 'shovel'):
+			if(GameWorld.get_current_tool().display_name.to_lower() == 'shovel'):
 				GameWorld.Audio.play_sfx('ShovelDig')
 				GameWorld.change_plant_layer(clicked_cell_position, '')
 				return
 
 			match tile_names[clicked_cell_id]:
 				"soil":
-					if(GameWorld.current_tool.type.to_lower() == 'seed'):
+					if(GameWorld.get_current_tool().type.to_lower() == 'seed'):
 						handle_planting(clicked_cell_position)
 			
 			
@@ -34,7 +34,7 @@ func _ready():
 	GameWorld.GroundLayer = self
 
 func handle_planting(clicked_cell_position):
-	var new_plant = GameWorld.change_plant_layer(clicked_cell_position, GameWorld.current_tool.plant)
+	var new_plant = GameWorld.change_plant_layer(clicked_cell_position, GameWorld.get_current_tool().plant)
 	if(new_plant):
-		new_plant.plant(GameWorld.current_tool)
-		emit_signal("seed_used", GameWorld.current_tool)
+		new_plant.plant(GameWorld.get_current_tool())
+		emit_signal("seed_used", GameWorld.get_current_tool())
