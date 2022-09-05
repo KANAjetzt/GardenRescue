@@ -29,15 +29,19 @@ func _on_new_day(day):
 	ui_current_day.text = str("It's day: ", day)
 
 func _on_tool_equiped():
+	# Get current tool amount from shack iventory
+	var current_tool_data = GameWorld.current_tool
+	var amount = GameWorld.Shack.inventory.get_amount(current_tool_data.unique_id)
+	
 	# Show current tool in UI
-	ui_current_tool.update_icon(GameWorld.current_tool.icon)
+	ui_current_tool.update_icon(current_tool_data.icon)
 	
 	# Check if tool has an amount
-	if(GameWorld.current_tool.amount <= 0):
+	if(amount <= 0):
 		ui_current_tool.update_amount(0)
 		return
 	
-	ui_current_tool.update_amount(GameWorld.current_tool.amount)
+	ui_current_tool.update_amount(amount)
 	
 #	Input.set_custom_mouse_cursor(GameWorld.current_tool.icon)
 
