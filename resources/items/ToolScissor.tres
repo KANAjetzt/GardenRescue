@@ -7,11 +7,13 @@
 script = ExtResource( 2 )
 unique_id = "tool_scissors"
 display_name = "Scissors"
+plant = ""
 description = "Cut things!"
 icon = ExtResource( 1 )
 type = "tool"
 is_stackable = false
 is_one_time_purchase = true
+is_shack_sell_possible = false
 amount = 0
 amount_needed = 0
 price = 30

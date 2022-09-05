@@ -36,13 +36,24 @@ func get_amount(item_unique_id: String) -> int:
 	return items[item_unique_id]
 
 
-func remove_item(item_unique_id: String, amount := 1) -> void:
-	if not item_unique_id in items:
-		printerr("Trying to remove item %s but the inventory doesn't have it." % item_unique_id)
+func update_amount(unique_id: String, amount: int) -> void:
+	if not unique_id in items:
+		printerr("Trying to update amount on ", unique_id, " , but the inventory doesn't have it.")
 		return
+	
+	if(amount <= 0):
+		remove_item(unique_id)
+	else:
+		items[unique_id] = amount
+		emit_changed()
+		emit_signal("item_changed", unique_id, true)
 
-	items[item_unique_id] -= amount
-	if items[item_unique_id] <= 0:
-		items.erase(item_unique_id)
+func remove_item(unique_id: String) -> void:
+	if not unique_id in items:
+		printerr("Trying to remove item %s but the inventory doesn't have it." % unique_id)
+		return
+	
+	items.erase(unique_id)
+	
 	emit_changed()
-	emit_signal("item_changed", item_unique_id, false)
+	emit_signal("item_changed",unique_id, false)

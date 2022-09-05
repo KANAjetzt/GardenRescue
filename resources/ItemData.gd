@@ -7,11 +7,13 @@ extends Resource
 # See ItemDatabase.gd and Inventory.gd to see how we use this.
 export(String) var unique_id
 export(String) var display_name
+export(String) var plant
 export(String) var description
 export(Texture) var icon
 export(String, 'tool', 'seed', 'fruit') var type
 export(bool) var is_stackable = false
 export(bool) var is_one_time_purchase = false
+export(bool) var is_shack_sell_possible = false
 export(int, 1000) var amount
 export(int, 1000) var amount_needed
 export(int) var price

@@ -7,11 +7,8 @@ export(Texture) var texture
 export(Texture) var texture_night
 export(NodePath) var ui_inventory_path
 onready var ui_inventory = get_node(ui_inventory_path)
+export(Resource) var inventory
 export(Array, Resource) var items
-
-var inventory: Inventory = Inventory.new()
-
-onready var GameWorld = get_node("/root/GameWorld")
 
 func _ready():
 	GameWorld.connect("sunrise", self, "_on_sunrise")
@@ -24,7 +21,7 @@ func _ready():
 	# If the building has someting in inventory
 	if(items):
 		for item in items:
-			inventory.add_item(item.unique_id, item.amount)
+			inventory.add_item(item.unique_id, item.price)
 
 func get_iventory_slot(new_items):
 	var slots = []
@@ -54,10 +51,7 @@ func add_item(item):
 	inventory
 
 func remove_item(item):
-	# Update Inventory UI
-	inventory.remove_slot_by_item_name(item.item_name)
-	# Remove item
-	item.free()
+	inventory.remove_item(item.unique_id)
 
 func _on_Building_input_event(viewport, event, shape_idx):
 	if Input.is_action_pressed("ui_select"):
@@ -75,23 +69,23 @@ func _on_sunset():
 	$Sprite.texture = texture_night
 
 func _on_item_changed(id, is_added):
+	var item = ItemDatabase.get_item_data(id)
+	var slot = ui_inventory.get_slot(id)
+	var amount = inventory.get_amount(id)
+	
 	if(is_added):
-		# add slot
-		var item = ItemDatabase.get_item_data(id)
-		var slot = ui_inventory.get_slot(id)
-		var amount = inventory.get_amount(id)
-		
-		# Lets add the inventory amount to te itemData
-		# Because I use the itemData to create a new inventory slot 
-		# But the actuall harvested amount is stored only in the inventory
-		item.amount = amount
-		
 		if(!item.is_stackable || !slot):
 			var new_slot = ui_inventory.get_new_slot(item)
 			ui_inventory.populate([new_slot])
 		else:
 			print("update_amount! - ", amount)
 			slot.update_amount(amount)
-	else:
+			
+		return
+	
+	if(amount < 0):
 		# remove slot
 		ui_inventory.remove_slot(id)
+		return
+	
+	

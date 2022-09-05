@@ -12,7 +12,7 @@ export (NodePath) var ui_message_popup_path
 onready var ui_message_popup = get_node(ui_message_popup_path)
 export (NodePath) var ui_time_settings_popup_path
 onready var ui_time_settings_popup = get_node(ui_time_settings_popup_path)
-onready var animation_money_added = $CanvasLayer/TopLeft/MarginContainer/VBC/Money/AnimationMoneyAdded
+onready var animation_money_added = $TopLeft/MarginContainer/VBC/Money/AnimationMoneyAdded
 
 
 func _ready():
@@ -76,4 +76,4 @@ func _on_GroundLayer_seed_used(seed_item):
 	if(!seed_item):
 		return
 	
-	ui_current_tool.update_amount(seed_item.amount)
+	ui_current_tool.update_amount(GameWorld.Shack.inventory.get_amount(seed_item.unique_id))

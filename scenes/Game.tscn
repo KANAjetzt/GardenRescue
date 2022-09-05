@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://resources/items/SeedCucumber.tres" type="Resource" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -37,6 +37,8 @@
 [ext_resource path="res://scenes/Plants/Cucumber.tscn" type="PackedScene" id=35]
 [ext_resource path="res://scenes/TileMaps/TileSets/GroundLayer.tres" type="TileSet" id=36]
 [ext_resource path="res://assets/Plants/Grass/Grass_Inventory.png" type="Texture" id=37]
+[ext_resource path="res://resources/inventorys/store.tres" type="Resource" id=38]
+[ext_resource path="res://resources/inventorys/shack.tres" type="Resource" id=39]
 [ext_resource path="res://assets/Plants/Löwenzahn.png" type="Texture" id=41]
 [ext_resource path="res://scenes/Plants/Dandelion.tscn" type="PackedScene" id=42]
 [ext_resource path="res://assets/Plants/Moos.png" type="Texture" id=43]
@@ -419,11 +421,13 @@ script = ExtResource( 20 )
 [node name="Shack" parent="." instance=ExtResource( 10 )]
 position = Vector2( 133, 156 )
 scale = Vector2( 1.5, 1.5 )
+inventory = ExtResource( 39 )
 
 [node name="Store" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1102, 125 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
+inventory = ExtResource( 38 )
 items = [ ExtResource( 1 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 15 ), ExtResource( 19 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 28 ), ExtResource( 3 ), ExtResource( 4 ) ]
 
 [node name="UI" type="CanvasLayer" parent="."]

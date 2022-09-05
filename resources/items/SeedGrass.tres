@@ -7,11 +7,13 @@
 script = ExtResource( 2 )
 unique_id = "seed_grass"
 display_name = "Grass Seeds"
+plant = "grass"
 description = ""
 icon = ExtResource( 1 )
 type = "seed"
-is_stackable = false
+is_stackable = true
 is_one_time_purchase = false
+is_shack_sell_possible = false
 amount = 100
 amount_needed = 10
 price = 100

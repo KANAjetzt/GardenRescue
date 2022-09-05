@@ -6,7 +6,7 @@ func _ready():
 	print("ready store: ", items)
 
 func sell_item(item):
-		# Check if enough money
+	# Check if enough money
 	if(GameWorld.money - item.price < 0):
 		GameWorld.UI.ui_message_popup.window_title = "Uff not enough money sorry :("
 		var label = Label.new()
@@ -41,3 +41,10 @@ func _on_Inventory_pressed_slot(item_id):
 	# get clicked item
 	var item = ItemDatabase.get_item_data(item_id)
 	sell_item(item)
+
+func _on_item_changed(id, is_added):
+	._on_item_changed(id, is_added)
+	
+	var slot = ui_inventory.get_slot(id)
+	if(slot):
+		slot.update_amount(ItemDatabase.get_item_data(id).price)

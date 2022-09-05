@@ -7,11 +7,13 @@
 script = ExtResource( 2 )
 unique_id = "tool_lawnMower"
 display_name = "Lawn Mower"
+plant = ""
 description = "Mow the lawn"
 icon = ExtResource( 1 )
 type = "tool"
 is_stackable = false
 is_one_time_purchase = true
+is_shack_sell_possible = false
 amount = 0
 amount_needed = 0
 price = 100000

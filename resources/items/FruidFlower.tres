@@ -7,11 +7,13 @@
 script = ExtResource( 2 )
 unique_id = "fruid_flower"
 display_name = "Flower Fruids"
+plant = "flower"
 description = ""
 icon = ExtResource( 1 )
 type = "fruit"
 is_stackable = true
 is_one_time_purchase = false
+is_shack_sell_possible = true
 amount = 0
 amount_needed = 0
-price = 0
+price = 10

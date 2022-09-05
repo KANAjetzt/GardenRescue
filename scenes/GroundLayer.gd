@@ -34,7 +34,7 @@ func _ready():
 	GameWorld.GroundLayer = self
 
 func handle_planting(clicked_cell_position):
-	var new_plant = GameWorld.change_plant_layer(clicked_cell_position, GameWorld.current_tool.item_name)
+	var new_plant = GameWorld.change_plant_layer(clicked_cell_position, GameWorld.current_tool.plant)
 	if(new_plant):
 		new_plant.plant(GameWorld.current_tool)
 		emit_signal("seed_used", GameWorld.current_tool)
