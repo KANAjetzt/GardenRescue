@@ -76,6 +76,7 @@ func _on_item_changed(id, is_added):
 	if(is_added):
 		if(!item.is_stackable || !slot):
 			var new_slot = ui_inventory.get_new_slot(item)
+			new_slot.update_amount(amount)
 			ui_inventory.populate([new_slot])
 		else:
 			print("update_amount! - ", amount)
