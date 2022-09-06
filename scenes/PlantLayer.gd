@@ -5,12 +5,12 @@ onready var GameWorld = get_node("/root/GameWorld")
 export(PackedScene) var Item
 export(Array, String) var plant_names
 export(Array, PackedScene) var plants
-export(NodePath) var plant_store_path
-onready var plant_store = get_node(plant_store_path)
-export(NodePath) var shack_items_path
-onready var shack_items = get_node(shack_items_path)
+export(NodePath) var plant_nodes_path
+onready var plant_nodes = get_node(plant_nodes_path)
 
 onready var harvest_particles = GameWorld.Paticles.get_particle("Harvest")
+
+var plant_store = preload("res://resources/stores/PlantStore.tres")
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
@@ -33,7 +33,7 @@ func _unhandled_input(event):
 				'scissors':
 					handleHarvest(clicked_cell_position)
 				'hand':
-					if(get_plant(clicked_cell_position).harvest_count <= 0):
+					if(plant_store.get_plant(clicked_cell_position).harvest_count <= 0):
 						handleHarvest(clicked_cell_position)
 				
 
@@ -53,17 +53,22 @@ func load_plant(cell_pos: Vector2, cell_index: int):
 		else:
 			instsance_plant(cell_pos, plant_names[cell_index])
 
-func instsance_plant(cellpos: Vector2, plant_name, plant_stage = 0):
+func instsance_plant(cellpos: Vector2, plant_name, plant_stage = 0,  plant_age  = 0):
 	var plant_name_lower = plant_name.to_lower()
 	# Add scene instance to plant store node
 	var plant_scene = plants[plant_names.find(plant_name_lower)]
 	var object = plant_scene.instance()
 	object.position = map_to_world(cellpos)
 	object.grid_position = cellpos
+	object.age = plant_age
 	object.stage_index = plant_stage
-	plant_store.add_child(object)
 	
-#	object.plant(GameWorld.get_current_tool(), 2)
+	# Check if plant age is smaller then it should be
+	if(object.age < object.stages_day[object.stage_index]):
+		object.age = object.stages_day[object.stage_index]
+	
+	plant_nodes.add_child(object)
+	plant_store.add_plant(object)
 	
 	# Add tile to tile map
 	set_cell(cellpos.x, cellpos.y, plant_names.find(plant_name_lower))
@@ -71,7 +76,7 @@ func instsance_plant(cellpos: Vector2, plant_name, plant_stage = 0):
 	return object
 
 func get_plant(cellpos):
-	for plant in plant_store.get_children():
+	for plant in plant_nodes.get_children():
 		if(plant.grid_position == cellpos):
 			return plant
 
@@ -82,9 +87,10 @@ func is_plant_on_position(cellpos):
 		return true
 
 func remove_plant(cellpos):
-	# remove plant instance
+	# remove plant node
 	get_plant(cellpos).queue_free()
-	
+	# remove plant from store
+	plant_store.remove_plant(plant_store.get_plant(cellpos))	
 	# delete tile
 	set_cellv(cellpos, -1)
 
@@ -93,7 +99,7 @@ func handleHarvest(cellpos):
 	if(!is_plant_on_position(cellpos)):
 		return
 	
-	var plant = get_plant(cellpos)
+	var plant = plant_store.get_plant(cellpos)
 	
 	# check if plant is fully grown
 	if(!plant.is_max_stage()):
@@ -123,28 +129,3 @@ func handleHarvest(cellpos):
 	
 	# Change ground to dirt
 	GameWorld.change_ground(cellpos, "soil")
-
-func save_node():
-	var cells = []
-	var cell_positions = get_used_cells()
-	
-	for pos in cell_positions:
-		var cell_index = get_cellv(pos)
-		cells.push({
-			"position": {
-				"x": pos.x,
-				"y": pos.y
-				},
-			"index": cell_index
-		})
-	
-	return {
-		"filename" : get_filename(),
-		"parent" : get_parent().get_path(),
-		"cells": cells
-	}
-
-func load_node(cells):
-	for cell in cells:
-		set_cell(cell.position.x, cell.position.y, cell.index)
-		load_plant(Vector2(cell.position.x, cell.position.y), cell.index)
