@@ -7,7 +7,7 @@ signal new_day(day)
 signal sunset
 signal sunrise
 
-var gameStore: Resource = GameStore.new()
+var gameStore: Resource = preload("res://resources/stores/GameStore.tres")
 
 const TIME_SCALE = 0.01
 var is_day_counted = false

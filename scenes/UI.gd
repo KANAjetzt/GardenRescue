@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+signal save_requested
+
 onready var GameWorld = get_node("/root/GameWorld")
 
 export (NodePath) var ui_current_tool_path
@@ -13,9 +15,11 @@ onready var ui_message_popup = get_node(ui_message_popup_path)
 export (NodePath) var ui_time_settings_popup_path
 onready var ui_time_settings_popup = get_node(ui_time_settings_popup_path)
 onready var animation_money_added = $TopLeft/MarginContainer/VBC/Money/AnimationMoneyAdded
+onready var save_button = $SaveButton
 
 
 func _ready():
+	save_button.connect("pressed", self, "emit_signal", ["save_requested"])
 	GameWorld.connect("tool_equiped", self, "_on_tool_equiped")
 	GameWorld.connect("tool_unequiped", self, "_on_tool_unequiped")
 	GameWorld.connect("plant_equiped", self, "_on_plant_equiped")

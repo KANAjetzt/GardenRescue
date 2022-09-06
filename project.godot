@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://resources/ItemData.gd"
 }, {
+"base": "Resource",
+"class": "PlantStore",
+"language": "GDScript",
+"path": "res://resources/PlantStore.gd"
+}, {
 "base": "Reference",
 "class": "SaveGameAsJSON",
 "language": "GDScript",
@@ -39,6 +44,7 @@ _global_script_class_icons={
 "GitAPI": "",
 "Inventory": "",
 "ItemData": "",
+"PlantStore": "",
 "SaveGameAsJSON": ""
 }
 
@@ -51,6 +57,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ItemDatabase="*res://autoloads/ItemDatabase.gd"
+PlantDatabase="*res://autoloads/PlantDatabase.gd"
 GameWorld="*res://scenes/GameWorld.gd"
 Level="*res://scenes/Level.gd"
 

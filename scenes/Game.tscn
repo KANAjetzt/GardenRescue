@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://resources/items/SeedCucumber.tres" type="Resource" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -19,7 +19,6 @@
 [ext_resource path="res://assets/Plants/Zucchini/Zucchini_Fruit.png" type="Texture" id=17]
 [ext_resource path="res://scenes/Store.tscn" type="PackedScene" id=18]
 [ext_resource path="res://resources/items/SeedSalad.tres" type="Resource" id=19]
-[ext_resource path="res://scenes/Plants.gd" type="Script" id=20]
 [ext_resource path="res://scenes/DayNightCycle.gd" type="Script" id=21]
 [ext_resource path="res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_16_bold.tres" type="DynamicFont" id=22]
 [ext_resource path="res://scenes/Plants/Grass.tscn" type="PackedScene" id=23]
@@ -412,11 +411,10 @@ script = ExtResource( 25 )
 Item = ExtResource( 27 )
 plant_names = [ "", "", "salad", "tomato", "pepper", "zucchini", "flower", "cucumber", "grass", "dandelion", "moss" ]
 plants = [ null, null, ExtResource( 6 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 35 ), ExtResource( 23 ), ExtResource( 42 ), ExtResource( 44 ) ]
-plant_store_path = NodePath("../Plants")
+plant_nodes_path = NodePath("../Plants")
 
 [node name="Plants" type="Node2D" parent="."]
 scale = Vector2( 2, 2 )
-script = ExtResource( 20 )
 
 [node name="Shack" parent="." instance=ExtResource( 10 )]
 position = Vector2( 133, 156 )
@@ -587,6 +585,13 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SaveButton" type="Button" parent="UI"]
+margin_left = 82.0
+margin_top = 902.0
+margin_right = 367.0
+margin_bottom = 1025.0
+text = "Save"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.203922, 0.305882, 0.321569, 1 )
