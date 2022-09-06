@@ -7,7 +7,6 @@ var ITEMS := {}
 func _ready() -> void:
 	var items := _load_items()
 	
-	print(items)
 	for item in items:
 		ITEMS[item.unique_id] = item
 

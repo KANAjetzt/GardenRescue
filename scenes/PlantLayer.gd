@@ -41,6 +41,8 @@ func _ready():
 	hide()
 	GameWorld.PlantLayer = self
 	
+	plant_store.connect("loaded_plants", self, "_plant_restore")
+	
 	for cellpos in get_used_cells():
 		var cell_index = get_cellv(cellpos)
 		load_plant(cellpos, cell_index)
@@ -94,6 +96,10 @@ func remove_plant(cellpos):
 	# delete tile
 	set_cellv(cellpos, -1)
 
+func remove_all_plants():
+	for cellpos in get_used_cells():
+		remove_plant(cellpos)
+
 func handleHarvest(cellpos):
 	# check if there is a plant
 	if(!is_plant_on_position(cellpos)):
@@ -110,7 +116,7 @@ func handleHarvest(cellpos):
 		# Unset current particle texture
 		harvest_particles.texture = null
 		# Emit particles
-		GameWorld.paticles.emit_particle_on_mouse(harvest_particles)
+		GameWorld.Paticles.emit_particle_on_mouse(harvest_particles)
 		
 		remove_plant(cellpos)
 		return
@@ -129,3 +135,14 @@ func handleHarvest(cellpos):
 	
 	# Change ground to dirt
 	GameWorld.change_ground(cellpos, "soil")
+
+func _plant_restore(save_data):
+	remove_all_plants()
+	plant_store.clear()
+	
+	for plant in save_data:
+		instsance_plant(
+			Vector2(plant.pos.x, plant.pos.y),
+			plant.name,
+			plant.stage,
+			plant.age)

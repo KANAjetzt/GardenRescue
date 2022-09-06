@@ -2,6 +2,7 @@ class_name Inventory
 extends Resource
 
 signal item_changed(id, is_added)
+signal loaded(items)
 
 # Ideally, I would like to store an array of item resources here, but this is
 # not well-supported in Godot 3. Once loaded back, the item resources would lose
@@ -54,6 +55,9 @@ func remove_item(unique_id: String) -> void:
 		return
 	
 	items.erase(unique_id)
-	
 	emit_changed()
 	emit_signal("item_changed",unique_id, false)
+
+func clear():
+	items = {}
+	emit_changed()

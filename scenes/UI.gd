@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 signal save_requested
+signal reload_requested
 
 onready var GameWorld = get_node("/root/GameWorld")
 
@@ -16,10 +17,13 @@ export (NodePath) var ui_time_settings_popup_path
 onready var ui_time_settings_popup = get_node(ui_time_settings_popup_path)
 onready var animation_money_added = $TopLeft/MarginContainer/VBC/Money/AnimationMoneyAdded
 onready var save_button = $SaveButton
-
+onready var load_button = $LoadButton
 
 func _ready():
 	save_button.connect("pressed", self, "emit_signal", ["save_requested"])
+	load_button.connect("pressed", self, "emit_signal", ["reload_requested"])
+	
+	GameWorld.gameStore.connect("store_changed", self, "_on_store_changed")
 	GameWorld.connect("tool_equiped", self, "_on_tool_equiped")
 	GameWorld.connect("tool_unequiped", self, "_on_tool_unequiped")
 	GameWorld.connect("plant_equiped", self, "_on_plant_equiped")
@@ -53,19 +57,6 @@ func _on_tool_unequiped():
 	ui_current_tool.update_amount(0)
 	ui_current_tool.update_icon(null)
 
-func _on_plant_equiped():
-	# show current tool in UI
-	var current_plant_texture
-	
-	print(GameWorld.plants_store)
-	
-	for i in GameWorld.plants_store:
-		if(i.name.to_lower() == GameWorld.current_plant.to_lower()):
-			current_plant_texture = i.shop_icon
-	
-	if(current_plant_texture):
-		Input.set_custom_mouse_cursor(current_plant_texture)
-
 func update_money():
 	ui_money.text = str(GameWorld.get_money())
 	animation_money_added.play("Wave")
@@ -85,3 +76,17 @@ func _on_GroundLayer_seed_used(seed_item):
 		return
 	
 	ui_current_tool.update_amount(GameWorld.Shack.inventory.get_amount(seed_item.unique_id))
+
+func _on_store_changed(prop_changed):
+	match prop_changed:
+		"money":
+			update_money()
+		"current_tool":
+			_on_tool_equiped()
+		"day_count":
+			_on_new_day(GameWorld.gameStore.day_count)
+		_:
+			update_money()
+			_on_new_day(GameWorld.gameStore.day_count)
+			if (GameWorld.get_current_tool()):
+				_on_tool_equiped()

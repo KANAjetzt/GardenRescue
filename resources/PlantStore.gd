@@ -7,6 +7,8 @@ extends Resource
 # To actually save the state of each plant we also need so save the plant age and plant stage index.
 # With that we can re instance all the plants
 
+signal loaded_plants(plants)
+
 var plants = []
 
 func add_plant(plant):
@@ -20,6 +22,9 @@ func get_plant(grid_pos):
 func remove_plant(plant):
 	plants.remove(plants.find(plant))
 	return plants
+
+func clear():
+	plants = []
 	
 func generate_JSON_dict(): 
 	var save = []
@@ -36,3 +41,6 @@ func generate_JSON_dict():
 		})
 	
 	return save
+
+func load_plants(save_data):
+	emit_signal("loaded_plants", save_data)

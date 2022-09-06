@@ -7,7 +7,6 @@ func _ready():
 	GameWorld.Shack = self
 	print("ready shack: ", items)
 
-
 func sell_item(item):
 	var item_amount = inventory.get_amount(item.unique_id)
 	
@@ -18,7 +17,6 @@ func sell_item(item):
 	particles_coin.amount = item.price * item_amount
 	GameWorld.Paticles.emit_particle_on_mouse(particles_coin)
 	# Play money add animation
-	
 	
 	# Add money
 	GameWorld.add_money(item.price * item_amount)

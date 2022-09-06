@@ -32,7 +32,7 @@ func write_savegame() -> void:
 			"time_multiplier": gameStore.time_multiplier,
 			"day_count": gameStore.day_count,
 			"money": gameStore.money,
-			"current_tool": gameStore.current_tool.unique_id
+			"current_tool": gameStore.current_tool.unique_id if gameStore.current_tool else null
 		},
 		"plant_store": {
 			"plants": plantStore.generate_JSON_dict()
@@ -50,27 +50,30 @@ func write_savegame() -> void:
 	_file.close()
 
 
-#func load_savegame() -> void:
-#	var error := _file.open(SAVE_GAME_PATH, File.READ)
-#	if error != OK:
-#		printerr("Could not open the file %s. Aborting load operation. Error code: %s" % [SAVE_GAME_PATH, error])
-#		return
-#
-#	var content := _file.get_as_text()
-#	_file.close()
-#
-#	var data: Dictionary = JSON.parse(content).result
-#	global_position = Vector2(data.global_position.x, data.global_position.y)
-#	map_name = data.map_name
-#
-#	character = Character.new()
-#	character.display_name = data.player.display_name
-#	character.run_speed = data.player.run_speed
-#	character.level = data.player.level
-#	character.experience = data.player.experience
-#	character.strength = data.player.strength
-#	character.endurance = data.player.endurance
-#	character.intelligence = data.player.intelligence
-#
-#	inventory = Inventory.new()
-#	inventory.items = data.inventory
+func load_savegame() -> void:
+	var error := _file.open(SAVE_GAME_PATH, File.READ)
+	if error != OK:
+		printerr("Could not open the file %s. Aborting load operation. Error code: %s" % [SAVE_GAME_PATH, error])
+		return
+
+	var content := _file.get_as_text()
+	_file.close()
+
+	var data: Dictionary = JSON.parse(content).result
+	
+	gameStore.time = data.game_store.time
+	gameStore.current_time = data.game_store.current_time
+	gameStore.time_multiplier = data.game_store.time_multiplier
+	gameStore.set_prop("day_count", data.game_store.day_count)
+	gameStore.set_prop("money", data.game_store.money)
+	if(data.game_store.current_tool):
+		gameStore.set_prop("current_tool", ItemDatabase.get_item_data(data.game_store.current_tool))
+	
+	# Load plants
+	plantStore.load_plants(data.plant_store.plants)
+	
+	inventory_shack.items = data.inventory_shack.items
+	print("load_savegame: ", inventory_shack.items)
+	inventory_shack.emit_signal("loaded", inventory_shack.items)
+	inventory_store.items = data.inventory_store.items
+	inventory_store.emit_signal("loaded",inventory_store.items)

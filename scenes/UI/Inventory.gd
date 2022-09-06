@@ -18,16 +18,18 @@ func populate(slots):
 		
 func get_slot(item_id):
 	for slot in grid.get_children():
-		print(get_parent().name, " get_slot - unique_id: ", slot.unique_id, " -> ", item_id)
 		if (slot.unique_id == item_id):
-			print("wtf")
 			return slot
 		else:
-			printerr(str(get_parent().name, " inventory slot with id ", item_id, " not found."))
+			return null
 
 func remove_slot(item_id):
 	var slot = get_slot(item_id)
 	grid.remove_child(slot)
+
+func clear_slots():
+	for slot in grid.get_children():
+		slot.queue_free()
 
 func get_new_slot(item):
 	var new_slot = Slot.instance()

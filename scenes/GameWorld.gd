@@ -6,6 +6,7 @@ signal plant_equiped
 signal new_day(day)
 signal sunset
 signal sunrise
+signal store_changed
 
 var gameStore: Resource = preload("res://resources/stores/GameStore.tres")
 
@@ -35,7 +36,7 @@ func calc_time(delta):
 	if(gameStore.current_time < 0.1):
 		if(is_day_counted):
 			return
-		gameStore.day_count += 1
+		gameStore.set_prop("day_count", gameStore.day_count + 1)
 		emit_signal("new_day", gameStore.day_count)
 		is_day_counted = true
 		print("its day: ", gameStore.day_count)
@@ -61,7 +62,6 @@ func calc_time(delta):
 func _process(delta):
 	if(!is_time_paused):
 		calc_time(delta)
-	
 
 func equip_tool(tool_to_equip):
 	gameStore.current_tool = tool_to_equip

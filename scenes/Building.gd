@@ -14,9 +14,10 @@ func _ready():
 	GameWorld.connect("sunrise", self, "_on_sunrise")
 	GameWorld.connect("sunset", self, "_on_sunset")
 	
-	$Sprite.texture = texture
+	$Sprite.texture = texture		
 	
 	inventory.connect("item_changed", self, "_on_item_changed")
+	inventory.connect("loaded", self, "_on_inventory_loaded")
 	
 	# If the building has someting in inventory
 	if(items):
@@ -88,5 +89,14 @@ func _on_item_changed(id, is_added):
 		# remove slot
 		ui_inventory.remove_slot(id)
 		return
+
+func _on_inventory_loaded(items):
+	# clear inventory
+	inventory.clear()
+	ui_inventory.clear_slots()
 	
+	print("--->", items)
 	
+	for item_id in items.keys():
+		var item = ItemDatabase.get_item_data(item_id)
+		inventory.add_item(item.unique_id, item.price)

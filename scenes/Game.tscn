@@ -593,6 +593,13 @@ margin_right = 367.0
 margin_bottom = 1025.0
 text = "Save"
 
+[node name="LoadButton" type="Button" parent="UI"]
+margin_left = 403.0
+margin_top = 902.0
+margin_right = 688.0
+margin_bottom = 1025.0
+text = "Load"
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.203922, 0.305882, 0.321569, 1 )
 script = ExtResource( 21 )
