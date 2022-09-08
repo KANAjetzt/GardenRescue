@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://resources/items/SeedCucumber.tres" type="Resource" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://assets/Plants/Zucchini/Zucchini_Fruit.png" type="Texture" id=17]
 [ext_resource path="res://scenes/Store.tscn" type="PackedScene" id=18]
 [ext_resource path="res://resources/items/SeedSalad.tres" type="Resource" id=19]
+[ext_resource path="res://assets/Ground/Erde.png" type="Texture" id=20]
 [ext_resource path="res://scenes/DayNightCycle.gd" type="Script" id=21]
 [ext_resource path="res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_16_bold.tres" type="DynamicFont" id=22]
 [ext_resource path="res://scenes/Plants/Grass.tscn" type="PackedScene" id=23]
@@ -38,6 +39,7 @@
 [ext_resource path="res://assets/Plants/Grass/Grass_Inventory.png" type="Texture" id=37]
 [ext_resource path="res://resources/inventorys/store.tres" type="Resource" id=38]
 [ext_resource path="res://resources/inventorys/shack.tres" type="Resource" id=39]
+[ext_resource path="res://assets/Ground/Kies.png" type="Texture" id=40]
 [ext_resource path="res://assets/Plants/Löwenzahn.png" type="Texture" id=41]
 [ext_resource path="res://scenes/Plants/Dandelion.tscn" type="PackedScene" id=42]
 [ext_resource path="res://assets/Plants/Moos.png" type="Texture" id=43]
@@ -66,6 +68,7 @@
 [ext_resource path="res://assets/sound/effects/Equip1.ogg" type="AudioStream" id=66]
 [ext_resource path="res://shader/TextWave.tres" type="Material" id=67]
 [ext_resource path="res://scenes/UI/Templates/InventorySlot.tscn" type="PackedScene" id=68]
+[ext_resource path="res://scenes/HoverLayer.gd" type="Script" id=69]
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.614907, 1 )
@@ -230,6 +233,36 @@ color_ramp = SubResource( 6 )
 10/shape_one_way_margin = 0.0
 10/shapes = [  ]
 10/z_index = 0
+
+[sub_resource type="TileSet" id=15]
+0/name = "Erde.png 0"
+0/texture = ExtResource( 20 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 32, 32 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "Kies.png 1"
+1/texture = ExtResource( 40 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 32, 32 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
 
 [sub_resource type="Animation" id=12]
 length = 0.001
@@ -413,17 +446,27 @@ plant_names = [ "", "", "salad", "tomato", "pepper", "zucchini", "flower", "cucu
 plants = [ null, null, ExtResource( 6 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 35 ), ExtResource( 23 ), ExtResource( 42 ), ExtResource( 44 ) ]
 plant_nodes_path = NodePath("../Plants")
 
+[node name="HoverLayer" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+z_index = 4
+tile_set = SubResource( 15 )
+cell_size = Vector2( 32, 32 )
+format = 1
+script = ExtResource( 69 )
+
 [node name="Plants" type="Node2D" parent="."]
 scale = Vector2( 2, 2 )
 
 [node name="Shack" parent="." instance=ExtResource( 10 )]
 position = Vector2( 133, 156 )
 scale = Vector2( 1.5, 1.5 )
+z_index = 5
 inventory = ExtResource( 39 )
 
 [node name="Store" parent="." instance=ExtResource( 18 )]
 position = Vector2( 1102, 125 )
 scale = Vector2( 1.5, 1.5 )
+z_index = 5
 texture = ExtResource( 2 )
 inventory = ExtResource( 38 )
 items = [ ExtResource( 1 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 15 ), ExtResource( 19 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 28 ), ExtResource( 3 ), ExtResource( 4 ) ]
