@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource( 2 )
 unique_id = "seed_zucchini"
-display_name = "Zuchhini Seeds"
-plant = "zuchhini"
+display_name = "Zucchini Seeds"
+plant = "zucchini"
 description = ""
 icon = ExtResource( 1 )
 type = "seed"
