@@ -16,15 +16,17 @@ func populate(slots):
 		slot.connect("pressed_slot", self, "_on_pressed_slot")
 		grid.add_child(slot)
 		
-func get_slot(item_id):
+func get_slot(item_id: String):	
+	var get_slot = null
+	
 	for slot in grid.get_children():
 		if (slot.unique_id == item_id):
-			return slot
-		else:
-			return null
+			get_slot = slot
+
+	return get_slot
 
 func remove_slot(item_id):
-	var slot = get_slot(item_id)
+	var slot = get_slot(item_id)	
 	grid.remove_child(slot)
 
 func clear_slots():
