@@ -48,3 +48,12 @@ func _on_item_changed(id, is_added):
 	var slot = ui_inventory.get_slot(id)
 	if(slot):
 		slot.update_amount(ItemDatabase.get_item_data(id).price)
+		
+func _on_inventory_loaded(items):
+	# clear inventory
+	inventory.clear()
+	ui_inventory.clear_slots()
+		
+	for item_id in items.keys():
+		var item = ItemDatabase.get_item_data(item_id)
+		inventory.add_item(item.unique_id, item.price)

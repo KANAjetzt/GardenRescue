@@ -95,8 +95,6 @@ func _on_inventory_loaded(items):
 	inventory.clear()
 	ui_inventory.clear_slots()
 	
-	print("--->", items)
-	
 	for item_id in items.keys():
 		var item = ItemDatabase.get_item_data(item_id)
-		inventory.add_item(item.unique_id, item.price)
+		inventory.add_item(item.unique_id, item.amount)

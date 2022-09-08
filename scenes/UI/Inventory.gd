@@ -31,7 +31,10 @@ func remove_slot(item_id):
 
 func clear_slots():
 	for slot in grid.get_children():
-		slot.queue_free()
+		# I guess I should use queue_free?
+		# And wait until all slots are removed and then yield a signal?
+		# Lets see if I get away with this.
+		slot.free()
 
 func get_new_slot(item):
 	var new_slot = Slot.instance()
