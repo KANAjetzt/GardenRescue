@@ -1,0 +1,198 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/UI/uiMenuBtn_normal.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_32_bold.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/UI/Banner.png" type="Texture" id=3]
+[ext_resource path="res://assets/UI/uiMenuBtn_hover.png" type="Texture" id=4]
+[ext_resource path="res://assets/Tools/shovel1000.png" type="Texture" id=5]
+[ext_resource path="res://assets/Plants/Tomato/Tomate_Sprouting_1000.png" type="Texture" id=6]
+[ext_resource path="res://assets/Plants/Löwenzahn_1000.png" type="Texture" id=7]
+[ext_resource path="res://assets/Ground/Erde_1000.png" type="Texture" id=8]
+[ext_resource path="res://scenes/MainMenu.gd" type="Script" id=9]
+[ext_resource path="res://scenes/UI/Settings.tscn" type="PackedScene" id=10]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 9 )
+
+[node name="Ground" type="TextureRect" parent="."]
+margin_left = -26.0
+margin_top = -14.0
+margin_right = 1953.0
+margin_bottom = 1106.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 2
+
+[node name="Tomato" type="TextureRect" parent="."]
+margin_left = 1267.0
+margin_top = 716.0
+margin_right = 1625.0
+margin_bottom = 1074.0
+texture = ExtResource( 6 )
+expand = true
+
+[node name="Shovel" type="TextureRect" parent="."]
+margin_left = 462.0
+margin_top = 274.0
+margin_right = 1108.0
+margin_bottom = 920.0
+rect_rotation = 37.6
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Dandelion" type="TextureRect" parent="."]
+margin_left = 89.0
+margin_top = 722.0
+margin_right = 447.0
+margin_bottom = 1080.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.380392 )
+
+[node name="Title" type="TextureRect" parent="."]
+self_modulate = Color( 1, 1, 1, 0.803922 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -360.0
+margin_top = 101.0
+margin_right = 1080.0
+margin_bottom = 522.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -603.0
+margin_right = 300.0
+margin_bottom = -200.0
+custom_constants/separation = 25
+
+[node name="Load" type="TextureButton" parent="VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 60.0
+focus_neighbour_top = NodePath("../Exit")
+mouse_default_cursor_shape = 2
+size_flags_vertical = 3
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/Load"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.5
+margin_top = -20.5
+margin_right = 72.5
+margin_bottom = 20.5
+custom_fonts/font = ExtResource( 2 )
+text = "Load Game"
+align = 1
+
+[node name="Start" type="TextureButton" parent="VBoxContainer"]
+margin_top = 85.0
+margin_right = 600.0
+margin_bottom = 146.0
+mouse_default_cursor_shape = 2
+size_flags_vertical = 3
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/Start"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.5
+margin_top = -20.5
+margin_right = 72.5
+margin_bottom = 20.5
+custom_fonts/font = ExtResource( 2 )
+text = "Start Game"
+align = 1
+
+[node name="Settings" type="TextureButton" parent="VBoxContainer"]
+margin_top = 171.0
+margin_right = 600.0
+margin_bottom = 231.0
+mouse_default_cursor_shape = 2
+size_flags_vertical = 3
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/Settings"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.5
+margin_top = -20.5
+margin_right = 72.5
+margin_bottom = 20.5
+custom_fonts/font = ExtResource( 2 )
+text = "Settings"
+align = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 256.0
+margin_right = 600.0
+margin_bottom = 317.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Exit" type="TextureButton" parent="VBoxContainer"]
+margin_top = 342.0
+margin_right = 600.0
+margin_bottom = 403.0
+focus_neighbour_bottom = NodePath("../Load")
+mouse_default_cursor_shape = 2
+size_flags_vertical = 3
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+expand = true
+
+[node name="Label" type="Label" parent="VBoxContainer/Exit"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.5
+margin_top = -20.5
+margin_right = 72.5
+margin_bottom = 20.5
+custom_fonts/font = ExtResource( 2 )
+text = "Exit"
+align = 1
+
+[node name="Settings" parent="." instance=ExtResource( 10 )]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -291.5
+margin_top = -344.5
+margin_right = 291.5
+margin_bottom = 344.5
+
+[connection signal="pressed" from="VBoxContainer/Load" to="." method="_on_Load_pressed"]
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_Exit_pressed"]

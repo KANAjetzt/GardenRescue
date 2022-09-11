@@ -1,0 +1,168 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/UI/uiCurrentToo_bg.png" type="Texture" id=1]
+[ext_resource path="res://assets/UI/uiCurrentToo_framel.png" type="Texture" id=2]
+[ext_resource path="res://assets/UI/uiCurrentToolbg_light.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/Edu_NSW_ACT_Foundation/static/EduNSWACTFoundation-Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/UI/uiCurrentTool.png" type="Texture" id=5]
+[ext_resource path="res://assets/UI/uiCloseBtn_darkBG.png" type="Texture" id=6]
+[ext_resource path="res://assets/UI/uiCloseBtn_lightBG.png" type="Texture" id=7]
+[ext_resource path="res://scenes/UI/Settings.gd" type="Script" id=8]
+[ext_resource path="res://scenes/UI/Templates/Slider.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_32_bold.tres" type="DynamicFont" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 4 )
+
+[node name="Settings" type="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 8 )
+
+[node name="Background" type="NinePatchRect" parent="."]
+margin_right = 580.0
+margin_bottom = 690.0
+texture = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 60
+custom_constants/margin_top = 50
+custom_constants/margin_left = 60
+custom_constants/margin_bottom = 60
+
+[node name="VBC" type="VBoxContainer" parent="Background/MarginContainer"]
+margin_left = 60.0
+margin_top = 50.0
+margin_right = 520.0
+margin_bottom = 630.0
+
+[node name="Header" type="HBoxContainer" parent="Background/MarginContainer/VBC"]
+margin_right = 460.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="Control" type="Control" parent="Background/MarginContainer/VBC/Header"]
+margin_right = 61.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="TitleBackground" type="NinePatchRect" parent="Background/MarginContainer/VBC/Header"]
+margin_left = 65.0
+margin_right = 395.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 330, 0 )
+texture = ExtResource( 5 )
+patch_margin_left = 1
+patch_margin_right = 1
+
+[node name="Label" type="Label" parent="Background/MarginContainer/VBC/Header/TitleBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="Exit" type="Control" parent="Background/MarginContainer/VBC/Header"]
+margin_left = 399.0
+margin_right = 460.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="Button" type="TextureButton" parent="Background/MarginContainer/VBC/Header/Exit"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 50, 50 )
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+expand = true
+
+[node name="Control" type="Control" parent="Background/MarginContainer/VBC"]
+margin_top = 84.0
+margin_right = 460.0
+margin_bottom = 139.0
+size_flags_vertical = 3
+
+[node name="Sliders" type="VBoxContainer" parent="Background/MarginContainer/VBC"]
+margin_top = 143.0
+margin_right = 460.0
+margin_bottom = 461.0
+custom_constants/separation = 30
+
+[node name="VolumeSFX" parent="Background/MarginContainer/VBC/Sliders" instance=ExtResource( 9 )]
+margin_bottom = 57.0
+label_text = "SFX Volume"
+spin_box_suffix = "%"
+spin_box_max_value = 100
+
+[node name="VolumeAmbient" parent="Background/MarginContainer/VBC/Sliders" instance=ExtResource( 9 )]
+margin_top = 87.0
+margin_bottom = 144.0
+label_text = "Ambient Volume"
+spin_box_suffix = "%"
+spin_box_max_value = 100
+
+[node name="VolumeMusic" parent="Background/MarginContainer/VBC/Sliders" instance=ExtResource( 9 )]
+margin_top = 174.0
+margin_bottom = 231.0
+label_text = "Music Volume"
+spin_box_suffix = "%"
+spin_box_max_value = 100
+
+[node name="SpeedDay" parent="Background/MarginContainer/VBC/Sliders" instance=ExtResource( 9 )]
+margin_top = 261.0
+margin_bottom = 318.0
+label_text = "Day Speed"
+spin_box_suffix = "x"
+spin_box_min_value = 1
+spin_box_max_value = 100
+
+[node name="MarginContainer" type="Control" parent="Background/MarginContainer/VBC"]
+margin_top = 465.0
+margin_right = 460.0
+margin_bottom = 520.0
+size_flags_vertical = 3
+
+[node name="BtnSave" type="TextureButton" parent="Background/MarginContainer/VBC"]
+margin_top = 524.0
+margin_right = 460.0
+margin_bottom = 580.0
+mouse_default_cursor_shape = 2
+size_flags_vertical = 3
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 3 )
+expand = true
+
+[node name="Label" type="Label" parent="Background/MarginContainer/VBC/BtnSave"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -29.0
+margin_top = -20.5
+margin_right = 29.0
+margin_bottom = 20.5
+custom_fonts/font = ExtResource( 10 )
+text = "Save"
+align = 1
+
+[node name="Foreground" type="NinePatchRect" parent="."]
+margin_right = 580.0
+margin_bottom = 690.0
+texture = ExtResource( 2 )
+
+[connection signal="pressed" from="Background/MarginContainer/VBC/Header/Exit/Button" to="." method="_on_Button_pressed"]
+[connection signal="value_changed" from="Background/MarginContainer/VBC/Sliders/VolumeSFX" to="." method="_on_VolumeSFX_value_changed"]
+[connection signal="value_changed" from="Background/MarginContainer/VBC/Sliders/VolumeAmbient" to="." method="_on_VolumeAmbient_value_changed"]
+[connection signal="value_changed" from="Background/MarginContainer/VBC/Sliders/VolumeMusic" to="." method="_on_VolumeMusic_value_changed"]
+[connection signal="value_changed" from="Background/MarginContainer/VBC/Sliders/SpeedDay" to="." method="_on_SpeedDay_value_changed"]

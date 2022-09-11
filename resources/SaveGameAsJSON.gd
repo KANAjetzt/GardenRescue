@@ -24,7 +24,7 @@ func write_savegame() -> void:
 	if error != OK:
 		printerr("Could not open the file %s. Aborting save operation. Error code: %s" % [SAVE_GAME_PATH, error])
 		return
-
+	
 	var data = {
 		"game_store": {
 			"time": gameStore.time,
@@ -32,7 +32,10 @@ func write_savegame() -> void:
 			"time_multiplier": gameStore.time_multiplier,
 			"day_count": gameStore.day_count,
 			"money": gameStore.money,
-			"current_tool": gameStore.current_tool.unique_id if gameStore.current_tool else null
+			"current_tool": gameStore.current_tool.unique_id if gameStore.current_tool else null,
+			"volume_sfx": gameStore.volume_sfx,
+			"volume_ambient": gameStore.volume_ambient,
+			"volume_music": gameStore.volume_music
 		},
 		"plant_store": {
 			"plants": plantStore.generate_JSON_dict()
@@ -68,6 +71,9 @@ func load_savegame() -> void:
 	gameStore.set_prop("money", data.game_store.money)
 	if(data.game_store.current_tool):
 		gameStore.set_prop("current_tool", ItemDatabase.get_item_data(data.game_store.current_tool))
+	gameStore.set_prop("volume_sfx", data.game_store.volume_sfx)
+	gameStore.set_prop("volume_ambient", data.game_store.volume_ambient)
+	gameStore.set_prop("volume_music", data.game_store.volume_music)
 	
 	# Load plants
 	plantStore.load_plants(data.plant_store.plants)

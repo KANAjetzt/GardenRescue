@@ -38,9 +38,6 @@ custom_constants/margin_right = 27
 custom_constants/margin_top = 24
 custom_constants/margin_left = 27
 custom_constants/margin_bottom = 24
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBC" type="VBoxContainer" parent="Background/M"]
 margin_left = 27.0

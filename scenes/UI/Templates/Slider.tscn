@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_16_bold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://resources/UI/ThemeSettings.tres" type="Theme" id=2]
+[ext_resource path="res://assets/UI/uiSliderGrabber_active.png" type="Texture" id=3]
+[ext_resource path="res://assets/UI/uiSliderGrabber.png" type="Texture" id=4]
+[ext_resource path="res://resources/UI/slider/slider_bg.tres" type="StyleBox" id=5]
+[ext_resource path="res://scenes/UI/Templates/Slider.gd" type="Script" id=6]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.996078, 0.996078, 0.996078, 0.576471 )
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.996078, 0.996078, 0.996078, 0.576471 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color( 0, 0, 0, 0.141176 )
+shadow_size = 1
+shadow_offset = Vector2( 0, 1 )
+
+[node name="SFXVolume" type="HBoxContainer"]
+margin_right = 460.0
+margin_bottom = 32.0
+script = ExtResource( 6 )
+spin_box_suffix = ""
+spin_box_max_value = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 460.0
+margin_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 460.0
+margin_bottom = 21.0
+custom_fonts/font = ExtResource( 1 )
+text = "Description"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 25.0
+margin_right = 460.0
+margin_bottom = 57.0
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer"]
+margin_right = 389.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 4 )
+custom_styles/slider = SubResource( 2 )
+custom_styles/grabber_area_highlight = ExtResource( 5 )
+custom_styles/grabber_area = ExtResource( 5 )
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+margin_left = 393.0
+margin_right = 460.0
+margin_bottom = 32.0
+theme = ExtResource( 2 )
+suffix = "%"
+
+[connection signal="changed" from="VBoxContainer/HBoxContainer/HSlider" to="." method="_on_HSlider_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/SpinBox" to="." method="_on_SpinBox_value_changed"]

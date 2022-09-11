@@ -2,11 +2,10 @@ extends Node
 
 signal tool_equiped
 signal tool_unequiped
-signal plant_equiped
 signal new_day(day)
 signal sunset
 signal sunrise
-signal store_changed
+signal store_changed(prop)
 
 var gameStore: Resource = preload("res://resources/stores/GameStore.tres")
 
@@ -25,6 +24,9 @@ var UI = null
 var Shack = null
 var Audio = null
 var Item = preload("res://scenes/Item.tscn")
+
+func _ready():
+	gameStore.connect("store_changed", self, "_on_store_changed")
 
 func calc_time(delta):
 	gameStore.time += delta * (TIME_SCALE * gameStore.time_multiplier)
@@ -62,6 +64,14 @@ func calc_time(delta):
 func _process(delta):
 	if(!is_time_paused):
 		calc_time(delta)
+
+func pause_game():
+	UI.show_pause_menu()
+	is_time_paused = true
+	
+func resume_game():
+	UI.hide_pause_menu()
+	is_time_paused = false
 
 func equip_tool(tool_to_equip):
 	gameStore.current_tool = tool_to_equip
@@ -105,3 +115,6 @@ func get_current_tool():
 
 func update_time_multiplier(value):
 	gameStore.time_multiplier = value
+	
+func _on_store_changed(prop):
+	emit_signal("store_changed", prop)

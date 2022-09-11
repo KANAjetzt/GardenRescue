@@ -3,11 +3,11 @@ extends Node
 var _save := SaveGameAsJSON.new()
 onready var ui = $UI
 
-
 func _ready():
 	randomize()
 	ui.connect("reload_requested", self, "_create_or_load_save")
 	ui.connect("save_requested", self, "_save_game")
+	_create_or_load_save()
 
 func _save_game() -> void:
 	_save.write_savegame()

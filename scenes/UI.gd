@@ -13,25 +13,34 @@ export (NodePath) var ui_money_path
 onready var ui_money = get_node(ui_money_path)
 export (NodePath) var ui_message_popup_path
 onready var ui_message_popup = get_node(ui_message_popup_path)
-export (NodePath) var ui_time_settings_popup_path
-onready var ui_time_settings_popup = get_node(ui_time_settings_popup_path)
 onready var animation_money_added = $TopLeft/MarginContainer/VBC/Money/AnimationMoneyAdded
-onready var save_button = $SaveButton
-onready var load_button = $LoadButton
+onready var pause_menu = $PauseMenu
 
 func _ready():
-	save_button.connect("pressed", self, "emit_signal", ["save_requested"])
-	load_button.connect("pressed", self, "emit_signal", ["reload_requested"])
+	pause_menu.connect("save_requested", self, "emit_signal", ["save_requested"])
 	
 	GameWorld.gameStore.connect("store_changed", self, "_on_store_changed")
 	GameWorld.connect("tool_equiped", self, "_on_tool_equiped")
 	GameWorld.connect("tool_unequiped", self, "_on_tool_unequiped")
-	GameWorld.connect("plant_equiped", self, "_on_plant_equiped")
 	GameWorld.connect("new_day", self, "_on_new_day")
 	ui_money.text = str(GameWorld.get_money())
 	ui_current_day.text = str("It's day: ", GameWorld.gameStore.day_count)
 	
 	GameWorld.UI = self
+
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_ESCAPE:
+			if(!pause_menu.visible):
+				GameWorld.pause_game()
+			else: 
+				GameWorld.resume_game()
+
+func show_pause_menu():
+	pause_menu.show()
+
+func hide_pause_menu():
+	pause_menu.hide()
 
 func _on_new_day(day):
 	ui_current_day.text = str("It's day: ", day)
@@ -60,11 +69,6 @@ func _on_tool_unequiped():
 func update_money():
 	ui_money.text = str(GameWorld.get_money())
 	animation_money_added.play("Wave")
-
-
-func _on_TimeSetting_pressed():
-	ui_time_settings_popup.popup()
-
 
 func _on_Time_Settings_HSlider_value_changed(value):
 	$TimeSettings/Value.text = str(value)
