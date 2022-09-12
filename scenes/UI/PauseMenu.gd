@@ -10,7 +10,7 @@ func _on_Continue_pressed():
 
 
 func _on_Settings_pressed():
-	settings.show()
+	settings.show_settings()
 
 
 func _on_Exit_pressed():

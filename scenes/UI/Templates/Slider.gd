@@ -22,7 +22,6 @@ func set_value(new_value):
 	value = new_value
 	spin_box.value = new_value
 	h_slider.value = new_value
-	emit_signal("value_changed", new_value)
 
 func _on_HSlider_value_changed(new_value):
 	# Bind the HSlider percentage to the SpinBox

@@ -24,4 +24,4 @@ func _on_Exit_pressed():
 
 
 func _on_Settings_pressed():
-	settings.show()
+	settings.show_settings()
