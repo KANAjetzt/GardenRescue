@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://resources/items/SeedCucumber.tres" type="Resource" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -71,6 +71,7 @@
 [ext_resource path="res://scenes/HoverLayer.gd" type="Script" id=69]
 [ext_resource path="res://scenes/UI/PauseMenu.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/UI/uiOpenMenuBtn_hover.png" type="Texture" id=71]
+[ext_resource path="res://resources/particles/harvest.tres" type="Material" id=72]
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.614907, 1 )
@@ -414,7 +415,7 @@ emitting = false
 amount = 4
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 4 )
+process_material = ExtResource( 72 )
 
 [node name="Coins" type="Particles2D" parent="Particles"]
 position = Vector2( 977, 448 )
