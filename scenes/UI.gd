@@ -36,9 +36,11 @@ func _unhandled_input(event):
 			else: 
 				GameWorld.resume_game()
 
+# Used in GameWord --> Use the GameWorld.pause_game() to pause the game
 func show_pause_menu():
 	pause_menu.show()
 
+# Used in GameWord --> Use the GameWorld.resume_game() to resume the game
 func hide_pause_menu():
 	pause_menu.hide()
 
@@ -94,3 +96,7 @@ func _on_store_changed(prop_changed):
 			_on_new_day(GameWorld.gameStore.day_count)
 			if (GameWorld.get_current_tool()):
 				_on_tool_equiped()
+
+
+func _on_BtnOpenMenu_pressed():
+	GameWorld.pause_game()

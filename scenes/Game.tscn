@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://resources/items/SeedCucumber.tres" type="Resource" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -45,6 +45,7 @@
 [ext_resource path="res://assets/Plants/Moos.png" type="Texture" id=43]
 [ext_resource path="res://scenes/Plants/Moss.tscn" type="PackedScene" id=44]
 [ext_resource path="res://assets/UI/UICoin.png" type="Texture" id=45]
+[ext_resource path="res://assets/UI/uiOpenMenuBtn_normal.png" type="Texture" id=46]
 [ext_resource path="res://assets/sound/music/uff2.ogg" type="AudioStream" id=47]
 [ext_resource path="res://scenes/Particles.gd" type="Script" id=48]
 [ext_resource path="res://assets/sound/ambient/forest-sounds-free.mp3" type="AudioStream" id=49]
@@ -69,6 +70,7 @@
 [ext_resource path="res://scenes/UI/Templates/InventorySlot.tscn" type="PackedScene" id=68]
 [ext_resource path="res://scenes/HoverLayer.gd" type="Script" id=69]
 [ext_resource path="res://scenes/UI/PauseMenu.tscn" type="PackedScene" id=70]
+[ext_resource path="res://assets/UI/uiOpenMenuBtn_hover.png" type="Texture" id=71]
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.614907, 1 )
@@ -480,9 +482,9 @@ ui_message_popup_path = NodePath("Message")
 
 [node name="CurrentTool" parent="UI" instance=ExtResource( 68 )]
 margin_left = 1742.0
-margin_top = 925.0
+margin_top = 946.0
 margin_right = 1837.0
-margin_bottom = 1020.0
+margin_bottom = 1041.0
 clickable = false
 
 [node name="CurrentToolBG" type="TextureRect" parent="UI"]
@@ -585,6 +587,17 @@ anims/Wave = SubResource( 11 )
 margin_right = 108.0
 margin_bottom = 58.0
 window_title = "Warnung!"
+
+[node name="BtnOpenMenu" type="TextureButton" parent="UI"]
+margin_left = 32.0
+margin_top = 986.0
+margin_right = 64.0
+margin_bottom = 1018.0
+rect_scale = Vector2( 2, 2 )
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 46 )
+texture_hover = ExtResource( 71 )
+texture_focused = ExtResource( 71 )
 
 [node name="PauseMenu" parent="UI" instance=ExtResource( 70 )]
 
@@ -703,3 +716,4 @@ volume_db = -10.487
 bus = "SFX"
 
 [connection signal="seed_used" from="GroundLayer" to="UI" method="_on_GroundLayer_seed_used"]
+[connection signal="pressed" from="UI/BtnOpenMenu" to="UI" method="_on_BtnOpenMenu_pressed"]
