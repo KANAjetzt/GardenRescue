@@ -3,7 +3,6 @@ extends Control
 onready var btn_load = $VBoxContainer/Load
 onready var settings = $Settings
 
-
 func _ready():
 	btn_load.grab_focus()
 
@@ -25,3 +24,5 @@ func _on_Exit_pressed():
 
 func _on_Settings_pressed():
 	settings.show_settings()
+	
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/UI/uiMenuBtn_normal.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_32_bold.tres" type="DynamicFont" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/Ground/Erde_1000.png" type="Texture" id=8]
 [ext_resource path="res://scenes/MainMenu.gd" type="Script" id=9]
 [ext_resource path="res://scenes/UI/Settings.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Rope/TitleWithRopes.tscn" type="PackedScene" id=11]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -65,6 +66,9 @@ margin_right = 1080.0
 margin_bottom = 522.0
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
+
+[node name="TitleWithRopes" parent="." instance=ExtResource( 11 )]
+position = Vector2( 977, 195 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -182,7 +186,6 @@ text = "Exit"
 align = 1
 
 [node name="Settings" parent="." instance=ExtResource( 10 )]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

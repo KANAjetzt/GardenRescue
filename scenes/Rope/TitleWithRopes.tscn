@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Rope/TitleWithRopes.gd" type="Script" id=1]
+[ext_resource path="res://assets/UI/Banner.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 360, 106 )
+
+[node name="TitleWithRopes" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TitleBoard" type="RigidBody2D" parent="."]
+position = Vector2( 891, 289 )
+
+[node name="Sprite" type="Sprite" parent="TitleBoard"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TitleBoard"]
+shape = SubResource( 1 )
+
+[node name="JL" type="PinJoint2D" parent="TitleBoard"]
+position = Vector2( -319, -96 )
+node_a = NodePath("..")
+bias = 0.4
+softness = 0.01
+
+[node name="JR" type="PinJoint2D" parent="TitleBoard"]
+position = Vector2( 319, -94 )
+node_a = NodePath("..")
+
+[node name="RopeStartL" type="Position2D" parent="."]
+position = Vector2( 564, 11 )
+
+[node name="RopeStartR" type="Position2D" parent="."]
+position = Vector2( 1201, 10 )

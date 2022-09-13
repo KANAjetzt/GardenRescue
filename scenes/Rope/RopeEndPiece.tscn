@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 3.0
+
+[node name="RopeEndPiece" type="RigidBody2D"]
+mode = 1
+
+[node name="C" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="J" type="PinJoint2D" parent="C"]
+bias = 0.5
+softness = 0.01
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+scale = Vector2( 1.5, 1.5 )
+color = Color( 0.980392, 0.0627451, 0.0627451, 1 )
+polygon = PoolVector2Array( 0, -2, -2, 0, 0, 2, 2, 0 )
