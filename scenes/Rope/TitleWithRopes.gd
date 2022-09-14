@@ -5,6 +5,7 @@ var Rope = preload("res://scenes/Rope/Rope.tscn")
 var start_pos = Vector2.ZERO
 var end_pos = Vector2.ZERO
 
+onready var ropes = $Ropes
 onready var rope_start_l = $RopeStartL
 onready var rope_start_r = $RopeStartR
 onready var jl = $TitleBoard/JL
@@ -28,11 +29,13 @@ func _ready():
 	var rope_r = Rope.instance()
 	
 	# Connect the joins to the last RopePiece
-	add_child(rope_l)
+	ropes.add_child(rope_l)
 	rope_l.rope_end_joint = jl
-	rope_l.spawn_rope(rope_start_l.global_position, jl.global_position)
+	rope_l.get_node("RopeEndPiece").queue_free()
+	rope_l.spawn_rope(rope_start_l.position, jl.position)
 	
-	add_child(rope_r)
+	ropes.add_child(rope_r)
 	rope_r.rope_end_joint = jr
-	rope_r.spawn_rope(rope_start_r.global_position, jr.global_position)
+	rope_r.get_node("RopeEndPiece").queue_free()
+	rope_r.spawn_rope(rope_start_r.position, jr.position)
 	

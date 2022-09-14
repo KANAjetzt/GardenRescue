@@ -2,6 +2,8 @@ extends Node2D
 
 export(NodePath) var rope_start_piece_path
 export(NodePath) var rope_end_piece_path
+export(Color) var color_1
+export(Color) var color_2
 
 var RopePiece = preload("res://scenes/Rope/RopePiece.tscn")
 
@@ -11,9 +13,6 @@ var rope_close_tolerance := 4.0
 var rope_points : PoolVector2Array = []
 var rope_colors : PoolColorArray = []
 var is_external_rope_connector := false
-
-var color_1 := Color.black
-var color_2 := Color.orange
 
 onready var rope_start_piece = $RopeStartPiece
 onready var rope_end_piece = $RopeEndPiece
@@ -55,7 +54,7 @@ func create_rope(pieces_amount:int, parent:Object, end_pos:Vector2, spawn_angle:
 	last_color = color_1 if last_color == color_2 else color_2
 	rope_colors.append(last_color)
 	
-	rope_end_joint.node_a = rope_end_piece.get_path()
+	rope_end_joint.node_a = rope_end_joint.node_a if rope_end_joint.node_a else rope_end_piece.get_path()
 	rope_end_joint.node_b = rope_parts[-1].get_path()
 
 func add_piece(parent:Object, id:int, spawn_angle:float) -> Object:
@@ -79,4 +78,4 @@ func get_rope_points() -> void:
 	rope_points.append( rope_end_joint.global_position)
 
 func _draw():
-	draw_polyline_colors(rope_points, rope_colors, 2.0, true)
+	draw_polyline_colors(rope_points, rope_colors, 8.0, true)
