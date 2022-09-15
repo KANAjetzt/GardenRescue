@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://resources/items/SeedCucumber.tres" type="Resource" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -72,6 +72,7 @@
 [ext_resource path="res://scenes/UI/PauseMenu.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/UI/uiOpenMenuBtn_hover.png" type="Texture" id=71]
 [ext_resource path="res://resources/particles/harvest.tres" type="Material" id=72]
+[ext_resource path="res://scenes/UI/Message.tscn" type="PackedScene" id=73]
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.614907, 1 )
@@ -479,7 +480,6 @@ script = ExtResource( 12 )
 ui_current_tool_path = NodePath("CurrentTool")
 ui_current_day_path = NodePath("TopLeft/MarginContainer/VBC/HBoxContainer/CurrentDay")
 ui_money_path = NodePath("TopLeft/MarginContainer/VBC/Money/Label")
-ui_message_popup_path = NodePath("Message")
 
 [node name="CurrentTool" parent="UI" instance=ExtResource( 68 )]
 margin_left = 1742.0
@@ -584,10 +584,7 @@ __meta__ = {
 anims/RESET = SubResource( 12 )
 anims/Wave = SubResource( 11 )
 
-[node name="Message" type="AcceptDialog" parent="UI"]
-margin_right = 108.0
-margin_bottom = 58.0
-window_title = "Warnung!"
+[node name="Message" parent="UI" instance=ExtResource( 73 )]
 
 [node name="BtnOpenMenu" type="TextureButton" parent="UI"]
 margin_left = 32.0
