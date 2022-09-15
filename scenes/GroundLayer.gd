@@ -19,6 +19,8 @@ func _unhandled_input(event):
 				return
 			
 			if(GameWorld.get_current_tool().display_name.to_lower() == 'shovel'):
+				if(tile_names[clicked_cell_id] == "gravel"):
+					return
 				GameWorld.Audio.play_sfx('ShovelDig')
 				GameWorld.change_plant_layer(clicked_cell_position, '')
 				return

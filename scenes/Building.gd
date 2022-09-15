@@ -55,6 +55,7 @@ func _on_Building_input_event(viewport, event, shape_idx):
 	if Input.is_action_pressed("ui_select"):
 		emit_signal("clicked_on_building")
 		
+		
 func _on_btn_pressed(label):
 	emit_signal("ui_btn_pressed", label)
 	
