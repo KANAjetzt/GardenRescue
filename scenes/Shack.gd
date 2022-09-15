@@ -1,11 +1,13 @@
 extends "res://scenes/Building.gd"
 
+var frames_day = preload("res://resources/Frames/Shack_day.tres")
+var frames_night = preload("res://resources/Frames/Shack_night.tres")
 onready var animated_sprite = $AnimatedSprite
-
 
 func _ready():
 	GameWorld.Shack = self
-	print("ready shack: ", items)
+	GameWorld.connect("sunrise", self, "_on_sunrise")
+	GameWorld.connect("sunset", self, "_on_sunset")
 
 func sell_item(item):
 	var item_amount = inventory.get_amount(item.unique_id)
@@ -43,3 +45,9 @@ func _on_Inventory_pressed_slot(item_id):
 
 func _on_Inventory_closed():
 	animated_sprite.play("default", true)
+	
+func _on_sunrise():
+	animated_sprite.frames = frames_day
+
+func _on_sunset():
+	animated_sprite.frames = frames_night
