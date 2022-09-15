@@ -11,9 +11,6 @@ export(Resource) var inventory
 export(Array, Resource) var items
 
 func _ready():
-	GameWorld.connect("sunrise", self, "_on_sunrise")
-	GameWorld.connect("sunset", self, "_on_sunset")
-	
 	$Sprite.texture = texture		
 	
 	inventory.connect("item_changed", self, "_on_item_changed")
