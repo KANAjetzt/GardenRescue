@@ -15,6 +15,8 @@ export (NodePath) var ui_message_popup_path
 onready var ui_message_popup = get_node(ui_message_popup_path)
 onready var animation_money_added = $TopLeft/MarginContainer/VBC/Money/AnimationMoneyAdded
 onready var pause_menu = $PauseMenu
+onready var message = $Message
+
 
 func _ready():
 	pause_menu.connect("save_requested", self, "emit_signal", ["save_requested"])
@@ -43,6 +45,11 @@ func show_pause_menu():
 # Used in GameWord --> Use the GameWorld.resume_game() to resume the game
 func hide_pause_menu():
 	pause_menu.hide()
+
+func show_message_popup(title, text):
+	message.message_title = title
+	message.message_text = text
+	message.show()
 
 func _on_new_day(day):
 	ui_current_day.text = str("It's day: ", day)

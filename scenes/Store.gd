@@ -8,12 +8,12 @@ func _ready():
 func sell_item(item):
 	# Check if enough money
 	if(GameWorld.get_money() - item.price < 0):
-		GameWorld.UI.ui_message_popup.window_title = "Uff not enough money sorry :("
-		var label = Label.new()
-		label.text = "ahh there is some money missing sorry I can't sell you that :("
-		GameWorld.UI.ui_message_popup.add_child(label)
-		# Shop pop up if not enough
-		GameWorld.UI.ui_message_popup.popup()
+		
+		
+		GameWorld.UI.show_message_popup(
+			"Uff not enough money sorry :(",
+			"Ahh there is some money missing sorry I can't sell you that :("
+			)
 		return
 	# If enough 
 	
