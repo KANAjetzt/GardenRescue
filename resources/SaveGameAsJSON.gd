@@ -1,6 +1,8 @@
 class_name SaveGameAsJSON
 extends Reference
 
+signal game_saved
+
 const SAVE_GAME_PATH := "user://save.json"
 
 var version := 1
@@ -51,6 +53,8 @@ func write_savegame() -> void:
 	var json_string := JSON.print(data)
 	_file.store_string(json_string)
 	_file.close()
+	
+	emit_signal("game_saved")
 
 
 func load_savegame() -> void:

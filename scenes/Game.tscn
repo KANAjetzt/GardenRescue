@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://resources/items/SeedCucumber.tres" type="Resource" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -73,6 +73,7 @@
 [ext_resource path="res://assets/UI/uiOpenMenuBtn_hover.png" type="Texture" id=71]
 [ext_resource path="res://resources/particles/harvest.tres" type="Material" id=72]
 [ext_resource path="res://scenes/UI/Message.tscn" type="PackedScene" id=73]
+[ext_resource path="res://scenes/UI/ToastMessage.tscn" type="PackedScene" id=74]
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.614907, 1 )
@@ -598,6 +599,9 @@ texture_hover = ExtResource( 71 )
 texture_focused = ExtResource( 71 )
 
 [node name="PauseMenu" parent="UI" instance=ExtResource( 70 )]
+
+[node name="ToastMessage" parent="UI" instance=ExtResource( 74 )]
+visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.203922, 0.305882, 0.321569, 1 )

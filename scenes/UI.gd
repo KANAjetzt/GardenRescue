@@ -11,11 +11,10 @@ export (NodePath) var ui_current_day_path
 onready var ui_current_day = get_node(ui_current_day_path)
 export (NodePath) var ui_money_path
 onready var ui_money = get_node(ui_money_path)
-export (NodePath) var ui_message_popup_path
-onready var ui_message_popup = get_node(ui_message_popup_path)
 onready var animation_money_added = $TopLeft/MarginContainer/VBC/Money/AnimationMoneyAdded
 onready var pause_menu = $PauseMenu
 onready var message = $Message
+onready var toast_message = $ToastMessage
 
 
 func _ready():
@@ -50,6 +49,9 @@ func show_message_popup(title, text):
 	message.message_title = title
 	message.message_text = text
 	message.show()
+
+func show_toast_message(message):
+	toast_message.show_message(message)
 
 func _on_new_day(day):
 	ui_current_day.text = str("It's day: ", day)

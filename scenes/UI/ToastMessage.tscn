@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_32_bold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/UI/ToastMessage.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Down"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( -2, -12.996 ),
+"update": 0,
+"values": [ Vector2( 1732, -101 ), Vector2( 1732, 20 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1732, 20 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Up"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( -12.996, -2 ),
+"update": 0,
+"values": [ Vector2( 1732, 20 ), Vector2( 1732, -101 ) ]
+}
+
+[node name="ToastMessage" type="Label"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 1732.0
+margin_top = 20.0
+margin_right = 1920.0
+margin_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 1 )
+text = "game saved!"
+align = 1
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Down = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+anims/Up = SubResource( 3 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
