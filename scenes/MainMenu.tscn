@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/UI/uiMenuBtn_normal.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_32_bold.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/UI/Banner.png" type="Texture" id=3]
+[ext_resource path="res://assets/Plants/Grass/Grass_Inventory.png" type="Texture" id=3]
 [ext_resource path="res://assets/UI/uiMenuBtn_hover.png" type="Texture" id=4]
 [ext_resource path="res://assets/Tools/shovel1000.png" type="Texture" id=5]
 [ext_resource path="res://assets/Plants/Tomato/Tomate_Sprouting_1000.png" type="Texture" id=6]
@@ -11,6 +11,19 @@
 [ext_resource path="res://scenes/MainMenu.gd" type="Script" id=9]
 [ext_resource path="res://scenes/UI/Settings.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Rope/TitleWithRopes.tscn" type="PackedScene" id=11]
+
+[sub_resource type="ParticlesMaterial" id=1]
+flag_disable_z = true
+direction = Vector3( -1, 0, 0 )
+spread = 77.9
+gravity = Vector3( 0, 15, 0 )
+initial_velocity = 141.79
+initial_velocity_random = 0.22
+angular_velocity = 128.96
+angular_velocity_random = 0.42
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.32
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -51,22 +64,22 @@ margin_bottom = 1080.0
 texture = ExtResource( 7 )
 expand = true
 
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 1038, -276 )
+rotation = -1.5708
+scale = Vector2( 3, 3 )
+amount = 20
+lifetime = 10.0
+explosiveness = 0.15
+process_material = SubResource( 1 )
+texture = ExtResource( 3 )
+
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.380392 )
 
-[node name="Title" type="TextureRect" parent="."]
-visible = false
-self_modulate = Color( 1, 1, 1, 0.803922 )
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -360.0
-margin_top = 101.0
-margin_right = 1080.0
-margin_bottom = 522.0
-rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
+[node name="TitleWithRopes" parent="." instance=ExtResource( 11 )]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -192,8 +205,6 @@ margin_left = -291.5
 margin_top = -344.5
 margin_right = 291.5
 margin_bottom = 344.5
-
-[node name="TitleWithRopes" parent="." instance=ExtResource( 11 )]
 
 [connection signal="pressed" from="VBoxContainer/Load" to="." method="_on_Load_pressed"]
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
