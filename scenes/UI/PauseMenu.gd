@@ -6,7 +6,7 @@ onready var settings = $Settings
 
 
 func _on_Continue_pressed():
-	hide()
+	GameWorld.resume_game()
 
 
 func _on_Settings_pressed():

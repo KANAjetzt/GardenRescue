@@ -606,7 +606,7 @@ margin_left = -188.0
 margin_right = 0.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.203922, 0.305882, 0.321569, 1 )
+color = Color( 0.164706, 0.25098, 0.266667, 1 )
 script = ExtResource( 21 )
 
 [node name="Audio" type="Node" parent="."]
