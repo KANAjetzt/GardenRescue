@@ -621,7 +621,7 @@ bus = "Ambient"
 
 [node name="AudioAmbientNight" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 50 )
-volume_db = -20.0
+volume_db = -80.0
 bus = "Ambient"
 
 [node name="CrossFade" type="AnimationPlayer" parent="Audio"]

@@ -16,4 +16,4 @@ export(bool) var is_one_time_purchase = false
 export(bool) var is_shack_sell_possible = false
 export(int, 1000) var amount
 export(int, 1000) var amount_needed
-export(int) var price
+export(float) var price

@@ -21,7 +21,7 @@ func sell_item(item):
 	# Play money add animation
 	
 	# Add money
-	GameWorld.add_money(item.price * item_amount)
+	GameWorld.add_money(round(item.price * item_amount))
 	# Update money UI
 	GameWorld.UI.update_money()
 	.remove_item(item)
