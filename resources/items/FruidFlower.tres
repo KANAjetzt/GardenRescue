@@ -16,4 +16,4 @@ is_one_time_purchase = false
 is_shack_sell_possible = true
 amount = 0
 amount_needed = 0
-price = 10
+price = 2.0
