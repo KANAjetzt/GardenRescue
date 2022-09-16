@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://resources/items/SeedCucumber.tres" type="Resource" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -375,6 +375,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [ -20.0, -20.0, -80.0 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("AudioAmbientDay:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AudioAmbientNight:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( -0.1, 4.8, 5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false ]
+}
 
 [sub_resource type="Animation" id=7]
 resource_name = "FadeToNight"
@@ -402,6 +426,57 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 5.09824, 5.46416 ),
 "update": 0,
 "values": [ -80.0, -20.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AudioAmbientDay:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 4.9 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("AudioAmbientNight:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("AudioAmbientDay:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioAmbientNight:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [node name="Game" type="Node"]
@@ -618,7 +693,7 @@ bus = "Music"
 
 [node name="AudioAmbientDay" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 49 )
-volume_db = -80.0
+volume_db = -20.0
 bus = "Ambient"
 
 [node name="AudioAmbientNight" type="AudioStreamPlayer" parent="Audio"]
@@ -629,6 +704,7 @@ bus = "Ambient"
 [node name="CrossFade" type="AnimationPlayer" parent="Audio"]
 anims/FadeToDay = SubResource( 8 )
 anims/FadeToNight = SubResource( 7 )
+anims/RESET = SubResource( 16 )
 
 [node name="SFX" type="Node" parent="Audio"]
 
