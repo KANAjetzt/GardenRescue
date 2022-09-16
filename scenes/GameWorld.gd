@@ -32,7 +32,7 @@ func calc_time(delta):
 	gameStore.time += delta * (TIME_SCALE * gameStore.time_multiplier)
 	
 	# Calculate time
-	gameStore.current_time = pow( abs(sin(gameStore.time) * 1), 0.5 )
+	gameStore.current_time = pow( abs(sin(gameStore.time) * 1), 1.7 )
 
 	# Check if its a new day
 	if(gameStore.current_time < 0.1):
