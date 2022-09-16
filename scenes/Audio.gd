@@ -23,7 +23,7 @@ func crossfade():
 	if(ambient_day.playing && ambient_night.playing):
 		return
 	
-	if(ambient_day.playing):
+	if(!GameWorld.is_day):
 		ambient_night.play()
 		cross_fade.play("FadeToNight")
 	else:
