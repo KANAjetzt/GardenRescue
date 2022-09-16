@@ -7,7 +7,7 @@ var time = 0
 var current_time = 0
 var time_multiplier = 3
 var day_count = 0
-var money = 1500
+var money = 20
 var current_tool = null
 # Turns out it's better to store single values,
 # Atleast in the way I build it.
