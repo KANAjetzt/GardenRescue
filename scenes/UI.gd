@@ -51,7 +51,7 @@ func show_message_popup(title, text):
 	message.message_text = text
 	message.show()
 
-func message():
+func show_toast_message(message):
 	toast_message.show_message(message)
 
 # Show label with harvest count
