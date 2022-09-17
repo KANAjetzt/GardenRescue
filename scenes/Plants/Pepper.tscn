@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/Plants/Paprika/Paprika_Sprouting.png" type="Texture" id=2]
 [ext_resource path="res://assets/Plants/Paprika/Paprika_Seedling.png" type="Texture" id=3]
 [ext_resource path="res://assets/Plants/seed.png" type="Texture" id=4]
-[ext_resource path="res://scenes/Plant.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Plants/Plant.tscn" type="PackedScene" id=5]
 
 [node name="Pepper" instance=ExtResource( 5 )]
 plant_name = "pepper"

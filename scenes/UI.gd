@@ -3,6 +3,8 @@ extends CanvasLayer
 signal save_requested
 signal reload_requested
 
+var font_label = preload("res://assets/fonts/Edu_NSW_ACT_Foundation/static/Edu_16_bold.tres")
+
 onready var GameWorld = get_node("/root/GameWorld")
 
 export (NodePath) var ui_current_tool_path
@@ -15,7 +17,6 @@ onready var animation_money_added = $TopLeft/MarginContainer/VBC/Money/Animation
 onready var pause_menu = $PauseMenu
 onready var message = $Message
 onready var toast_message = $ToastMessage
-
 
 func _ready():
 	pause_menu.connect("save_requested", self, "emit_signal", ["save_requested"])
@@ -50,8 +51,24 @@ func show_message_popup(title, text):
 	message.message_text = text
 	message.show()
 
-func show_toast_message(message):
+func message():
 	toast_message.show_message(message)
+
+# Show label with harvest count
+func show_harvest_count(position, harvest_count_number):
+	var label = Label.new()
+	label.text = str("+", harvest_count_number)
+	label.rect_position = position + Vector2(0, -20)
+	label.rect_scale = Vector2(2.0, 2.0)
+	label.self_modulate =  Color(1,1,1,0)
+	label.add_font_override('font', font_label)
+	add_child(label)
+	
+	var tween = create_tween()
+	tween.tween_property(label, "self_modulate", Color(1,1,1,1), 0.15)
+	tween.tween_property(label, "rect_position", position + Vector2(0, -40), 0.15)
+	tween.tween_property(label, "self_modulate", Color(1,1,1,0), 0.15)
+	tween.tween_callback(label, "queue_free")
 
 func _on_new_day(day):
 	ui_current_day.text = str("It's day: ", day)
