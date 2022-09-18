@@ -9,7 +9,6 @@ func sell_item(item):
 	# Check if enough money
 	if(GameWorld.get_money() - item.price < 0):
 		
-		
 		GameWorld.UI.show_message_popup(
 			"Uff not enough money sorry :(",
 			"Ahh there is some money missing sorry I can't sell you that :("
@@ -20,6 +19,13 @@ func sell_item(item):
 	# Play SFX
 	GameWorld.Audio.play_sfx("Buy")
 	
+	if(item.unique_id == "tool_lawnMower"):
+		GameWorld.UI.show_message_popup(
+			"WOW :D",
+			"You Completed the Game! :D Thank you so much for playing! Let me know what you think in the comments :)"
+			)
+		return
+
 	# Subtract money
 	GameWorld.remove_money(item.price)
 	# Update money UI

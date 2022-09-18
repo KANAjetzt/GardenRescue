@@ -1,19 +1,19 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
-[ext_resource path="res://assets/Tools/lawnMower.png" type="Texture" id=1]
+[ext_resource path="res://assets/Plants/HappyPotato/HappyPotato.png" type="Texture" id=1]
 [ext_resource path="res://resources/ItemData.gd" type="Script" id=2]
 
 [resource]
 script = ExtResource( 2 )
-unique_id = "tool_lawnMower"
-display_name = "Lawn Mower"
-plant = ""
-description = "Mow the lawn"
+unique_id = "fruid_happy_potato"
+display_name = "Happy Potato"
+plant = "happy_potato"
+description = ""
 icon = ExtResource( 1 )
-type = "tool"
+type = "seed"
 is_stackable = false
 is_one_time_purchase = true
 is_shack_sell_possible = false
-amount = 0
-amount_needed = 0
-price = 100000.0
+amount = 1
+amount_needed = 1
+price = 0.0

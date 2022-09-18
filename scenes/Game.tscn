@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://resources/items/SeedCucumber.tres" type="Resource" id=1]
 [ext_resource path="res://assets/Buildings/Kaufstand.png" type="Texture" id=2]
@@ -74,6 +74,9 @@
 [ext_resource path="res://resources/particles/harvest.tres" type="Material" id=72]
 [ext_resource path="res://scenes/UI/Message.tscn" type="PackedScene" id=73]
 [ext_resource path="res://scenes/UI/ToastMessage.tscn" type="PackedScene" id=74]
+[ext_resource path="res://resources/items/HappyPotato.tres" type="Resource" id=75]
+[ext_resource path="res://scenes/Plants/HappyPotato.tscn" type="PackedScene" id=76]
+[ext_resource path="res://assets/Plants/HappyPotato/HappyPotato.png" type="Texture" id=77]
 
 [sub_resource type="Gradient" id=5]
 offsets = PoolRealArray( 0, 0.614907, 1 )
@@ -238,6 +241,20 @@ color_ramp = SubResource( 6 )
 10/shape_one_way_margin = 0.0
 10/shapes = [  ]
 10/z_index = 0
+11/name = "HappyPotato.png 11"
+11/texture = ExtResource( 77 )
+11/tex_offset = Vector2( 0, 0 )
+11/modulate = Color( 1, 1, 1, 1 )
+11/region = Rect2( 0, 0, 32, 32 )
+11/tile_mode = 0
+11/occluder_offset = Vector2( 0, 0 )
+11/navigation_offset = Vector2( 0, 0 )
+11/shape_offset = Vector2( 0, 0 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+11/shape_one_way = false
+11/shape_one_way_margin = 0.0
+11/shapes = [  ]
+11/z_index = 0
 
 [sub_resource type="TileSet" id=15]
 0/name = "Erde.png 0"
@@ -523,7 +540,7 @@ tile_data = PoolIntArray( 0, 8, 0, 1, 8, 0, 2, 8, 0, 3, 8, 0, 4, 8, 0, 5, 8, 0, 
 script = ExtResource( 25 )
 Item = ExtResource( 27 )
 plant_names = [ "", "", "salad", "tomato", "pepper", "zucchini", "flower", "cucumber", "grass", "dandelion", "moss" ]
-plants = [ null, null, ExtResource( 6 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 35 ), ExtResource( 23 ), ExtResource( 42 ), ExtResource( 44 ) ]
+plants = [ null, null, ExtResource( 6 ), ExtResource( 8 ), ExtResource( 14 ), ExtResource( 31 ), ExtResource( 33 ), ExtResource( 35 ), ExtResource( 23 ), ExtResource( 42 ), ExtResource( 44 ), ExtResource( 76 ) ]
 plant_nodes_path = NodePath("../Plants")
 
 [node name="HoverLayer" type="TileMap" parent="."]
@@ -549,7 +566,7 @@ scale = Vector2( 1.5, 1.5 )
 z_index = 5
 texture = ExtResource( 2 )
 inventory = ExtResource( 38 )
-items = [ ExtResource( 1 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 15 ), ExtResource( 19 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 28 ), ExtResource( 3 ), ExtResource( 4 ) ]
+items = [ ExtResource( 1 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 15 ), ExtResource( 19 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 28 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 75 ) ]
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 12 )

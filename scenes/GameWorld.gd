@@ -94,9 +94,8 @@ func change_plant_layer(cell_position, plant_name):
 		
 		return
 	
-	# check if there is a plant allready
+	# Add plant if there is non yet
 	if(!is_plant_on_position):
-		# if not add plant
 		GameWorld.Audio.play_sfx_random_pitch('Planting')
 		var new_plant = PlantLayer.instsance_plant(cell_position, plant_name)
 		return new_plant
