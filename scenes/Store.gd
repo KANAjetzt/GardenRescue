@@ -22,8 +22,14 @@ func sell_item(item):
 	if(item.unique_id == "tool_lawnMower"):
 		GameWorld.UI.show_message_popup(
 			"WOW :D",
-			"You Completed the Game! :D Thank you so much for playing! Let me know what you think in the comments :)"
+			"You Completed the Game! :D Thank you so much for playing! Let me know what you think in the comments :) I added something special to you'r shack :D"
 			)
+		# Subtract money
+		GameWorld.remove_money(item.price)
+		# Update money UI
+		GameWorld.UI.ui_money.text = str(GameWorld.get_money())
+		# Add item to shack
+		GameWorld.Shack.inventory.add_item("fruid_happy_potato", 1)
 		return
 
 	# Subtract money
